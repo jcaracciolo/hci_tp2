@@ -1,0 +1,57 @@
+<resources>
+    <string name="app_name">DreamTrip</string>
+
+    <string name="tab_search">Search</string>
+    <string name="tab_flights">Flights</string>
+    <string name="tab_destinations">Destinations</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="main_tab1">Search</string>
+    <string name="main_tab2">Flights</string>
+    <string name="main_tab3">Destinations</string>
+    <string name="qr">QR</string>
+    <string name="map">Map</string>
+    <string name="currency_converter">Currency converter</string>
+    <string name="settings">Settings</string>
+    <string name="help">Help</string>
+    <string name="search_hint">Search</string>
+    <string name="search_btn_text">Search</string>
+    <string name="action_settings">Settings</string>
+    <string name="airline_activity_title">Airline Information</string>
+    <string name="city_activity_title">City Information</string>
+    <string name="airport_activity_title">Airport Information</string>
+    <string name="country_activity_title">Country Information</string>
+    <string name="see_more_opinions">See opinions</string>
+    <string name="search_a_flight">Search a flight:</string>
+    <string name="hint_flight_number">Flight number</string>
+    <string name="subscription">Subscribe</string>
+    <string name="show_on_map">Show on map</string>
+    <string name="opinions_activity_title">Opinions</string>
+    <string name="give_us_opinions">Give us \nyour opinion</string>
+    <string name="kindness">Kindness</string>
+    <string name="comfort">Comfort</string>
+    <string name="food">Food</string>
+    <string name="miles">Miles</string>
+    <string name="punctuality">Punctuality</string>
+    <string name="quality_price">Price/Quality</string>
+    <string name="general">General</string>
+    <string name="dialog_title">Track a flight</string>
+    <string name="dialog_add_tracked_flight_title">Add Flight to Track</string>
+    <string name="dialog_add_tracked_flight_button">Add Flight</string>
+    <string name="add_track_flight_hint">Flight number (ex: AZ 523)</string>
+    <string name="follow">Follow</string>
+    <string name="map_search">Map</string>
+    <string name="qr_search">QR</string>
+    <string name="help_search">Search airlines, flights, airports, cities or countries.</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_opinions">Opinions</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="status_not_found_flight">Status Error</string>
+    <string name="scheduled_flight">Programado</string>
+    <string name="active_flight">Activo</string>
+    <string name="landed_flight">Aterrizado</string>
+    <string name="canceled_flight">Cancelado</string>
+
+</resources>

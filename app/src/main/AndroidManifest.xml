@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?><manifest xmlns:android="http://schemas.android.com/apk/res/android"
+package="ar.edu.itba.dreamtrip">
+
+<uses-feature android:glEsVersion="0x00020000" android:required="true" />
+
+<uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+<application android:allowBackup="true" android:icon="@mipmap/ic_launcher" android:label="@string/app_name"
+    android:supportsRtl="true" android:theme="@style/AppTheme">
+    <activity android:name=".main.FlightTracker"
+        android:windowSoftInputMode="adjustPan|adjustResize" android:label="@string/app_name"
+        android:theme="@style/AppTheme.NoActionBar">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+    </activity>
+    <activity android:name=".main.BaseActivity" android:label="@string/app_name" android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
+    <activity android:name=".airlineInfo.AirlineInfo" android:label="@string/airline_activity_title" />
+    <activity android:name=".Deals.DealsFromActivity" android:label="@string/deals_from_activity_title" />
+    <activity android:name=".cityInfo.CityInfo" android:label="@string/city_activity_title" />
+    <activity android:name=".airportInfo.AirportInfo" android:label="@string/airport_activity_title" />
+    <activity android:name=".countryInfo.CountryInfo" android:label="@string/country_activity_title" />
+
+    <activity android:name=".opinions.Opinions" android:label="@string/opinions_activity_title" />
+
+    <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
+    <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyAn5oP_df2E5UUPf0hSxMgDhe8PKu5lZ2o" />
+
+    <activity android:name="ar.edu.itba.dreamtrip.Map.MapsActivity" android:label="@string/title_activity_maps">
+        <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="ar.edu.itba.dreamtrip.main.BaseActivity" />
+
+    </activity>
+
+</application>
+
+</manifest>

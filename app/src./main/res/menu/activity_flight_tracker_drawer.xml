@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<!--ACA SE MODIFICAN LAS SECCIONES DEL NAVIGATION DRAWER-->
+<!--ACLARACIÓN: NO TOMAR EN CUENTA EL PREVIEW DE LA DERECHA..-->
+
+    <group android:id="@+id/menu_1"
+        android:checkableBehavior="single">
+        <!-- TODO: ADD ID's. DEJO ESTE DE EJEMPLO-->
+        <!--android:id="@+id/nav_camera"-->
+        <item
+            android:id="@+id/drawer_flights"
+            android:icon="@drawable/ic_flight"
+            android:title="@string/main_tab2" />
+        <item
+            android:id="@+id/drawer_destinations"
+            android:icon="@drawable/ic_beach_access_black_24px"
+            android:title="@string/main_tab3" />
+        <item
+            android:id="@+id/drawer_search"
+            android:icon="@drawable/ic_search"
+            android:title="@string/main_tab1" />
+    </group>
+
+    <group android:id="@+id/menu_2"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/drawer_qr"
+            android:icon="@drawable/ic_qrcode"
+            android:title="@string/qr" />
+        <item
+            android:id="@+id/drawer_map"
+            android:icon="@drawable/ic_map_black_24px"
+            android:title="@string/map" />
+        <item
+            android:id="@+id/drawer_currency"
+            android:icon="@drawable/ic_calculator"
+            android:title="@string/currency_converter" />
+    </group>
+
+    <group android:id="@+id/menu_3"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/drawer_settings"
+            android:icon="@drawable/ic_settings_black_24px"
+            android:title="@string/settings" />
+        <item
+            android:id="@+id/drawer_help"
+            android:icon="@drawable/ic_help_black_24px"
+            android:title="@string/help" />
+    </group>
+
+</menu>

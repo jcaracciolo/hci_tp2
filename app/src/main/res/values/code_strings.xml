@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+       <string name="tracked_flights_pref">tracked_flights</string>
+       <string name="tracked_flight">flight</string>
+       <string name="tracked_flight_amount">amount</string>
+       <string name="valid_identifier_regex">^\\w{2} \\d{3,4}$</string>
+</resources>

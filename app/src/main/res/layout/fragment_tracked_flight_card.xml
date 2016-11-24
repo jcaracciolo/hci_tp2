@@ -1,0 +1,128 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="10dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="10dp"
+    android:background="?attr/selectableItemBackground"
+    tools:context="ar.edu.itba.dreamtrip.TrackedFlights.TrackedFlightCardView"
+    android:id="@+id/flight_card"
+    >
+
+    <View
+        android:id="@+id/card_background"
+        android:layout_height="100dp"
+        android:layout_width="match_parent"
+        android:background="@drawable/grey_rectangle">
+    </View>
+
+    <View
+        android:id="@+id/flight_status_bar"
+        android:layout_height="100dp"
+        android:layout_width="6dp"
+        android:background="@color/status_green">
+    </View>
+
+    <ImageView
+        android:id="@+id/flight_icon"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="11dp"
+        android:src="@drawable/ic_flight_takeoff"/>
+
+    <TextView
+        android:id="@+id/flight_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="AA 666"
+        android:layout_marginTop="14dp"
+        android:layout_marginLeft="5dp"
+        android:textSize="18dp"
+        android:layout_toRightOf="@id/flight_icon"/>
+
+    <TextView
+        android:id="@+id/separator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/flight_number"
+        android:layout_marginTop="14dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="5dp"
+        android:textSize="18dp"
+        android:text="-"/>
+
+    <TextView
+        android:id="@+id/status_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/separator"
+        android:layout_marginTop="14dp"
+        android:layout_marginLeft="5dp"
+        android:textSize="18dp"
+        android:text="Cancelled"
+        android:textColor="#FF5C5C"/>
+
+    <TextView
+        android:id="@+id/departure_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
+        android:layout_alignParentRight="true"
+        android:text="02/01/0000"/>
+
+    <ImageView
+        android:id="@+id/arrow"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_below="@+id/flight_icon"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/ic_arrow_right"/>
+
+    <TextView
+        android:id="@+id/origin_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/flight_icon"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="15dp"
+        android:layout_toLeftOf="@id/arrow"
+        android:text="BBB"
+        android:textSize="20dp"/>
+
+    <TextView
+        android:id="@+id/destination_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/flight_icon"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="15dp"
+        android:layout_toRightOf="@+id/arrow"
+        android:text="AAA"
+        android:textSize="20dp"/>
+
+    <TextView
+        android:id="@+id/origin_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/origin_id"
+        android:layout_toLeftOf="@id/arrow"
+        android:layout_marginRight="18dp"
+        android:text="25:30"
+        android:textSize="12dp"/>
+
+    <TextView
+        android:id="@+id/destination_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/origin_id"
+        android:layout_toRightOf="@+id/arrow"
+        android:layout_marginLeft="18dp"
+        android:text="26:70"
+        android:textSize="12dp"/>
+
+</RelativeLayout>
