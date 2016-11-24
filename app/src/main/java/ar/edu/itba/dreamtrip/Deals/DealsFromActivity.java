@@ -25,7 +25,7 @@ public class DealsFromActivity extends BaseActivity {
 
         final DataHolder dataholder = DataHolder.getInstance(getBaseContext());
 
-        dataholder.waitForIt(new PopulateDeals(getBaseContext(), grid));
+        dataholder.waitForIt(new PopulateDeals(getBaseContext(), grid,"BUE"));
 
     }
 
