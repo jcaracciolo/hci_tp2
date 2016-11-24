@@ -20,9 +20,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Date;
+
 import ar.edu.itba.dreamtrip.R;
 import ar.edu.itba.dreamtrip.common.API.DataHolder;
 import ar.edu.itba.dreamtrip.common.API.SettingsManager;
+import ar.edu.itba.dreamtrip.common.tasks.TrackFlightTask;
 import ar.edu.itba.dreamtrip.main.Adapter.PagerAdapter;
 
 public class FlightTracker extends BaseActivity{
@@ -92,11 +95,8 @@ public class FlightTracker extends BaseActivity{
 
                     } else {
                             flightID = flightID.trim().split("\\W")[0] + " " + flightID.trim().split("\\W")[1];
-                            SettingsManager settingsManager = SettingsManager.getInstance(getApplicationContext());
-                            System.out.println(settingsManager.getTrackedFlights());
-                            settingsManager.trackFlight(flightID);
-                            System.out.println(settingsManager.getTrackedFlights());
-                            toast("ADEDD");
+                            DataHolder.getInstance(getApplicationContext()).waitForIt(
+                                    new TrackFlightTask(getApplicationContext(),flightID));
 
                         }
                     }

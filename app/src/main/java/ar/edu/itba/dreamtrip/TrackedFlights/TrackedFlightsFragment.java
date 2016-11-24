@@ -59,10 +59,9 @@ public class TrackedFlightsFragment extends ListFragment {
 
 
 
-        final DataHolder dataholder = DataHolder.getInstance(getContext());
 
         SettingsManager settingsManager = SettingsManager.getInstance(getContext());
-        settingsManager.clearTrackedFlights();
+        settingsManager.clearAllTracked();
         settingsManager.trackFlight("8R 8700");
         settingsManager.trackFlight("BA 2282");
         System.out.println(settingsManager.getTrackedFlights());
@@ -70,6 +69,12 @@ public class TrackedFlightsFragment extends ListFragment {
         System.out.println(settingsManager.getTrackedFlights());
         settingsManager.trackFlight("BA 2282");
         System.out.println(settingsManager.getTrackedFlights());
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        final DataHolder dataholder = DataHolder.getInstance(getContext());
         dataholder.waitForIt(new PopulateFlightTrackers(getContext(), getListView()));
     }
 

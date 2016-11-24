@@ -238,6 +238,13 @@ public class DataHolder {
         System.out.println("There is not enough internet to call" + dependency);
     }
 
+    public boolean removeDependency(Dependency dependency){
+        if(requested.contains(dependency)) return false;
+        if(waiting.contains(dependency)) return false;
+        if(loaded.contains(dependency)) return loaded.remove(dependency);
+        return false;
+    }
+
     private void setImage(ImageDependency imageDependency, Bitmap bitmap){
         images.put(imageDependency.getUrl(),bitmap);
         switch (imageDependency.getImageType()){
