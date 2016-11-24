@@ -2,6 +2,8 @@ package ar.edu.itba.dreamtrip.common.model;
 
 import android.graphics.Bitmap;
 
+import java.util.Objects;
+
 /**
  * Created by Julian Benitez on 11/24/2016.
  */
@@ -52,5 +54,19 @@ public class Deal {
 
     public String getDestinationCityID() {
         return destinationCityID;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Deal deal = (Deal) o;
+        return Objects.equals(destinationCityID, deal.destinationCityID) &&
+                Objects.equals(originCityID, deal.originCityID);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(destinationCityID, originCityID);
     }
 }

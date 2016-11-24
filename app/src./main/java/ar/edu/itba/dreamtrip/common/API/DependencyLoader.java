@@ -375,7 +375,7 @@ public abstract class DependencyLoader {
 
     static boolean loadFlightDealsData(final DataHolder dataHolder,
                                        final FlightDealsDependency dependency,
-                                       final HashSet<Deal> deals, boolean lastMinute){
+                                       final HashSet<Deal> deals,final boolean lastMinute){
         String url ="http://hci.it.itba.edu.ar/v1/api/booking.groovy?method=get"
             + (lastMinute? "lastminute":"") + "flightdeals" +
                 "&from=" + dependency.getOriginID();
@@ -383,7 +383,8 @@ public abstract class DependencyLoader {
                 (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        deals.clear();
+//                        deals.clear();
+
                         JSONParser.fillDeals(response,deals,dependency.getOriginID());
                         dataHolder.somethingLoaded(dependency);
                     }

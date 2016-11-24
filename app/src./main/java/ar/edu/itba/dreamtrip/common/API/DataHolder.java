@@ -205,6 +205,8 @@ public class DataHolder {
             case TRACKED_FLIGHTS:
             case LAST_MINUTE_DEALS:
             case DEALS:
+            case TRACKED_LEGS:
+
                 somethingLoaded(dependency);
                 break;
         }

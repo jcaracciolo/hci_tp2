@@ -292,6 +292,7 @@ public class JSONParser {
                     flightStatus = FlightStatus.ACTIVE;
                     break;
                 case "D":
+                case "R":
                     flightStatus = FlightStatus.DELAYED;
                     break;
                 case "L":
