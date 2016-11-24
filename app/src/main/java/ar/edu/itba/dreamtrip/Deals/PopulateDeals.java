@@ -9,8 +9,7 @@ import java.util.HashSet;
 
 import ar.edu.itba.dreamtrip.common.API.DataHolder;
 import ar.edu.itba.dreamtrip.common.API.dependencies.Dependency;
-import ar.edu.itba.dreamtrip.common.API.dependencies.DependencyType;
-import ar.edu.itba.dreamtrip.common.API.dependencies.LastMinuteFlightDealsDependency;
+import ar.edu.itba.dreamtrip.common.API.dependencies.FlightDealsDependency;
 import ar.edu.itba.dreamtrip.common.model.Deal;
 import ar.edu.itba.dreamtrip.common.tasks.AsyncTaskInformed;
 
@@ -33,7 +32,7 @@ public class PopulateDeals extends AsyncTaskInformed<Object,Void,ArrayList<DealV
 
     public HashSet<Dependency> getDependencies() {
         HashSet<Dependency> dependencies = new HashSet<>();
-        dependencies.add(new LastMinuteFlightDealsDependency(originID,true));
+        dependencies.add(new FlightDealsDependency(originID,true, false));
         return dependencies;
     }
 

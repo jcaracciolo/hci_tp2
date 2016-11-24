@@ -1,7 +1,6 @@
 package ar.edu.itba.dreamtrip.common.API;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 
@@ -10,18 +9,16 @@ import com.android.volley.VolleyError;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.concurrent.ConcurrentHashMap;
 
-import ar.edu.itba.dreamtrip.R;
 import ar.edu.itba.dreamtrip.common.API.dependencies.AirlinesReviewDependency;
 import ar.edu.itba.dreamtrip.common.API.dependencies.Dependency;
 import ar.edu.itba.dreamtrip.common.API.dependencies.FlightDependency;
 import ar.edu.itba.dreamtrip.common.API.dependencies.ImageDependency;
-import ar.edu.itba.dreamtrip.common.API.dependencies.LastMinuteFlightDealsDependency;
+import ar.edu.itba.dreamtrip.common.API.dependencies.FlightDealsDependency;
 import ar.edu.itba.dreamtrip.common.API.dependencies.StatusDependency;
 import ar.edu.itba.dreamtrip.common.API.dependencies.StatusSearchDependency;
 import ar.edu.itba.dreamtrip.common.model.Airline;
@@ -44,6 +41,7 @@ public class DataHolder {
     private HashMap<String,FlightState> flightStates = new HashMap<>();
     private HashMap<String,HashSet<Review>> reviews = new HashMap<>();
     private HashSet<Deal> deals = new HashSet<>();
+    private HashSet<Deal> lastMinuteDeals = new HashSet<>();
 
 
     public Collection<Airline> getAirlines() {
@@ -186,17 +184,27 @@ public class DataHolder {
                 DependencyLoader.loadAirlineReviews(this,(AirlinesReviewDependency) dependency,reviews);
                 break;
             case LAST_MINUTE_DEALS_DATA:
-                DependencyLoader.loadLastMinuteFlightDealsData(this,(LastMinuteFlightDealsDependency) dependency,deals);
+                DependencyLoader.loadFlightDealsData(this,(FlightDealsDependency) dependency,lastMinuteDeals,true);
+                break;
+            case DEALS_DATA:
+                DependencyLoader.loadFlightDealsData(this,(FlightDealsDependency) dependency,deals,false);
                 break;
             case LAST_MINUTE_DEALS_IMAGES:
+                DependencyLoader.loadDealsImages(this,lastMinuteDeals,dependency);
+                break;
+            case DEALS_IMAGES:
                 DependencyLoader.loadDealsImages(this,deals,dependency);
                 break;
             case LAST_MINUTE_DEALS_IMAGES_URLS:
+                DependencyLoader.loadDealsImagesURLS(this,lastMinuteDeals,dependency);
+                break;
+            case DEALS_IMAGES_URLS:
                 DependencyLoader.loadDealsImagesURLS(this,deals,dependency);
                 break;
             case AIRLINES:
             case TRACKED_FLIGHTS:
             case LAST_MINUTE_DEALS:
+            case DEALS:
                 somethingLoaded(dependency);
                 break;
         }

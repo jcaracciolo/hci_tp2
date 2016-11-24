@@ -7,9 +7,6 @@ import java.util.ArrayList;
 
 import ar.edu.itba.dreamtrip.R;
 
-/**
- * Created by Julian Benitez on 11/23/2016.
- */
 public class SettingsManager {
     private static SettingsManager ourInstance ;
     private Context context;
@@ -54,31 +51,34 @@ public class SettingsManager {
     public void clearAllTracked(){
         String prefsString = context.getString(R.string.tracked_flights_pref);
         context.getSharedPreferences(prefsString, 0).edit().clear().commit();
-        prefsString = context.getString(R.string.tracked_airports_pref);
+        prefsString = context.getString(R.string.tracked_legs_pref);
         context.getSharedPreferences(prefsString, 0).edit().clear().commit();
     }
 
-    public boolean trackAirport(String airportID){
-        String prefsString = context.getString(R.string.tracked_airports_pref);
-        String baseFlightString = context.getString(R.string.tracked_airport);
-        String amountString = context.getString(R.string.tracked_airport_amount);
-        String regex = context.getString(R.string.valid_airport_regex);
+    //Must be like this "BUE LON"
+    public boolean trackLeg(String legID){
+        String prefsString = context.getString(R.string.tracked_legs_pref);
+        String baseFlightString = context.getString(R.string.tracked_legs);
+        String amountString = context.getString(R.string.tracked_leg_amount);
+        String regex = context.getString(R.string.valid_leg_regex);
 
-        return track(airportID,regex,prefsString,amountString,baseFlightString);
+        return track(legID,regex,prefsString,amountString,baseFlightString);
     }
-    public boolean untrackAirport(String airportID){
-        String prefsString = context.getString(R.string.tracked_airports_pref);
-        String baseFlightString = context.getString(R.string.tracked_airport);
-        String amountString = context.getString(R.string.tracked_airport_amount);
-        String regex = context.getString(R.string.valid_airport_regex);
 
-        return untrack(airportID,regex,prefsString,amountString,baseFlightString);
+    //Must be like this "BUE EZE"
+    public boolean untrackLeg(String legID){
+        String prefsString = context.getString(R.string.tracked_legs_pref);
+        String baseFlightString = context.getString(R.string.tracked_legs);
+        String amountString = context.getString(R.string.tracked_leg_amount);
+        String regex = context.getString(R.string.valid_leg_regex);
+
+        return untrack(legID,regex,prefsString,amountString,baseFlightString);
     }
-    public ArrayList<String> getTrackedAirports(){
-        String prefsString = context.getString(R.string.tracked_airports_pref);
-        String baseFlightString = context.getString(R.string.tracked_airport);
-        String amountString = context.getString(R.string.tracked_airport_amount);
-        String regex = context.getString(R.string.valid_airport_regex);
+    public ArrayList<String> getTrackedLegs(){
+        String prefsString = context.getString(R.string.tracked_legs_pref);
+        String baseFlightString = context.getString(R.string.tracked_legs);
+        String amountString = context.getString(R.string.tracked_leg_amount);
+        String regex = context.getString(R.string.valid_leg_regex);
 
         return getTracked(prefsString,amountString,baseFlightString);
     }
@@ -105,7 +105,7 @@ public class SettingsManager {
     }
 
     //Returns true if deleted something
-    public boolean untrack(String identifier, String regex, String prefsString, String amountString,
+    private boolean untrack(String identifier, String regex, String prefsString, String amountString,
                            String baseString) {
         if(!identifier.matches(regex)) return false;
 

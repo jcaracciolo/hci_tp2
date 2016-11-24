@@ -17,8 +17,8 @@ import java.util.HashSet;
 import ar.edu.itba.dreamtrip.common.API.dependencies.AirlinesReviewDependency;
 import ar.edu.itba.dreamtrip.common.API.dependencies.Dependency;
 import ar.edu.itba.dreamtrip.common.API.dependencies.DependencyType;
+import ar.edu.itba.dreamtrip.common.API.dependencies.FlightDealsDependency;
 import ar.edu.itba.dreamtrip.common.API.dependencies.FlightDependency;
-import ar.edu.itba.dreamtrip.common.API.dependencies.LastMinuteFlightDealsDependency;
 import ar.edu.itba.dreamtrip.common.API.dependencies.StatusDependency;
 import ar.edu.itba.dreamtrip.common.API.dependencies.StatusSearchDependency;
 import ar.edu.itba.dreamtrip.common.model.Airline;
@@ -373,10 +373,11 @@ public abstract class DependencyLoader {
         return true;
     }
 
-    static boolean loadLastMinuteFlightDealsData(final DataHolder dataHolder,
-                                                 final LastMinuteFlightDealsDependency dependency,
-                                                 final HashSet<Deal> deals){
-        String url ="http://hci.it.itba.edu.ar/v1/api/booking.groovy?method=getlastminuteflightdeals" +
+    static boolean loadFlightDealsData(final DataHolder dataHolder,
+                                       final FlightDealsDependency dependency,
+                                       final HashSet<Deal> deals, boolean lastMinute){
+        String url ="http://hci.it.itba.edu.ar/v1/api/booking.groovy?method=get"
+            + (lastMinute? "lastminute":"") + "flightdeals" +
                 "&from=" + dependency.getOriginID();
         JsonObjectRequest jsObjRequest = new JsonObjectRequest
                 (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
