@@ -50,11 +50,17 @@
     <string name="title_activity_opinions">Opinions</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="status_not_found_flight">Status Error</string>
-    <string name="scheduled_flight">Programado</string>
-    <string name="active_flight">Activo</string>
-    <string name="landed_flight">Aterrizado</string>
-    <string name="canceled_flight">Cancelado</string>
+    <string name="scheduled_flight">Programmed</string>
+    <string name="active_flight">Active</string>
+    <string name="landed_flight">Landed</string>
+    <string name="cancelled_flight">Cancelled</string>
+    <string name="delayed_flight">Delayed</string>
     <string name="title_activity_maps">Map</string>
+    <string name="flight_status_txt">The flight is</string>
+    <string name="estimated_dep_time_txt">Estimated departure time:</string>
+    <string name="terminal_txt">Terminal:</string>
+    <string name="gate_txt">Gate:</string>
+    <string name="luggage_txt">Luggage gate:</string>
 
 
 </resources>

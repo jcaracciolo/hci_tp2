@@ -56,7 +56,7 @@ public class TrackedFlightViewModel implements Serializable{
             case LANDED:
                 return R.string.landed_flight;
             case CANCELLED:
-                return R.string.canceled_flight;
+                return R.string.cancelled_flight;
         }
         return result;
     }

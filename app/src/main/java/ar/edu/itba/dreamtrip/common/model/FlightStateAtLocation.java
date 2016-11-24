@@ -46,7 +46,7 @@ public class FlightStateAtLocation {
     }
 
     public String getScheduledHour(){
-        SimpleDateFormat format = new SimpleDateFormat("hh:mm:ss");
+        SimpleDateFormat format = new SimpleDateFormat("hh:mm");
         return format.format(scheduledTime);
     }
 
@@ -81,6 +81,10 @@ public class FlightStateAtLocation {
 
     public Date getEstimateRunwayTime() {
         return estimateRunwayTime;
+    }
+
+    public String getEstimateRunwayHour() {
+        return estimateRunwayTime.toString().split(" ")[3].split(":")[0] + ":" + estimateRunwayTime.toString().split(" ")[3].split(":")[1];
     }
 
     public Date getActualRunwayTime() {
