@@ -1,6 +1,7 @@
 package ar.edu.itba.dreamtrip.common.tasks;
 
 import android.content.Context;
+import android.content.Intent;
 import android.widget.Toast;
 
 import java.util.HashSet;
@@ -56,6 +57,8 @@ public class TrackFlightTask extends AsyncTaskInformed<Object,Void,Boolean>{
     protected void onPostExecute(Boolean successfullyTracked) {
         Toast.makeText(context, successfullyTracked? "Successfully tracked!!":"That flight does not exist",
                 Toast.LENGTH_LONG).show();
+        Intent intent = new Intent("ar.edu.itba.dreamtrip.UPDATE_LIST_TRACKER");
+        context.sendBroadcast(intent);
     }
 
 }

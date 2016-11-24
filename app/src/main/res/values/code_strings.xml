@@ -5,8 +5,8 @@
        <string name="tracked_flight_amount">amount_flights</string>
        <string name="valid_identifier_regex">^([A-Z0-9]){2} \\d{3,4}$</string>
 
-       <string name="tracked_airports_pref">tracked_objects</string>
-       <string name="tracked_airport">airport</string>
-       <string name="tracked_airport_amount">amount_airports</string>
-       <string name="valid_airport_regex">^([A-Z]){3}$</string>
+       <string name="tracked_legs_pref">tracked_objects</string>
+       <string name="tracked_legs">leg</string>
+       <string name="tracked_leg_amount">amount_legsx</string>
+       <string name="valid_leg_regex">^([A-Z]){3} ([A-Z]){3}$</string>
 </resources>

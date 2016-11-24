@@ -1,5 +1,9 @@
 package ar.edu.itba.dreamtrip.TrackedFlights;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ListFragment;
@@ -20,24 +24,18 @@ import ar.edu.itba.dreamtrip.common.API.SettingsManager;
 
 public class TrackedFlightsFragment extends ListFragment {
 
-    //TODO delete
-    //static ArrayList<TrackedFlightViewModel> flightCards = new ArrayList<>();
-
     ProgressBar progressBar;
+    private BroadcastReceiver listUpdater;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
-//
-        //FloatingActionButton fab = (FloatingActionButton) getActivity().findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
         super.onCreate(savedInstanceState);
-        toast("hi there!");
+        listUpdater = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                updateList();
+            }
+        };
     }
 
     @Override
@@ -57,9 +55,6 @@ public class TrackedFlightsFragment extends ListFragment {
         progressBar = (ProgressBar) getView().findViewById(R.id.loading_trackers);
         getListView().setEmptyView(progressBar);
 
-
-
-
         SettingsManager settingsManager = SettingsManager.getInstance(getContext());
         settingsManager.clearAllTracked();
         settingsManager.trackFlight("8R 8700");
@@ -76,6 +71,7 @@ public class TrackedFlightsFragment extends ListFragment {
         super.onResume();
         final DataHolder dataholder = DataHolder.getInstance(getContext());
         dataholder.waitForIt(new PopulateFlightTrackers(getContext(), getListView()));
+        getActivity().registerReceiver(listUpdater,new IntentFilter("ar.edu.itba.dreamtrip.UPDATE_LIST_TRACKER"));
     }
 
     public void toast(String str) {
@@ -83,5 +79,9 @@ public class TrackedFlightsFragment extends ListFragment {
                 Toast.LENGTH_SHORT).show();
     }
 
+    public void updateList() {
+        final DataHolder dataholder = DataHolder.getInstance(getContext());
+        dataholder.waitForIt(new PopulateFlightTrackers(getContext(), getListView()));
+    }
 
 }

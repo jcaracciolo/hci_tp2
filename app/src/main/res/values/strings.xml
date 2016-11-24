@@ -44,6 +44,8 @@
     <string name="map_search">Map</string>
     <string name="qr_search">QR</string>
     <string name="help_search">Search airlines, flights, airports, cities or countries.</string>
+    <string name="no_offer_found">No offers found.</string>
+    <string name="offer_found">New offer found.</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
