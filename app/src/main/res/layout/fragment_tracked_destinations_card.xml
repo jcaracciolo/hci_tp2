@@ -9,6 +9,15 @@
     tools:context="ar.edu.itba.dreamtrip.main.TrackedDestinationsCard"
     android:id="@+id/tracked_destination_card">
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/swipe_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="30dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/quantum_ic_art_track_grey600_48"/>
     <View
         android:id="@+id/card_background"
         android:layout_height="100dp"
@@ -16,7 +25,7 @@
         android:background="@drawable/grey_rectangle">
     </View>
 
-    <ImageView
+    <ImageButton
         android:id="@+id/destination_img"
         android:layout_width="86dp"
         android:layout_height="86dp"
@@ -25,7 +34,7 @@
         android:layout_marginLeft="5dp"/>
 
     <TextView
-        android:id="@+id/tracked_destination_id"
+        android:id="@+id/tracked_destination_desc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -38,7 +47,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="5dp"
-        android:layout_below="@id/tracked_destination_id"
+        android:layout_below="@id/tracked_destination_desc"
         android:layout_alignParentRight="true"
         android:text="from City"/>
 

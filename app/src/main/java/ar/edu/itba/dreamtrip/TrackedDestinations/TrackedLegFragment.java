@@ -1,4 +1,4 @@
-package ar.edu.itba.dreamtrip.TrackedFlights;
+package ar.edu.itba.dreamtrip.TrackedDestinations;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -16,13 +16,12 @@ import android.widget.Toast;
 
 import ar.edu.itba.dreamtrip.R;
 import ar.edu.itba.dreamtrip.common.API.DataHolder;
-import ar.edu.itba.dreamtrip.common.API.SettingsManager;
 
 /**
  * Created by Julian Benitez on 11/17/2016.
  */
 
-public class TrackedFlightsFragment extends ListFragment {
+public class TrackedLegFragment extends ListFragment {
 
     ProgressBar progressBar;
     private BroadcastReceiver listUpdater;
@@ -45,8 +44,8 @@ public class TrackedFlightsFragment extends ListFragment {
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
-        TrackedFlightViewModel flight = (TrackedFlightViewModel)getListView().getAdapter().getItem(position);
-        toast("YOU CLICKED " + flight.getIdentifier());
+        TrackedLegViewModel flight = (TrackedLegViewModel)getListView().getAdapter().getItem(position);
+        toast("YOU CLICKED ");
     }
 
     @Override
@@ -72,7 +71,7 @@ public class TrackedFlightsFragment extends ListFragment {
     public void onResume() {
         super.onResume();
         final DataHolder dataholder = DataHolder.getInstance(getContext());
-        dataholder.waitForIt(new PopulateFlightTrackers(getContext(), getListView()));
+        dataholder.waitForIt(new PopulateLegTrackers(getContext(), getListView()));
         getActivity().registerReceiver(listUpdater,new IntentFilter("ar.edu.itba.dreamtrip.UPDATE_LIST_TRACKER"));
     }
 
@@ -83,7 +82,7 @@ public class TrackedFlightsFragment extends ListFragment {
 
     public void updateList() {
         final DataHolder dataholder = DataHolder.getInstance(getContext());
-        dataholder.waitForIt(new PopulateFlightTrackers(getContext(), getListView()));
+        dataholder.waitForIt(new PopulateLegTrackers(getContext(), getListView()));
     }
 
     @Override

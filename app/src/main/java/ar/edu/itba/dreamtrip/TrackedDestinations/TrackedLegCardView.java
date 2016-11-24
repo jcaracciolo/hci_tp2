@@ -1,23 +1,22 @@
-package ar.edu.itba.dreamtrip.TrackedFlights;
+package ar.edu.itba.dreamtrip.TrackedDestinations;
 
 import android.content.Context;
-import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.daimajia.swipe.SwipeLayout;
 
 import ar.edu.itba.dreamtrip.R;
 
-public class TrackedFlightCardView{
+public class TrackedLegCardView {
 
-    public static View getView(final Context context, LayoutInflater inflater, ViewGroup container, TrackedFlightViewModel flight) {
+    public static View getView(final Context context, LayoutInflater inflater, ViewGroup container, TrackedLegViewModel leg) {
 
-        final SwipeLayout swipeLayout =  (SwipeLayout)inflater.inflate(R.layout.fragment_swipeable_tracked_flight_card, container, false);
+        final SwipeLayout swipeLayout =  (SwipeLayout)inflater.inflate(R.layout.fragment_swipeable_tracked_destinations_card, container, false);
 
         //set show mode.
         swipeLayout.setShowMode(SwipeLayout.ShowMode.LayDown);
@@ -88,38 +87,18 @@ public class TrackedFlightCardView{
 
         swipeLayout.setSwipeEnabled(false);
 
-        View cardView=swipeLayout.findViewById(R.id.flight_card);
-        ((TextView)cardView.findViewById(R.id.flight_number)).setText(flight.getIdentifier());
-        ((TextView)cardView.findViewById(R.id.origin_id)).setText(flight.originID);
-        ((TextView)cardView.findViewById(R.id.destination_id)).setText(flight.destinationID);
-        ((TextView)cardView.findViewById(R.id.origin_time)).setText(flight.departureHour);
-        ((TextView)cardView.findViewById(R.id.destination_time)).setText(flight.arrivalHour);
-        ((TextView)cardView.findViewById(R.id.departure_date)).setText(flight.date);
+        View cardView=swipeLayout.findViewById(R.id.tracked_destination_card);
+        ((TextView)cardView.findViewById(R.id.tracked_destination_desc)).setText(leg.destinationDescription);
+        ((ImageButton)cardView.findViewById(R.id.destination_img)).setImageBitmap(leg.image);
+        ((TextView)cardView.findViewById(R.id.from_destination)).setText(leg.originDescription);
+        if(leg.isLastMinute){
+            ((TextView)cardView.findViewById(R.id.offer_found)).setText(R.string.offer_found);
+            ((TextView)cardView.findViewById(R.id.price_tracked_destination)).setText(leg.price.toString());
+        }else{
+            ((TextView)cardView.findViewById(R.id.offer_found)).setText(R.string.no_offer_found);
 
-        if(context!=null) {
-            Integer color = context.getResources().getColor(R.color.status_green);
-            switch (flight.status) {
-                case SCHEDULED:
-                    color = context.getResources().getColor(R.color.status_green);
-                    break;
-                case ACTIVE:
-                    color = context.getResources().getColor(R.color.status_green);
-                    break;
-                case DELAYED:
-                    color = context.getResources().getColor(R.color.status_orange);
-                    break;
-                case LANDED:
-                    color = context.getResources().getColor(R.color.status_blue);
-                    break;
-                case CANCELLED:
-                    color = context.getResources().getColor(R.color.status_red);
-                    break;
-            }
-            TextView statusText = ((TextView) cardView.findViewById(R.id.status_text));
-            statusText.setText(context.getString(flight.getStatusString()));
-            statusText.setTextColor(color);
-            cardView.findViewById(R.id.flight_status_bar).setBackgroundColor(color);
         }
+
         return swipeLayout;
 
     }
