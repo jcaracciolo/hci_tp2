@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import ar.edu.itba.dreamtrip.Deals.DealsFromActivity;
 import ar.edu.itba.dreamtrip.R;
 import ar.edu.itba.dreamtrip.common.API.DataHolder;
 
@@ -84,6 +85,17 @@ public class CityDetailsFragment extends Fragment {
         TextView text = (TextView) v.findViewById(R.id.destination_name);
         TextView destFrom = (TextView) v.findViewById(R.id.destinations_from_button);
         dataHolder.waitForIt(new LoadCityInfoTask(getContext(), text, destFrom, id));
+
+        v.findViewById(R.id.destinations_from_button).setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), DealsFromActivity.class);
+                //intent.putExtra(INTENT_TO_DEALS_FROM, )
+                startActivity(intent);
+            }
+
+        });
 
         // Inflate the layout for this fragment
         return v;
