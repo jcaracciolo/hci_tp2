@@ -6,7 +6,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 
 import ar.edu.itba.dreamtrip.main.DestinationsFragment;
 import ar.edu.itba.dreamtrip.main.SearchFragment;
-import ar.edu.itba.dreamtrip.main.TrackedFlightsFragment;
+import ar.edu.itba.dreamtrip.TrackedFlights.TrackedFlightsFragment;
 
 public class PagerAdapter extends FragmentStatePagerAdapter {
     int mNumOfTabs;

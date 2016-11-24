@@ -21,6 +21,7 @@
     <string name="city_activity_title">City Information</string>
     <string name="airport_activity_title">Airport Information</string>
     <string name="country_activity_title">Country Information</string>
+    <string name="deals_from_activity_title">Deals From</string>
     <string name="see_more_opinions">See opinions</string>
     <string name="search_a_flight">Search a flight:</string>
     <string name="hint_flight_number">Flight number</string>
@@ -53,5 +54,7 @@
     <string name="active_flight">Activo</string>
     <string name="landed_flight">Aterrizado</string>
     <string name="canceled_flight">Cancelado</string>
+    <string name="title_activity_maps">Map</string>
+
 
 </resources>

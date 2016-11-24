@@ -8,13 +8,15 @@
     android:paddingTop="10dp"
     android:background="?attr/selectableItemBackground"
     tools:context="ar.edu.itba.dreamtrip.TrackedFlights.TrackedFlightCardView"
-    android:id="@+id/flight_card">
+    android:id="@+id/flight_card"
+    >
 
-    <ImageView
+    <View
+        android:id="@+id/card_background"
         android:layout_height="100dp"
         android:layout_width="match_parent"
-        android:src="@drawable/grey_rectangle">
-    </ImageView>
+        android:background="@drawable/grey_rectangle">
+    </View>
 
     <View
         android:id="@+id/flight_status_bar"

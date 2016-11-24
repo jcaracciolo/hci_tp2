@@ -137,4 +137,5 @@ public class FlightTracker extends BaseActivity{
         Toast.makeText(getActivity(), str,
                 Toast.LENGTH_LONG).show();
     }
+
 }
