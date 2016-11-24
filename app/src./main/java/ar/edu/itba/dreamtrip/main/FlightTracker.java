@@ -78,6 +78,16 @@ public class FlightTracker extends BaseActivity{
 
     }
 
+    @Override
+    public void onBackPressed() {
+        final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
+        if (viewPager.getCurrentItem() == 1) {
+            super.onBackPressed();
+        } else {
+            viewPager.setCurrentItem(1);
+        }
+    }
+
     public void addTrackedFlight(View v) {
         toast("add tracked flight!!");
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());

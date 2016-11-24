@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -24,6 +25,7 @@ import ar.edu.itba.dreamtrip.R;
 public class BaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     public DrawerLayout mDrawer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,19 +44,41 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        //TODO: HAY QUE HACER UN HIGHLIGHT EN LA SECCION DONDE NOS ENCONTRAMOS, Y SI YA ESTA SELECCIONADA QUE NO HAGA UN NEW INTENT.
-        //TODO: EN CASO DE QUE SEA ALGUNO DE LOS PRIMEROS TRES, QUE SOLO ABRA LA TAB Y NO HAGA UN INTENT.
+        boolean alreadyonmain = false;
+
+        if (this.getClass().toString().contains("FlightTracker")) {
+            alreadyonmain = true;
+        }
 
         switch (id) {
             case R.id.drawer_flights: {
-                Intent intent = new Intent(this, FlightTracker.class);
-                startActivity(intent);
+                final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
+                if (!alreadyonmain) {
+                    setupView(R.layout.activity_flight_tracker);
+                    //TODO: NO FUNCIONA EL FINISH ACA. SOY UN MANCO -.-
+                    finish();
+                }
+                viewPager.setCurrentItem(1);
                 break;
             }
             case R.id.drawer_destinations: {
+                final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
+                if (!alreadyonmain) {
+                    setupView(R.layout.activity_flight_tracker);
+                    //TODO: NO FUNCIONA EL FINISH ACA. SOY UN MANCO -.-
+                    finish();
+                }
+                viewPager.setCurrentItem(2);
                 break;
             }
             case R.id.drawer_search: {
+                final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
+                if (!alreadyonmain) {
+                    setupView(R.layout.activity_flight_tracker);
+                    //TODO: NO FUNCIONA EL FINISH ACA. SOY UN MANCO -.-
+                    finish();
+                }
+                viewPager.setCurrentItem(0);
                 break;
             }
             case R.id.drawer_qr: {
@@ -73,20 +97,6 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
                 break;
             }
         }
-//
-//        if (id == R.id.nav_camera) {
-//            // Handle the camera action
-//        } else if (id == R.id.nav_gallery) {
-//
-//        } else if (id == R.id.nav_slideshow) {
-//
-//        } else if (id == R.id.nav_manage) {
-//
-//        } else if (id == R.id.nav_share) {
-//
-//        } else if (id == R.id.nav_send) {
-//
-//        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -103,7 +113,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    public void setupView(int layout){
+    public void setupView(int layout) {
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View contentView = inflater.inflate(layout, null, false);
         mDrawer.addView(contentView, 0);
