@@ -27,6 +27,7 @@ public class AirportDetailsFragment extends Fragment {
 
     public final static String RESULT_ID_KEY = "main_activity.go_to_info_id";
     public final static String RESULT_TYPE_KEY = "main_activity.go_to_info_key";
+    public final static String INTENT_TO_DEALS_FROM = "ar.itba.edu.dreamtrip.deals_id";
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -76,16 +77,16 @@ public class AirportDetailsFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_destination_details, container, false);
 
         Intent intent = getActivity().getIntent();
-        String id = intent.getStringExtra(RESULT_ID_KEY);
+        final String id = intent.getStringExtra(RESULT_ID_KEY);
 
         System.out.println("id: " + id + ".");
 
         ImageView img = (ImageView) v.findViewById(R.id.destination_icon);
         img.setImageResource(R.drawable.ic_flight);
-
-        DataHolder dataHolder = DataHolder.getInstance(getActivity());
         TextView text = (TextView) v.findViewById(R.id.destination_name);
         TextView destFrom = (TextView) v.findViewById(R.id.destinations_from_button);
+
+        DataHolder dataHolder = DataHolder.getInstance(getActivity());
         dataHolder.waitForIt(new LoadAirportInfoTask(getContext(), text, destFrom, id));
 
         v.findViewById(R.id.destinations_from_button).setOnClickListener(new View.OnClickListener() {
@@ -93,7 +94,7 @@ public class AirportDetailsFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), DealsFromActivity.class);
-                //intent.putExtra(INTENT_TO_DEALS_FROM, )
+                intent.putExtra(INTENT_TO_DEALS_FROM,id);
                 startActivity(intent);
             }
 

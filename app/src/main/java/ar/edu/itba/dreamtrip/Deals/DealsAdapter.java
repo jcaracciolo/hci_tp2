@@ -41,11 +41,7 @@ public class DealsAdapter  extends BaseAdapter {
     @Override
     public View getView(int i, View convertView, ViewGroup parent) {
         DealViewModel deal=this.getItem(i);
-        View view=convertView;
-
-        if(view==null){
-            view=DealView.getView(context,LayoutInflater.from(context),parent,deal);
-        }
+        View view=DealView.getView(context,LayoutInflater.from(context),parent,deal);
 
         return view;
     }
