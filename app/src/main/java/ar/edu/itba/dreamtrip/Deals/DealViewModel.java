@@ -12,11 +12,13 @@ import ar.edu.itba.dreamtrip.common.model.Deal;
 public class DealViewModel {
 
     public String to;
+    public String idTo;
     public Bitmap image;
     public Double price;
 
     public DealViewModel(Context context, Deal deal){
         to=deal.getDestinationDescription();
+        idTo=deal.getDestinationCityID();
         image=deal.getImage();
         price=deal.getPrice();
 

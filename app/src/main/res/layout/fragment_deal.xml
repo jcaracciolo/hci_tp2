@@ -15,7 +15,6 @@
             android:id="@+id/deal_img"
             android:layout_width="175dp"
             android:layout_height="175dp"
-            android:src="@drawable/ic_add"
             android:layout_centerHorizontal="true"/>
 
         <TextView
@@ -43,7 +42,7 @@
             android:text="Very long city name in a deal card"/>
 
         <Button
-            android:id="@+id/deals_description"
+            android:id="@+id/deals_follow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
