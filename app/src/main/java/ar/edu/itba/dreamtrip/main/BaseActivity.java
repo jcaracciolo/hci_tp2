@@ -50,35 +50,41 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
             alreadyonmain = true;
         }
 
+        //TODO: Hacer que al tocar las tabs se haga highlight en el nav drawer
+        //TODO: Hacer que si se crea una nueva activity se haga highlight el tab del nav drawer que acabas de clickear
+
         switch (id) {
             case R.id.drawer_flights: {
-                final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
                 if (!alreadyonmain) {
-                    setupView(R.layout.activity_flight_tracker);
-                    //TODO: NO FUNCIONA EL FINISH ACA. SOY UN MANCO -.-
-                    finish();
+                    Intent intent = new Intent(this, FlightTracker.class);
+                    //TODO: BORRAR STACK
+                    startActivity(intent);
+                } else {
+                    final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
+                    viewPager.setCurrentItem(1);
                 }
-                viewPager.setCurrentItem(1);
                 break;
             }
             case R.id.drawer_destinations: {
-                final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
                 if (!alreadyonmain) {
-                    setupView(R.layout.activity_flight_tracker);
-                    //TODO: NO FUNCIONA EL FINISH ACA. SOY UN MANCO -.-
-                    finish();
+                    Intent intent = new Intent(this, FlightTracker.class);
+                    //TODO: BORRAR STACK
+                    startActivity(intent);
+                } else {
+                    final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
+                    viewPager.setCurrentItem(2);
                 }
-                viewPager.setCurrentItem(2);
                 break;
             }
             case R.id.drawer_search: {
-                final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
                 if (!alreadyonmain) {
-                    setupView(R.layout.activity_flight_tracker);
-                    //TODO: NO FUNCIONA EL FINISH ACA. SOY UN MANCO -.-
-                    finish();
+                    Intent intent = new Intent(this, FlightTracker.class);
+                    //TODO: BORRAR STACK
+                    startActivity(intent);
+                } else {
+                    final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
+                    viewPager.setCurrentItem(0);
                 }
-                viewPager.setCurrentItem(0);
                 break;
             }
             case R.id.drawer_qr: {
