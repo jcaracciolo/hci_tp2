@@ -57,6 +57,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
             case R.id.drawer_flights: {
                 if (!alreadyonmain) {
                     Intent intent = new Intent(this, FlightTracker.class);
+                    intent.putExtra("selectedTab", 1);
                     //TODO: BORRAR STACK
                     startActivity(intent);
                 } else {
@@ -68,6 +69,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
             case R.id.drawer_destinations: {
                 if (!alreadyonmain) {
                     Intent intent = new Intent(this, FlightTracker.class);
+                    intent.putExtra("selectedTab", 2);
                     //TODO: BORRAR STACK
                     startActivity(intent);
                 } else {
@@ -79,6 +81,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
             case R.id.drawer_search: {
                 if (!alreadyonmain) {
                     Intent intent = new Intent(this, FlightTracker.class);
+                    intent.putExtra("selectedTab", 0);
                     //TODO: BORRAR STACK
                     startActivity(intent);
                 } else {

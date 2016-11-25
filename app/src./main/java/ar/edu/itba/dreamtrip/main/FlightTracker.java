@@ -34,6 +34,8 @@ public class FlightTracker extends BaseActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        int selectedTab = getIntent().getIntExtra("selectedTab", 1); //DEFAULT IS FLIGHTS
+
         setupView(R.layout.activity_flight_tracker);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -70,7 +72,7 @@ public class FlightTracker extends BaseActivity{
 
             }
         });
-        viewPager.setCurrentItem(1);
+        viewPager.setCurrentItem(selectedTab);
 
 //        DataHolder dataHolder = DataHolder.getInstance(this);
 //        dataHolder.waitForIt(new LoadFlightsTask(this, "EZE", "LHR", "20/11/2016"));
