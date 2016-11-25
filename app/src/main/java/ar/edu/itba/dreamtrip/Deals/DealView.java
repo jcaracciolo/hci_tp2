@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import ar.edu.itba.dreamtrip.R;
 import ar.edu.itba.dreamtrip.cityInfo.CityInfo;
+import ar.edu.itba.dreamtrip.common.API.SettingsManager;
 
 /**
  * Created by juanfra on 23/11/16.
@@ -43,7 +44,9 @@ public class DealView {
         dealView.findViewById(R.id.deals_follow).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context,"FOLLOW " + deal.to,Toast.LENGTH_SHORT).show();
+                System.out.println(SettingsManager.getInstance(context).getTrackedLegs());
+                boolean res=SettingsManager.getInstance(context).trackLeg(deal.fromID + " " + deal.idTo);
+                System.out.println(SettingsManager.getInstance(context).getTrackedLegs());
             }
         });
 

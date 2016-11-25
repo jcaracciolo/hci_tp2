@@ -70,6 +70,10 @@ public class Flight implements Identificable{
         return id;
     }
 
+    public String getIdentifier() {
+        return airline.getID() + " " + number;
+    }
+
     @Override
     public String getName() {
         return getAirline().getName() + " " + getNumber();

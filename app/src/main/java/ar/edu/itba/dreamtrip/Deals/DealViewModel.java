@@ -15,12 +15,14 @@ public class DealViewModel {
     public String idTo;
     public Bitmap image;
     public Double price;
+    public String fromID;
 
     public DealViewModel(Context context, Deal deal){
         to=deal.getDestinationDescription();
         idTo=deal.getDestinationCityID();
         image=deal.getImage();
         price=deal.getPrice();
+        fromID=deal.getOriginCityID();
 
     }
 }

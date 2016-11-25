@@ -19,8 +19,10 @@ import ar.edu.itba.dreamtrip.airlineInfo.AirlineInfo;
 import ar.edu.itba.dreamtrip.airportInfo.AirportInfo;
 import ar.edu.itba.dreamtrip.cityInfo.CityInfo;
 import ar.edu.itba.dreamtrip.common.API.DataHolder;
+import ar.edu.itba.dreamtrip.common.model.Flight;
 import ar.edu.itba.dreamtrip.common.tasks.PopulateSearchResultsTask;
 import ar.edu.itba.dreamtrip.countryInfo.CountryInfo;
+import ar.edu.itba.dreamtrip.flightInfo.FlightInfo;
 
 public class SearchFragment extends Fragment {
     public final static String RESULT_ID_KEY = "main_activity.go_to_info_id";
@@ -86,6 +88,11 @@ public class SearchFragment extends Fragment {
                     case AIRPORTS:
                         intent = new Intent(getActivity(), AirportInfo.class);
                         break;
+                    case FLIGHT_SEARCH:
+                        intent = new Intent(getActivity(), FlightInfo.class);
+                        intent.putExtra(RESULT_ID_KEY, ((Flight)elem.getElement()).getIdentifier());
+                        startActivity(intent);
+                        return;
                     default:
                         throw new RuntimeException("Unknown dependency type.\n");
                 }
