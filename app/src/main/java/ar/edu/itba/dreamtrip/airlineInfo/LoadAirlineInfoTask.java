@@ -19,13 +19,15 @@ public class LoadAirlineInfoTask extends AsyncTaskInformed<Object,Void,Airline>{
 
     private Context context;
     ImageView img;
-    TextView text;
+    TextView airlineName;
+    TextView descr;
     String id;
 
-    public LoadAirlineInfoTask(Context context, ImageView img, TextView text, String id) {
+    public LoadAirlineInfoTask(Context context, ImageView img, TextView airlineName, TextView descr, String id) {
         this.context = context;
         this.img= img;
-        this.text = text;
+        this.airlineName = airlineName;
+        this.descr = descr;
         this.id = id;
     }
 
@@ -51,11 +53,9 @@ public class LoadAirlineInfoTask extends AsyncTaskInformed<Object,Void,Airline>{
 
     @Override
     protected void onPostExecute(Airline airline) {
-
-        text.setText(airline.getName());
-        System.out.println("id: " + airline.getID() + " name: " + airline.getName());
+        airlineName.setText(airline.getName());
+        descr.setText(airline.getWikiData().substring(0, 250) + "... [Wikipedia]");
         new ImageLoadTask(airline.getLogoUrl(), img).execute();
-        System.out.println("id: " + airline.getID() + " name: " + airline.getName());
     }
 
 }

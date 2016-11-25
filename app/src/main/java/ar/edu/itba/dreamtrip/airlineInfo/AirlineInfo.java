@@ -39,9 +39,10 @@ public class AirlineInfo extends BaseActivity {
 
         ImageView img = (ImageView)findViewById(R.id.airline_logo);
         TextView text = (TextView)findViewById(R.id.airline_name);
+        TextView desc = (TextView)findViewById(R.id.airline_description);
 
         DataHolder dataHolder = DataHolder.getInstance(this);
-        dataHolder.waitForIt(new LoadAirlineInfoTask(this, img, text, id));
+        dataHolder.waitForIt(new LoadAirlineInfoTask(this, img, text, desc, id));
     }
 
     public void seeOpinions(View v) {

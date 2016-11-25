@@ -13,6 +13,7 @@ import ar.edu.itba.dreamtrip.common.API.dependencies.Dependency;
 import ar.edu.itba.dreamtrip.common.API.dependencies.StatusDependency;
 import ar.edu.itba.dreamtrip.common.model.FlightState;
 import ar.edu.itba.dreamtrip.common.tasks.AsyncTaskInformed;
+import ar.edu.itba.dreamtrip.common.tasks.ImageLoadTask;
 
 
 public class LoadFlightStatusTask extends AsyncTaskInformed<Object,Void,FlightState>{
@@ -90,6 +91,7 @@ public class LoadFlightStatusTask extends AsyncTaskInformed<Object,Void,FlightSt
         flightStateView.getTerminal().setText(context.getString(R.string.terminal_txt) + " " + fs.getDestination().getTerminal());
         flightStateView.getGate().setText(context.getString(R.string.gate_txt) + " " + fs.getDestination().getGate());
         flightStateView.getLuggage().setText(context.getString(R.string.luggage_txt) + " " + fs.getDestination().getBaggage());
+//        new ImageLoadTask(fs.getOrigin()..getLogoUrl(), flightStateView.getAirlineLogo()).execute();
     }
 
 }
