@@ -2,25 +2,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="10dp"
-    android:paddingLeft="10dp"
-    android:paddingRight="10dp"
-    android:paddingTop="10dp"
     android:background="?attr/selectableItemBackground"
     tools:context="ar.edu.itba.dreamtrip.TrackedFlights.TrackedFlightCardView"
     android:id="@+id/flight_card"
+    android:layout_marginTop="0dp"
     >
 
-    // TODO: sacar cuando  ya se pueda seleccionar manteniendo apretado
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/swipe_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="30dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:src="@drawable/quantum_ic_art_track_grey600_48"/>
     <View
         android:id="@+id/card_background"
         android:layout_height="100dp"

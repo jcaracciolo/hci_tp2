@@ -1,14 +1,19 @@
 
 package ar.edu.itba.dreamtrip.main;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
@@ -23,6 +28,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.daimajia.swipe.SwipeLayout;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -61,6 +67,16 @@ public class FlightTracker extends BaseActivity {
         setupView(R.layout.activity_flight_tracker);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitleTextColor(getResources().getColor(R.color.white));
+        //TODO SE ICONS WHITE
+//        Menu menu=toolbar.getMenu();
+//        for (int i = 0; i < menu.size(); i++) {
+//            MenuItem item = menu.getItem(i);
+//            Drawable icon = item.getIcon();
+//            if (icon != null) {
+//                icon.setColorFilter(new PorterDuffColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_IN));
+//            }
+//        }
         setSupportActionBar(toolbar);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, mDrawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -94,20 +110,19 @@ public class FlightTracker extends BaseActivity {
             }
         });
         viewPager.setCurrentItem(selectedTab);
-
-//        DataHolder dataHolder = DataHolder.getInstance(this);
-//        dataHolder.waitForIt(new LoadFlightsTask(this, "EZE", "LHR", "20/11/2016"));
-        System.out.println("hi there");
-
     }
 
     @Override
     public void onBackPressed() {
-        final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
-        if (viewPager.getCurrentItem() == 1) {
-            super.onBackPressed();
-        } else {
-            viewPager.setCurrentItem(1);
+        if (mDrawer.isDrawerOpen(GravityCompat.START)){
+            final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
+        }else {
+            final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
+            if (viewPager.getCurrentItem() == 1) {
+                super.onBackPressed();
+            } else {
+                viewPager.setCurrentItem(1);
+            }
         }
     }
 

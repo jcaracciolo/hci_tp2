@@ -10,9 +10,13 @@ import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.widget.Adapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import com.daimajia.swipe.SwipeLayout;
 
 import ar.edu.itba.dreamtrip.R;
 import ar.edu.itba.dreamtrip.common.API.DataHolder;
@@ -54,28 +58,14 @@ public class TrackedFlightsFragment extends ListFragment {
         super.onActivityCreated(savedInstanceState);
         progressBar = (ProgressBar) getView().findViewById(R.id.loading_trackers);
         getListView().setEmptyView(progressBar);
-
-
-
-//        SettingsManager settingsManager = SettingsManager.getInstance(getContext());
-//        settingsManager.clearAllTracked();
-//        settingsManager.trackFlight("8R 8700");
-//        settingsManager.trackFlight("BA 2282");
-//        System.out.println(settingsManager.getTrackedFlights());
-//        settingsManager.untrackFlight("BA 2282");
-//        System.out.println(settingsManager.getTrackedFlights());
-//        settingsManager.trackFlight("BA 2282");
-//        System.out.println(settingsManager.getTrackedFlights());
-
-
-    }
+            }
 
     @Override
     public void onResume() {
         super.onResume();
         final DataHolder dataholder = DataHolder.getInstance(getContext());
         dataholder.waitForIt(new PopulateFlightTrackers(getContext(), getListView()));
-        getActivity().registerReceiver(listUpdater,new IntentFilter("ar.edu.itba.dreamtrip.UPDATE_LIST_TRACKER"));
+        getContext().registerReceiver(listUpdater,new IntentFilter(getContext().getResources().getString(R.string.UpdateTrackedFlights)));
     }
 
     public void toast(String str) {
@@ -91,7 +81,7 @@ public class TrackedFlightsFragment extends ListFragment {
     @Override
     public void onPause(){
         super.onPause();
-        getActivity().unregisterReceiver(listUpdater);
+        getContext().unregisterReceiver(listUpdater);
     }
 
 }

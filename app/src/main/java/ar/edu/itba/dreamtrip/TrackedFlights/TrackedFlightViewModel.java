@@ -29,6 +29,8 @@ public class TrackedFlightViewModel implements Serializable{
     public String departureHour;
     public String arrivalHour;
 
+    public boolean selected=false;
+
     public TrackedFlightViewModel(Context context, FlightState flightState) {
         airlineID = flightState.getIdentifier().split(" ")[0];
         number = Integer.parseInt(flightState.getIdentifier().split(" ")[1]);

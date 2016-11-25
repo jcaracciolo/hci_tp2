@@ -5,6 +5,8 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashSet;
 
@@ -56,13 +58,17 @@ public class PopulateLegTrackers extends AsyncTaskInformed<Object,Void,ArrayList
         ArrayList<TrackedLegViewModel> dealCards = new ArrayList<>();
 
         Collection<Deal> deals = dataHolder.getTrackedDeals();
-        //No me acuerdo si aca tenian que aparecer todos los deals o solo los deals nuevos que estan
-        //trackeados. Descomenta lo de abajo si queres todos
-//        Collection<Deal> deals = dataHolder.getDeals();
 
         for(Deal deal: deals){
             dealCards.add(new TrackedLegViewModel(context,deal));
         }
+
+        Collections.sort(dealCards,new Comparator<TrackedLegViewModel>() {
+            @Override
+            public int compare(TrackedLegViewModel t1, TrackedLegViewModel t2) {
+                return ((t1.isLastMinute)?1:0) - ((t2.isLastMinute)?1:0);
+            }
+        });
 
         return dealCards;
     }

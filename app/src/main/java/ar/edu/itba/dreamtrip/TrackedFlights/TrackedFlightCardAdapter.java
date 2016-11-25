@@ -1,28 +1,72 @@
 package ar.edu.itba.dreamtrip.TrackedFlights;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.BaseAdapter;
 import android.widget.Toast;
 
+import com.daimajia.swipe.SwipeLayout;
+import com.daimajia.swipe.adapters.BaseSwipeAdapter;
+
 import java.util.ArrayList;
+import java.util.zip.Inflater;
 
 import ar.edu.itba.dreamtrip.R;
+import ar.edu.itba.dreamtrip.common.API.SettingsManager;
+import ar.edu.itba.dreamtrip.common.model.Flight;
 
 /**
  * Created by juanfra on 22/11/16.
  */
 
-public class TrackedFlightCardAdapter extends BaseAdapter {
+public class TrackedFlightCardAdapter extends BaseSwipeAdapter {
+
     Context context;
     ArrayList<TrackedFlightViewModel> flightCards;
+    private BroadcastReceiver deleteFlight;
 
     public TrackedFlightCardAdapter(Context context,ArrayList<TrackedFlightViewModel> flightCards){
         this.context=context;
         this.flightCards=flightCards;
+        deleteFlight=new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                String fID = intent.getExtras().getString(context.getResources().getString(R.string.RetrieveDeleteFlightIntent));
+                SettingsManager.getInstance(context).untrackFlight(fID);
+                Intent it = new Intent(context.getResources().getString(R.string.UpdateTrackedFlights));
+                context.sendBroadcast(it);
+            }
+        };
+        context.registerReceiver(deleteFlight,new IntentFilter(context.getResources().getString(R.string.deleteFlightIntent)));
+    }
 
+    @Override
+    protected void finalize() throws Throwable {
+        context.unregisterReceiver(deleteFlight);
+        super.finalize();
+    }
+
+    @Override
+    public int getSwipeLayoutResourceId(int position) {
+        return R.id.swipe_track_flight;
+    }
+
+    @Override
+    public View generateView(int position, ViewGroup parent) {
+        return LayoutInflater.from(context).inflate(R.layout.fragment_swipeable_tracked_flight_card, parent, false);
+    }
+
+    @Override
+    public void fillValues(int position,final View view) {
+        final TrackedFlightViewModel card=this.getItem(position);
+        TrackedFlightCardView.fillView(context,LayoutInflater.from(context),card,view);
     }
 
     @Override
@@ -40,24 +84,4 @@ public class TrackedFlightCardAdapter extends BaseAdapter {
         return i;
     }
 
-    @Override
-    public View getView(int i, View convertView, ViewGroup parent) {
-        TrackedFlightViewModel card=this.getItem(i);
-        View view;
-
-        if(convertView==null){
-            view= TrackedFlightCardView.getView(context,LayoutInflater.from(context),parent,card);
-        }else{
-            view=convertView;
-        }
-
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(context,"ASD",Toast.LENGTH_LONG);
-            }
-        });
-
-        return view;
-    }
 }

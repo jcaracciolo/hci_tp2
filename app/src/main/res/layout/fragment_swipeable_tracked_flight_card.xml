@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.daimajia.swipe.SwipeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:id="@+id/swipe_track_flight">
     <!-- Bottom View Start-->
     <LinearLayout
         android:id="@+id/bottom_wrapper"
@@ -8,6 +10,7 @@
         android:layout_width="70dp"
         android:layout_height="match_parent"
         android:weightSum="1"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal">
         <include layout="@layout/fragment_selected_icon"/>
     </LinearLayout>
@@ -15,7 +18,7 @@
 
     <!-- Surface View Start -->
     <LinearLayout
-        android:padding="10dp"
+        android:padding="0dp"
         android:background="?android:colorBackground"
         android:layout_width="match_parent"
         android:layout_height="match_parent">

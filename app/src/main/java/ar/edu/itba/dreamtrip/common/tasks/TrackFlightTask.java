@@ -45,11 +45,7 @@ public class TrackFlightTask extends AsyncTaskInformed<Object,Void,Boolean>{
                 flightTracked = SettingsManager.getInstance(context).trackFlight(identifier);
             }
         }
-        if(flightTracked){
-            for (Dependency dep:dependencies){
-                dataHolder.removeDependency(dep);
-            }
-        }
+
         return flightTracked;
     }
 
