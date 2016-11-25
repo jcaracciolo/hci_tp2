@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import ar.edu.itba.dreamtrip.Map.MapsActivity;
 import ar.edu.itba.dreamtrip.R;
 import ar.edu.itba.dreamtrip.airlineInfo.AirlineInfo;
 import ar.edu.itba.dreamtrip.airportInfo.AirportInfo;
@@ -51,6 +52,14 @@ public class SearchFragment extends Fragment {
                 integrator.setBeepEnabled(false);
                 integrator.setBarcodeImageEnabled(false);
                 integrator.initiateScan();
+            }
+        });
+
+        v.findViewById(R.id.map_icon).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), MapsActivity.class);
+                startActivity(intent);
             }
         });
 
