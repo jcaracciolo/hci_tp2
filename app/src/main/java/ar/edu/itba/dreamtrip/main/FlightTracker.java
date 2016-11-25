@@ -3,9 +3,12 @@ package ar.edu.itba.dreamtrip.main;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
@@ -20,6 +23,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
+
+import java.util.Collection;
 import java.util.Date;
 
 import ar.edu.itba.dreamtrip.R;
@@ -28,7 +35,22 @@ import ar.edu.itba.dreamtrip.common.API.SettingsManager;
 import ar.edu.itba.dreamtrip.common.tasks.TrackFlightTask;
 import ar.edu.itba.dreamtrip.main.Adapter.PagerAdapter;
 
-public class FlightTracker extends BaseActivity{
+public class FlightTracker extends BaseActivity {
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+        if (result != null && result.getContents() != null) {
+            SearchFragment search_fragment = (SearchFragment) getSupportFragmentManager().getFragments().get(1);
+            search_fragment.onActivityResult(requestCode, resultCode, data);
+        } else {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +74,7 @@ public class FlightTracker extends BaseActivity{
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
-        final PagerAdapter adapter = new PagerAdapter
-                (getSupportFragmentManager(), tabLayout.getTabCount());
+        final PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -96,19 +117,19 @@ public class FlightTracker extends BaseActivity{
 
         LayoutInflater inflater = getLayoutInflater();
 
-        final View textView=inflater.inflate(R.layout.dialog_add_tracked_flight, null);
+        final View textView = inflater.inflate(R.layout.dialog_add_tracked_flight, null);
         builder.setView(textView)
                 .setNeutralButton(R.string.dialog_add_tracked_flight_button, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
-                        String flightID = ((TextView)textView.findViewById(R.id.flight_id_dialog)).getText().toString().trim();
+                        String flightID = ((TextView) textView.findViewById(R.id.flight_id_dialog)).getText().toString().trim();
 
-                     if(!flightID.matches("^\\w{2}\\W+\\d{3,4}$")) {
+                        if (!flightID.matches("^\\w{2}\\W+\\d{3,4}$")) {
 
-                    } else {
+                        } else {
                             flightID = flightID.trim().split("\\W")[0] + " " + flightID.trim().split("\\W")[1];
                             DataHolder.getInstance(getApplicationContext()).waitForIt(
-                                    new TrackFlightTask(getApplicationContext(),flightID));
+                                    new TrackFlightTask(getApplicationContext(), flightID));
 
                         }
                     }

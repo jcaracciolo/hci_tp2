@@ -13,6 +13,10 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
+
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
 import ar.edu.itba.dreamtrip.R;
 import ar.edu.itba.dreamtrip.airlineInfo.AirlineInfo;
@@ -37,7 +41,34 @@ public class SearchFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_search, container, false);
 
+        v.findViewById(R.id.qr_search).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                IntentIntegrator integrator = new IntentIntegrator(getActivity());
+                integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES);
+                integrator.setPrompt("Scan");
+                integrator.setCameraId(0);
+                integrator.setBeepEnabled(false);
+                integrator.setBarcodeImageEnabled(false);
+                integrator.initiateScan();
+            }
+        });
+
         return v;
+    }
+
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+        if (result != null) {
+            if (result.getContents() == null) {
+                Toast.makeText(getActivity(), "Unknown QR error.", Toast.LENGTH_SHORT).show();
+            } else {
+                ((EditText)getActivity().findViewById(R.id.searchBox)).setText(result.getContents());
+            }
+        } else {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
     }
 
     @Override

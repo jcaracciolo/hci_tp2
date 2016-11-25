@@ -4,7 +4,8 @@
     android:layout_height="match_parent"
     android:paddingLeft="8dp"
     android:paddingRight="8dp"
-    android:paddingTop="16dp">
+    android:paddingTop="16dp"
+    android:id="@+id/search_fragment">
 
     <LinearLayout
         android:id="@+id/other_search_types"
@@ -31,7 +32,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/qr_search"
-            android:layout_marginRight="20dp">
+            android:layout_marginRight="20dp"
+            android:onClick="gotToQRScanner">
 
             <ImageView
                 android:id="@+id/qr_icon"
@@ -116,7 +118,6 @@
                 android:id="@+id/resultList"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/searchBox"
                 />
 
             <!--<TextView-->
