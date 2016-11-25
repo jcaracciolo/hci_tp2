@@ -1,0 +1,40 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp"
+    tools:context="ar.edu.itba.dreamtrip.opinions.OpinionCardFragment"
+    android:background="@drawable/grey_rectangle"
+    android:id="@+id/opinion_card_background">
+
+    <TextView
+        android:id="@+id/opinion_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="Best Flight Ever!!"
+        android:textSize="16dp"/>
+
+    <ImageView
+        android:id="@+id/recommend_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/opinion_text"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:src="@drawable/ic_thumb_up"
+        android:tint="@color/status_green"/>
+
+    <RatingBar
+        android:id="@+id/comment_rating"
+        style="?android:attr/ratingBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/opinion_text"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:numStars="5"
+        android:rating="3.6"
+        android:stepSize="0.1" />
+
+</RelativeLayout>

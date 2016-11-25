@@ -1,7 +1,9 @@
 package ar.edu.itba.dreamtrip.opinions;
 
+import android.widget.ListView;
 import android.widget.RatingBar;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import ar.edu.itba.dreamtrip.common.model.Review;
@@ -18,6 +20,8 @@ public class RatingsModel {
     public Float punctuality = 0.0f;
     public Float quality_price = 0.0f;
     public Float overall = 0.0f;
+    public ListView commentsList;
+    public ArrayList<ReviewModel> reviews = new ArrayList<>();
 
 
     public void resetRatings() {
@@ -28,6 +32,10 @@ public class RatingsModel {
         punctuality = 0.0f;
         quality_price = 0.0f;
         overall = 0.0f;
+    }
+
+    public void addReview(ReviewModel review) {
+        reviews.add(review);
     }
 
     public void calculateFromReviews(Collection<Review> reviews) {

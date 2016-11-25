@@ -2,6 +2,9 @@ package ar.edu.itba.dreamtrip.opinions;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.ListView;
 import android.widget.RatingBar;
 
 import ar.edu.itba.dreamtrip.R;
@@ -16,6 +19,10 @@ public class Opinions extends AppCompatActivity {
         setContentView(R.layout.activity_opinions);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        ListView list = (ListView) findViewById(R.id.comment_list);
+        View header = getLayoutInflater().inflate(R.layout.layout_review_detail, null);
+        list.addHeaderView(header);
 
         String airlineID = getIntent().getExtras().getString(FROM_AIRLINE_INFO_KEY);
 
@@ -40,8 +47,9 @@ public class Opinions extends AppCompatActivity {
         RatingBar punctuality = (RatingBar) findViewById(R.id.punctuality_rating);
         RatingBar quality_price = (RatingBar) findViewById(R.id.quality_price_rating);
         RatingBar overall = (RatingBar) findViewById(R.id.general_rating);
+        ListView commentList = (ListView) findViewById(R.id.comment_list);
 
-        return new RatingsView(kindness, comfort, food, miles, punctuality, quality_price, overall);
+        return new RatingsView(kindness, comfort, food, miles, punctuality, quality_price, overall, commentList);
     }
 
 }

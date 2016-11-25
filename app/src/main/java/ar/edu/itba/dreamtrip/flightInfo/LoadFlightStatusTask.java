@@ -97,9 +97,14 @@ public class LoadFlightStatusTask extends AsyncTaskInformed<Object,Void,FlightSt
         flightStateView.getEstimatedDepTime().setText(context.getString(R.string.estimated_dep_time_txt) + " " + fs.getOrigin().getEstimateRunwayHour());
         flightStateView.getEstimatedArrTime().setText(context.getString(R.string.estimated_arr_time_txt) + " " + fs.getDestination().getEstimateRunwayHour());
 
-        flightStateView.getTerminal().setText(context.getString(R.string.terminal_txt) + " " + fs.getDestination().getTerminal());
-        flightStateView.getGate().setText(context.getString(R.string.gate_txt) + " " + fs.getDestination().getGate());
-        flightStateView.getLuggage().setText(context.getString(R.string.luggage_txt) + " " + fs.getDestination().getBaggage());
+        String terminal =fs.getDestination().getTerminal() == null ? " -" : fs.getDestination().getTerminal();
+        flightStateView.getTerminal().setText(context.getString(R.string.terminal_txt) + " " + terminal);
+
+        String gate = fs.getDestination().getGate() == null ? " -" : fs.getDestination().getGate().toString();
+        flightStateView.getGate().setText(context.getString(R.string.gate_txt) + " " + gate);
+
+        String luggages = fs.getDestination().getBaggage() == null ? " -" : fs.getDestination().getBaggage().toString();
+        flightStateView.getLuggage().setText(context.getString(R.string.luggage_txt) + " " + luggages);
 //        new ImageLoadTask(fs.getOrigin()..getLogoUrl(), flightStateView.getAirlineLogo()).execute();
     }
 

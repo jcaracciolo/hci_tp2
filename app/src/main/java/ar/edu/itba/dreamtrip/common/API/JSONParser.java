@@ -341,7 +341,7 @@ public class JSONParser {
                         safeInt(ratingsObj,"food"),safeInt(ratingsObj,"punctuality"),
                         safeInt(ratingsObj,"mileage_program"),safeInt(ratingsObj,"comfort"),
                         safeInt(ratingsObj,"quality_price"),reviewObj.getBoolean("yes_recommend"),
-                        safeString(reviewObj,"comment"));
+                        safeString(reviewObj,"comments"));
                 if(reviews.containsKey(review.getIdentifier())){
                     reviews.get(review.getIdentifier()).add(review);
                 } else {
