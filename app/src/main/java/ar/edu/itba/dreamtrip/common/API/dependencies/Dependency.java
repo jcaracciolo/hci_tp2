@@ -44,8 +44,10 @@ public class Dependency {
             case AIRLINES:
                 dependencies.add(new Dependency(DependencyType.AIRLINES_DATA));
                 dependencies.add(new Dependency(DependencyType.AIRLINES_LOGOS));
+                dependencies.add(new Dependency(DependencyType.AIRLINE_WIKI_INFO));
                 break;
             case AIRLINES_LOGOS:
+            case AIRLINE_WIKI_INFO:
                 dependencies.add(new Dependency(DependencyType.AIRLINES_DATA));
                 break;
             case TRACKED_FLIGHTS:

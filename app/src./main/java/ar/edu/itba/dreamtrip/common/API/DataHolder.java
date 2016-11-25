@@ -156,7 +156,7 @@ public class DataHolder {
                 DependencyLoader.loadAirlineData(this,airlines);
                 break;
             case AIRLINES_LOGOS:
-                DependencyLoader.loadAirlineLogos(this);
+                DependencyLoader.loadAirlineLogos(this,dependency);
                 break;
             case COUNTRIES:
                 DependencyLoader.loadCountries(this,countries);
@@ -199,6 +199,9 @@ public class DataHolder {
                 break;
             case DEALS_IMAGES_URLS:
                 DependencyLoader.loadDealsImagesURLS(this,deals,dependency);
+                break;
+            case AIRLINE_WIKI_INFO:
+                DependencyLoader.loadAirlineWikiData(this,dependency);
                 break;
             case AIRLINES:
             case TRACKED_FLIGHTS:

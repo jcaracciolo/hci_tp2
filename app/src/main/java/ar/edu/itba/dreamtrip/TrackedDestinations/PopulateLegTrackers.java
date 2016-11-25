@@ -35,9 +35,9 @@ public class PopulateLegTrackers extends AsyncTaskInformed<Object,Void,ArrayList
         this.list=list;
         SettingsManager settingsManager = SettingsManager.getInstance(context);
 
-        settingsManager.clearAllTracked();
+//        settingsManager.clearAllTracked();
         settingsManager.trackLeg("EZE LON");
-        settingsManager.trackLeg("LON PAR");
+//        settingsManager.trackLeg("LON PAR");
 
 
         System.out.println(settingsManager.getTrackedLegs());

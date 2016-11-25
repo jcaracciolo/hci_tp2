@@ -21,6 +21,15 @@ public class Airline implements Identificable{
     private String name;
     private String logoUrl;
     private Bitmap logo;
+    private String wikiData;
+
+    public String getWikiData() {
+        return wikiData;
+    }
+
+    public void setWikiData(String wikiData) {
+        this.wikiData = wikiData;
+    }
 
     public Bitmap getLogo() {
         return logo;

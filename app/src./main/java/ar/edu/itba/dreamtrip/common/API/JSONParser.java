@@ -395,4 +395,15 @@ public class JSONParser {
         }
         return null;
     }
+
+    public static void fillAirlinesWikiData(JSONObject response, Airline airline) {
+        try {
+            String pagesResp = response.getJSONObject("query").getString("pages");
+            pagesResp = pagesResp.substring( pagesResp.indexOf("extract"));
+            pagesResp = pagesResp.substring(10,pagesResp.length()-3);
+            airline.setWikiData(pagesResp);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
 }

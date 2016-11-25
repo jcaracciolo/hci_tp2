@@ -101,10 +101,9 @@ public abstract class DependencyLoader {
         return true;
     }
 
-    static boolean loadAirlineLogos(final DataHolder dataHolder){
-        totalAirlinesLogos =  dataHolder.getAirlines().size();
-        loadedAirlinesLogos = 0;
-        final Dependency dependency = new Dependency(DependencyType.AIRLINES_LOGOS);
+    static boolean loadAirlineLogos(final DataHolder dataHolder,
+                                       final Dependency dependency) {
+        setMaxDependencyRequests(dependency,dataHolder.getAirlines().size());
 
         for(final Airline airline: dataHolder.getAirlines()){
             ImageRequest request = new ImageRequest(airline.getLogoUrl(),
@@ -112,21 +111,44 @@ public abstract class DependencyLoader {
                         @Override
                         public void onResponse(Bitmap bitmap) {
                             airline.setLogo(bitmap);
-                            loadedAirlinesLogos++;
-                            if(loadedAirlinesLogos == totalAirlinesLogos) {
-                                dataHolder.somethingLoaded(dependency);
-                            }
+                            somethingArrived(dataHolder,dependency);
                         }
                     }, 0, 0, null,
                     new Response.ErrorListener() {
                         public void onErrorResponse(VolleyError error) {
-                            loadedAirlinesLogos++;
-                            if(loadedAirlinesLogos == totalAirlinesLogos) {
-                                dataHolder.somethingLoaded(dependency);
-                            }
+                            somethingArrived(dataHolder,dependency);
                         }
                     });
             dataHolder.addToVolleyQueue(request);
+        }
+
+        return true;
+    }
+
+    static boolean loadAirlineWikiData(final DataHolder dataHolder, final Dependency dependency){
+        setMaxDependencyRequests(dependency,dataHolder.getAirlines().size());
+
+        for(final Airline airline: dataHolder.getAirlines()){
+            String url ="https://en.wikipedia.org/w/api.php?action=query&format=json&smaxage=0&prop=extracts"
+                    +"&titles="+airline.getName().replace(" ","+")+"&exsentences=4&exintro=1&explaintext=1&exsectionformat=wiki";
+            // Request a string response from the provided URL.
+            JsonObjectRequest jsObjRequest = new JsonObjectRequest
+                    (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            JSONParser.fillAirlinesWikiData(response,airline);
+                            somethingArrived(dataHolder,dependency);
+                        }
+                    }, new Response.ErrorListener() {
+
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            somethingArrived(dataHolder,dependency);
+
+                        }
+                    });
+            // Add the request to the RequestQueue.
+            dataHolder.addToVolleyQueue(jsObjRequest);
         }
 
         return true;
