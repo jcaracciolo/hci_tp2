@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import ar.edu.itba.dreamtrip.R;
 import ar.edu.itba.dreamtrip.common.API.DataHolder;
 import ar.edu.itba.dreamtrip.common.tasks.LoadFlightsTask;
@@ -24,10 +26,14 @@ public class FlightInfo extends BaseActivity {
         fillFlightStateView();
 
         String id = getIntent().getExtras().getString(RESULT_ID_KEY);
+        ImageView logo_big = (ImageView) findViewById(R.id.flight_airlinelogo_big);
+        TextView duration = (TextView) findViewById(R.id.flight_duration);
 
         DataHolder dataHolder = DataHolder.getInstance(this);
         dataHolder.waitForIt(new LoadFlightStatusTask(getBaseContext(), id, flightStateView));
-        
+        dataHolder.waitForIt(new LoadAirlineImageTask(getBaseContext(), id.split(" ")[0], logo_big));
+        dataHolder.waitForIt(new LoadFlightDurationTask(getBaseContext(), id, duration));
+
     }
 
     private void fillFlightStateView() {
@@ -42,6 +48,7 @@ public class FlightInfo extends BaseActivity {
         TextView destinationName = (TextView) findViewById(R.id.flight_destination_city);
         TextView arrivalTime = (TextView) findViewById(R.id.flight_arrival_time);
 
+        ImageView statusBar = (ImageView) findViewById(R.id.flight_details_statuscolor);
         TextView status = (TextView) findViewById(R.id.flight_status_message);
         TextView estimatedDepTime = (TextView) findViewById(R.id.flight_estimated_departure);
         TextView estimatedArrTime = (TextView) findViewById(R.id.flight_estimated_arrival);
@@ -51,7 +58,7 @@ public class FlightInfo extends BaseActivity {
         TextView luggage = (TextView) findViewById(R.id.flight_lgate);
 
         flightStateView = new FlightStateView(airlineLogo, flightID, originID, originName, departureTime,
-                destinationID, destinationName, arrivalTime, status, estimatedDepTime, estimatedArrTime,
+                destinationID, destinationName, arrivalTime, statusBar, status, estimatedDepTime, estimatedArrTime,
                 terminal, gate, luggage);
     }
 

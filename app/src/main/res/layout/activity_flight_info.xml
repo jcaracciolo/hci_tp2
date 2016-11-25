@@ -170,7 +170,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="HH:MM"
                 android:textSize="20sp" />
 
         </LinearLayout>
@@ -217,11 +216,10 @@
         android:layout_marginTop="30dp"
         android:orientation="horizontal">
 
-        <LinearLayout
+        <ImageView
             android:id="@+id/flight_details_statuscolor"
-            android:layout_width="10dp"
+            android:layout_width="6dp"
             android:layout_height="match_parent"
-            android:background="@color/status_green"
             android:orientation="vertical"/>
 
 
