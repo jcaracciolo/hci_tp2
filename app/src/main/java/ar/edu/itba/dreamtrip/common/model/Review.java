@@ -37,6 +37,42 @@ public class Review {
         this.comment = comment;
     }
 
+    public Integer getOverall() {
+        return overall;
+    }
+
+    public Integer getFriendliness() {
+        return friendliness;
+    }
+
+    public Integer getFood() {
+        return food;
+    }
+
+    public Integer getPunctuality() {
+        return punctuality;
+    }
+
+    public Integer getMilageProgram() {
+        return milageProgram;
+    }
+
+    public Integer getConfort() {
+        return confort;
+    }
+
+    public Integer getQualityPriceRatio() {
+        return qualityPriceRatio;
+    }
+
+    public Boolean getRecommended() {
+        return recommended;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
     public String getIdentifier(){
         return airlineID + " " + flightNumber;
     }
