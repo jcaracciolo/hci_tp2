@@ -24,50 +24,21 @@
         android:layout_toRightOf="@+id/airline_logo"
         android:textSize="25dp"/>
 
-    <ImageView
-        android:layout_width="28dp"
-        android:layout_height="28dp"
+
+    <RatingBar
+        android:id="@+id/airline_rating"
+        style="?android:attr/ratingBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:id="@+id/airline_star1"
         android:layout_below="@+id/airline_logo"
-        android:src="@drawable/ic_full_star"/>
-    <ImageView
-        android:layout_width="28dp"
-        android:layout_height="28dp"
-        android:layout_marginTop="10dp"
-        android:id="@+id/airline_star2"
-        android:layout_below="@+id/airline_logo"
-        android:layout_toRightOf="@+id/airline_star1"
-        android:src="@drawable/ic_full_star"/>
-    <ImageView
-        android:layout_width="28dp"
-        android:layout_height="28dp"
-        android:layout_marginTop="10dp"
-        android:id="@+id/airline_star3"
-        android:layout_below="@+id/airline_logo"
-        android:layout_toRightOf="@+id/airline_star2"
-        android:src="@drawable/ic_full_star"/>
-    <ImageView
-        android:layout_width="28dp"
-        android:layout_height="28dp"
-        android:layout_marginTop="10dp"
-        android:id="@+id/airline_star4"
-        android:layout_below="@+id/airline_logo"
-        android:layout_toRightOf="@+id/airline_star3"
-        android:src="@drawable/ic_half_star"/>
-    <ImageView
-        android:layout_width="28dp"
-        android:layout_height="28dp"
-        android:layout_marginTop="10dp"
-        android:id="@+id/airline_star5"
-        android:layout_below="@+id/airline_logo"
-        android:layout_toRightOf="@+id/airline_star4"
-        android:src="@drawable/ic_empty_star"/>
+        android:numStars="5"
+        android:stepSize="0.1" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/airline_star5"
+        android:layout_toRightOf="@+id/airline_rating"
         android:layout_below="@id/airline_logo"
         android:text="@string/see_more_opinions"
         android:onClick="seeOpinions"/>
@@ -77,7 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:id="@+id/airline_description"
-        android:layout_below="@+id/airline_star1"
+        android:layout_below="@+id/airline_rating"
         android:text="Esta es la descripción de Wikipedia de una aerolínea. Hay que sacarla de Wikipedia y poner algunas líneas acá y definir donde cort...[Wikipedia]"
         android:textSize="18dp"
         android:gravity="fill_horizontal"/>

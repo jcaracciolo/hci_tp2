@@ -120,7 +120,7 @@ public class PopulateSearchResultsTask extends AsyncTaskInformed<Object,Void,Arr
                 String flightNumber = filter.toUpperCase().trim().split("\\W")[1];
                 if (f.getAirline().getID().equals(airlineID)
                         && f.getNumber().equals(Integer.parseInt(flightNumber))) {
-                    strings.add(filter.trim().split("\\W")[0] + " " + filter.trim().split("\\W")[1]);
+                    strings.add(airlineID + " " + flightNumber);
                     searchResults.add(new ResultElement(f, DependencyType.FLIGHT_SEARCH));
                 }
             }

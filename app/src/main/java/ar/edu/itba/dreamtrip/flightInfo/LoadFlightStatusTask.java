@@ -10,6 +10,7 @@ import java.util.HashSet;
 import ar.edu.itba.dreamtrip.R;
 import ar.edu.itba.dreamtrip.common.API.DataHolder;
 import ar.edu.itba.dreamtrip.common.API.dependencies.Dependency;
+import ar.edu.itba.dreamtrip.common.API.dependencies.DependencyType;
 import ar.edu.itba.dreamtrip.common.API.dependencies.StatusDependency;
 import ar.edu.itba.dreamtrip.common.model.FlightState;
 import ar.edu.itba.dreamtrip.common.tasks.AsyncTaskInformed;
@@ -46,6 +47,7 @@ public class LoadFlightStatusTask extends AsyncTaskInformed<Object,Void,FlightSt
                 return fs;
             }
         }
+
         return null;
     }
 
@@ -64,29 +66,36 @@ public class LoadFlightStatusTask extends AsyncTaskInformed<Object,Void,FlightSt
         flightStateView.getArrivalTime().setText(fs.getDestination().getScheduledHour());
 
         String flightStatus;
+        int color = R.color.status_green;
         switch (fs.getStatus()) {
             case SCHEDULED:
                 flightStatus = context.getString(R.string.scheduled_flight);
+                color = R.color.status_green;
                 break;
             case ACTIVE:
                 flightStatus = context.getString(R.string.active_flight);
+                color = R.color.status_green;
                 break;
             case DELAYED:
                 flightStatus = context.getString(R.string.delayed_flight);
+                color = R.color.status_yellow;
                 break;
             case LANDED:
                 flightStatus = context.getString(R.string.landed_flight);
+                color= R.color.status_blue;
                 break;
             case CANCELLED:
                 flightStatus = context.getString(R.string.cancelled_flight);
+                color = R.color.status_red;
                 break;
             default:
                 flightStatus = "unknown";
                 break;
         }
+        flightStateView.getStatusBar().setBackgroundColor(context.getResources().getColor(color));
         flightStateView.getStatus().setText(context.getString(R.string.flight_status_txt) + " " + flightStatus.toLowerCase());
         flightStateView.getEstimatedDepTime().setText(context.getString(R.string.estimated_dep_time_txt) + " " + fs.getOrigin().getEstimateRunwayHour());
-        flightStateView.getEstimatedArrTime().setText(context.getString(R.string.estimated_dep_time_txt) + " " + fs.getDestination().getEstimateRunwayHour());
+        flightStateView.getEstimatedArrTime().setText(context.getString(R.string.estimated_arr_time_txt) + " " + fs.getDestination().getEstimateRunwayHour());
 
         flightStateView.getTerminal().setText(context.getString(R.string.terminal_txt) + " " + fs.getDestination().getTerminal());
         flightStateView.getGate().setText(context.getString(R.string.gate_txt) + " " + fs.getDestination().getGate());

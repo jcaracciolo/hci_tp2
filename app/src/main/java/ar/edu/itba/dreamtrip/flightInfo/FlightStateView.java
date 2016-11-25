@@ -19,6 +19,7 @@ public class FlightStateView {
     private TextView destinationName;
     private TextView arrivalTime;
 
+    private ImageView statusBar;
     private TextView status;
     private TextView estimatedDepTime;
     private TextView estimatedArrTime;
@@ -29,9 +30,9 @@ public class FlightStateView {
 
     public FlightStateView(ImageView airlineLogo, TextView flightID, TextView originID,
                            TextView originName, TextView departureTime, TextView destinationID,
-                           TextView destinationName, TextView arrivalTime, TextView status,
-                           TextView estimatedDepTime, TextView estimatedArrTime, TextView terminal,
-                           TextView gate, TextView luggage) {
+                           TextView destinationName, TextView arrivalTime, ImageView statusBar,
+                           TextView status, TextView estimatedDepTime, TextView estimatedArrTime,
+                           TextView terminal, TextView gate, TextView luggage) {
         this.airlineLogo = airlineLogo;
         this.flightID = flightID;
         this.originID = originID;
@@ -40,6 +41,7 @@ public class FlightStateView {
         this.destinationID = destinationID;
         this.destinationName = destinationName;
         this.arrivalTime = arrivalTime;
+        this.statusBar = statusBar;
         this.status = status;
         this.estimatedDepTime = estimatedDepTime;
         this.estimatedArrTime = estimatedArrTime;
@@ -78,6 +80,10 @@ public class FlightStateView {
 
     public TextView getArrivalTime() {
         return arrivalTime;
+    }
+
+    public ImageView getStatusBar() {
+        return statusBar;
     }
 
     public TextView getStatus() {
