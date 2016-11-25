@@ -38,6 +38,21 @@ public class SettingsManager {
 
         return untrack(identifier,regex,prefsString,amountString,baseFlightString);
     }
+    public boolean clearTrackedFlight(){
+        ArrayList<String> tracked = getTrackedFlights();
+        for(String string: tracked){
+            untrackFlight(string);
+        }
+        return tracked.size() > 0;
+    }
+
+    public boolean clearTrackedLegs(){
+        ArrayList<String> tracked = getTrackedLegs();
+        for(String string: tracked){
+            untrackFlight(string);
+        }
+        return tracked.size() > 0;
+    }
 
     public ArrayList<String> getTrackedFlights() {
         String prefsString = context.getString(R.string.tracked_flights_pref);

@@ -355,7 +355,7 @@ public class JSONParser {
         }
     }
 
-    public static void fillDeals(JSONObject response, HashSet<Deal> deals, String originID) {
+    public static void fillDeals(JSONObject response, HashMap<String,Deal> deals, String originID, boolean lastMinute) {
         try {
             JSONArray dealsResp = response.getJSONArray("deals");
             int max = dealsResp.length();
@@ -364,7 +364,12 @@ public class JSONParser {
                 Deal deal = new Deal(dealObj.getJSONObject("city").getString("id"),
                         originID,dealObj.getJSONObject("city").getString("name"),
                         dealObj.getDouble("price"));
-                deals.add(deal);
+                deal.setLastMinute(lastMinute);
+                if(deals.containsKey(deal.getDealIdentifier())){
+                    if(lastMinute){
+                        deals.get(deal.getDealIdentifier()).setLastMinute(true);
+                    }
+                } else deals.put(deal.getDealIdentifier(),deal);
             }
         } catch (JSONException e) {
             e.printStackTrace();

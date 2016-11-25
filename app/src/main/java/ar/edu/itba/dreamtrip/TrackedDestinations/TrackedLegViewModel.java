@@ -27,12 +27,12 @@ public class TrackedLegViewModel implements Serializable{
     public boolean isLastMinute;
     public Double price;
 
-    public TrackedLegViewModel(Context context, Deal deal,boolean isLastMinute) {
+    public TrackedLegViewModel(Context context, Deal deal) {
         originID=deal.getOriginCityID();
         originDescription=deal.getOriginCityID();
         destinationID=deal.getDestinationCityID();
         destinationDescription=deal.getDestinationDescription();
-        this.isLastMinute=isLastMinute;
+        isLastMinute=deal.isLastMinute();
         image=deal.getImage();
         price=deal.getPrice();
     }

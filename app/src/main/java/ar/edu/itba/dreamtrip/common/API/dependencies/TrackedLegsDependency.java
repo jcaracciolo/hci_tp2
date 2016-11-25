@@ -12,30 +12,15 @@ import ar.edu.itba.dreamtrip.common.API.SettingsManager;
 
 public class TrackedLegsDependency extends Dependency {
 
-    private Integer timeout;
 
-    public TrackedLegsDependency(Context context, Integer timeout) {
+    public TrackedLegsDependency(Context context, boolean loadImages) {
         super(DependencyType.TRACKED_LEGS);
-        this.timeout = timeout;
 
         for (String identifier: SettingsManager.getInstance(context).getTrackedLegs()) {
-            addDependency(new FlightDealsDependency(identifier.split(" ")[0],false,false));
-            addDependency(new FlightDealsDependency(identifier.split(" ")[0],false,true));
+            addDependency(new FlightDealsDependency(identifier.split(" ")[0],loadImages,false));
+            addDependency(new FlightDealsDependency(identifier.split(" ")[0],loadImages,true));
         }
     }
 
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        TrackedLegsDependency that = (TrackedLegsDependency) o;
-        return that == this;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), timeout);
-    }
 }

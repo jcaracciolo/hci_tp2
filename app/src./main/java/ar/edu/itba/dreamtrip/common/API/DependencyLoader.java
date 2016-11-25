@@ -1,6 +1,7 @@
 package ar.edu.itba.dreamtrip.common.API;
 
 import android.graphics.Bitmap;
+import android.os.DeadObjectException;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -43,6 +44,10 @@ public abstract class DependencyLoader {
     private static Integer loadedDealImages ;
     private static Integer totalDealImagesURLS ;
     private static Integer loadedDealImagesURLS ;
+
+    private static HashMap<Dependency, Integer> dependencyLoaded = new HashMap<>();
+    private static HashMap<Dependency, Integer> dependencyMax = new HashMap<>();
+
     static boolean loadFlightState(final DataHolder dataHolder,
                                    final StatusDependency dependency,
                                    final HashMap<String,FlightState> flightStates){
@@ -125,73 +130,6 @@ public abstract class DependencyLoader {
         }
 
         return true;
-    }
-
-    static void loadDealsImages(final DataHolder dataHolder, HashSet<Deal> deals, final Dependency dependency){
-        totalDealImages =  deals.size();
-        loadedDealImages = 0;
-
-        for(final Deal deal: deals){
-            String url = deal.getImageUrl();
-
-            if(url!=null){
-                ImageRequest request = new ImageRequest(url,
-                        new Response.Listener<Bitmap>() {
-                            @Override
-                            public void onResponse(Bitmap bitmap) {
-                                deal.setImage(bitmap);
-                                loadedDealImages++;
-                                if(loadedDealImages == totalDealImages) {
-                                    dataHolder.somethingLoaded(dependency);
-                                }
-                            }
-                        }, 0, 0, null,
-                        new Response.ErrorListener() {
-                            public void onErrorResponse(VolleyError error) {
-                                loadedDealImages++;
-                                if(loadedDealImages == totalDealImages) {
-                                    dataHolder.somethingLoaded(dependency);
-                                }
-                            }
-                        });
-                dataHolder.addToVolleyQueue(request);
-            }
-        }
-    }
-    static void loadDealsImagesURLS(final DataHolder dataHolder, HashSet<Deal> deals, final Dependency dependency){
-        totalDealImagesURLS =  deals.size();
-        loadedDealImagesURLS = 0;
-
-        for(final Deal deal: deals){
-            String url =  "https://api.flickr.com/services/rest/?method=flickr.photos.search" +
-                    "&api_key=" + "9d6b40067159b728b85feeaac2bf7f6f" +
-                    "&tags=landscape" +
-                    "&text=" + deal.getDestinationDescription().replace(' ','+') +
-                    "&sort=interestingness-desc&format=json&nojsoncallback=1";
-
-            JsonObjectRequest jsObjRequest = new JsonObjectRequest
-                    (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
-                            String imageUrl = JSONParser.parseFlickerImageUrl(response);
-                            deal.setImageUrl(imageUrl);
-                            loadedDealImagesURLS++;
-                            if(loadedDealImagesURLS == totalDealImagesURLS) {
-                                dataHolder.somethingLoaded(dependency);
-                            }
-                        }
-                    }, new Response.ErrorListener() {
-
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            loadedDealImagesURLS++;
-                            if(loadedDealImagesURLS == totalDealImagesURLS) {
-                                dataHolder.somethingLoaded(dependency);
-                            }
-                        }
-                    });
-            dataHolder.addToVolleyQueue(jsObjRequest);
-        }
     }
 
     static boolean loadAirlineData(final DataHolder dataHolder,
@@ -375,17 +313,17 @@ public abstract class DependencyLoader {
 
     static boolean loadFlightDealsData(final DataHolder dataHolder,
                                        final FlightDealsDependency dependency,
-                                       final HashSet<Deal> deals,final boolean lastMinute){
-        String url ="http://hci.it.itba.edu.ar/v1/api/booking.groovy?method=get"
+                                       final HashMap<String ,Deal> deals,final boolean lastMinute){
+        final String url ="http://hci.it.itba.edu.ar/v1/api/booking.groovy?method=get"
             + (lastMinute? "lastminute":"") + "flightdeals" +
-                "&from=" + dependency.getOriginID();
+                "&from=" + dependency.getOriginID() +
+                "&page_size=1000";
         JsonObjectRequest jsObjRequest = new JsonObjectRequest
                 (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
 //                        deals.clear();
-
-                        JSONParser.fillDeals(response,deals,dependency.getOriginID());
+                        JSONParser.fillDeals(response,deals,dependency.getOriginID(),lastMinute);
                         dataHolder.somethingLoaded(dependency);
                     }
                 }, new Response.ErrorListener() {
@@ -396,6 +334,82 @@ public abstract class DependencyLoader {
                 });
         dataHolder.addToVolleyQueue(jsObjRequest);
         return true;
+    }
+
+
+    static void loadDealsImagesURLS(final DataHolder dataHolder, HashMap<String ,Deal> deals, final Dependency dependency){
+        setMaxDependencyRequests(dependency,deals.size());
+
+        for(final Deal deal: deals.values()){
+            if(deal.getImageUrl() == null) {
+
+                String url = "https://api.flickr.com/services/rest/?method=flickr.photos.search" +
+                        "&api_key=" + "9d6b40067159b728b85feeaac2bf7f6f" +
+                        "&tags=landscape" +
+                        "&text=" + deal.getDestinationDescription().replace(' ', '+') +
+                        "&sort=interestingness-desc&format=json&nojsoncallback=1";
+
+                JsonObjectRequest jsObjRequest = new JsonObjectRequest
+                        (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                String imageUrl = JSONParser.parseFlickerImageUrl(response);
+                                deal.setImageUrl(imageUrl);
+                                somethingArrived(dataHolder,dependency);
+                            }
+                        }, new Response.ErrorListener() {
+
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                somethingArrived(dataHolder,dependency);
+                            }
+                        });
+                dataHolder.addToVolleyQueue(jsObjRequest);
+            } else somethingArrived(dataHolder,dependency);
+
+        }
+    }
+
+    static void loadDealsImages(final DataHolder dataHolder,HashMap<String ,Deal> deals, final Dependency dependency){
+        setMaxDependencyRequests(dependency,deals.size());
+
+
+        for(final Deal deal: deals.values()){
+            if(deal.getImage() == null && deal.getImageUrl() != null) {
+                final String url = deal.getImageUrl();
+                ImageRequest request = new ImageRequest(url,
+                        new Response.Listener<Bitmap>() {
+                            @Override
+                            public void onResponse(Bitmap bitmap) {
+                                deal.setImage(bitmap);
+                                somethingArrived(dataHolder,dependency);
+                                System.out.println("loaded image: " + deal + " " + url + " loaded " + dependencyLoaded.get(dependency));
+                            }
+                        }, 0, 0, null,
+                        new Response.ErrorListener() {
+                            public void onErrorResponse(VolleyError error) {
+                                somethingArrived(dataHolder,dependency);
+                            }
+                        });
+                dataHolder.addToVolleyQueue(request);
+                System.out.println("requested image: " + deal + " " + url + " loaded " +  dependencyLoaded.get(dependency));
+            } else somethingArrived(dataHolder,dependency);
+
+        }
+    }
+
+    private static void somethingArrived(DataHolder dataHolder, Dependency dependency){
+        Integer loaded = dependencyLoaded.get(dependency);
+        loaded ++;
+        if(loaded >= dependencyMax.get(dependency)){
+            dataHolder.somethingLoaded(dependency);
+        } else {
+            dependencyLoaded.put(dependency,loaded);
+        }
+    }
+    private static void setMaxDependencyRequests( Dependency dependency, Integer max){
+        dependencyMax.put(dependency,max);
+        dependencyLoaded.put(dependency,0);
     }
 
 

@@ -66,10 +66,7 @@ public class TrackedFlightsFragment extends ListFragment {
 //        System.out.println(settingsManager.getTrackedFlights());
 //        settingsManager.trackFlight("BA 2282");
 //        System.out.println(settingsManager.getTrackedFlights());
-        SettingsManager settingsManager = SettingsManager.getInstance(getContext());
 
-        settingsManager.trackLeg("EZE LON");
-        settingsManager.trackLeg("LON PAR");
 
     }
 

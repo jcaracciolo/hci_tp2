@@ -36,12 +36,14 @@ public class Deal {
     private Bitmap image;
     private String imageUrl;
     private String destinationDescription;
+    private boolean isLastMinute;
 
     public Deal(String destinationCityID, String originCityID, String destinationDescription, Double price) {
         this.destinationCityID = destinationCityID;
         this.originCityID = originCityID;
         this.price = price;
         this.destinationDescription = destinationDescription;
+        isLastMinute = false;
     }
 
     public void setImage(Bitmap image){
@@ -56,6 +58,14 @@ public class Deal {
         return destinationCityID;
     }
 
+    public boolean isLastMinute() {
+        return isLastMinute;
+    }
+
+    public void setLastMinute(boolean lastMinute) {
+        isLastMinute = lastMinute;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -68,5 +78,14 @@ public class Deal {
     @Override
     public int hashCode() {
         return Objects.hash(destinationCityID, originCityID);
+    }
+
+    @Override
+    public String toString(){
+        return (isLastMinute? "lastMin " : "")+originCityID + " to " + destinationCityID;
+    }
+
+    public String getDealIdentifier(){
+        return originCityID + " " + destinationCityID;
     }
 }

@@ -40,8 +40,7 @@ public class DataHolder {
     private HashMap<String,MyCurrency> currencies = new HashMap<>();
     private HashMap<String,FlightState> flightStates = new HashMap<>();
     private HashMap<String,HashSet<Review>> reviews = new HashMap<>();
-    private HashSet<Deal> deals = new HashSet<>();
-    private HashSet<Deal> lastMinuteDeals = new HashSet<>();
+    private HashMap<String,Deal> deals = new HashMap<>();
 
 
     public Collection<Airline> getAirlines() {
@@ -184,19 +183,19 @@ public class DataHolder {
                 DependencyLoader.loadAirlineReviews(this,(AirlinesReviewDependency) dependency,reviews);
                 break;
             case LAST_MINUTE_DEALS_DATA:
-                DependencyLoader.loadFlightDealsData(this,(FlightDealsDependency) dependency,lastMinuteDeals,true);
+                DependencyLoader.loadFlightDealsData(this,(FlightDealsDependency) dependency,deals,true);
                 break;
             case DEALS_DATA:
                 DependencyLoader.loadFlightDealsData(this,(FlightDealsDependency) dependency,deals,false);
                 break;
             case LAST_MINUTE_DEALS_IMAGES:
-                DependencyLoader.loadDealsImages(this,lastMinuteDeals,dependency);
+                DependencyLoader.loadDealsImages(this,deals,dependency);
                 break;
             case DEALS_IMAGES:
                 DependencyLoader.loadDealsImages(this,deals,dependency);
                 break;
             case LAST_MINUTE_DEALS_IMAGES_URLS:
-                DependencyLoader.loadDealsImagesURLS(this,lastMinuteDeals,dependency);
+                DependencyLoader.loadDealsImagesURLS(this,deals,dependency);
                 break;
             case DEALS_IMAGES_URLS:
                 DependencyLoader.loadDealsImagesURLS(this,deals,dependency);
@@ -340,7 +339,16 @@ public class DataHolder {
         return airlineReviews;
     }
 
-    public HashSet<Deal> getDeals() {
-        return deals;
+    public Collection<Deal> getDeals() {
+        return deals.values();
+    }
+    public Collection<Deal> getTrackedDeals() {
+        Collection<Deal> trackedDeals = new ArrayList<>();
+        for (String s: SettingsManager.getInstance(context).getTrackedLegs()){
+            if(deals.containsKey(s)){
+                trackedDeals.add(deals.get(s));
+            }
+        }
+        return trackedDeals;
     }
 }
