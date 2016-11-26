@@ -31,7 +31,6 @@ public class Opinions extends BaseActivity {
 
         DataHolder dataHolder = DataHolder.getInstance(this);
         dataHolder.waitForIt(new LoadAllAirlineRatingTask(this, airlineID, ratingsView));
-
     }
 
     @Override

@@ -38,7 +38,9 @@
     <string name="general">General</string>
     <string name="dialog_title">Track a flight</string>
     <string name="dialog_add_tracked_flight_title">Add Flight to Track</string>
+    <string name="dialog_add_tracked_destination_title">Add Destination to Track</string>
     <string name="dialog_add_tracked_flight_button">Add Flight</string>
+    <string name="dialog_add_tracked_destination_button">Add Destination</string>
     <string name="add_track_flight_hint">Flight number (ex: AZ 523)</string>
     <string name="follow">Follow</string>
     <string name="map_search">Map</string>
@@ -49,6 +51,8 @@
     <string name="no_comment">No comments</string>
     <string name="incorrent_flight_number">Incorrect flight number</string>
     <string name="unfollow">Unfollow</string>
+    <string name="origin_to_track">Origin</string>
+    <string name="destination_to_track">Destination</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
