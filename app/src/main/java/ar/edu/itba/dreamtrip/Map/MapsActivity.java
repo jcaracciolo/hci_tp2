@@ -2,6 +2,9 @@ package ar.edu.itba.dreamtrip.Map;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
@@ -15,6 +18,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -64,7 +68,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             Location lastLoc = locManager.getLastKnownLocation(provider);
             LatLng lasLatLng=new LatLng(lastLoc.getLatitude(),lastLoc.getLongitude());
             // Add a marker in Sydney and move the camera
-            mMap.addMarker(new MarkerOptions().position(lasLatLng).title("YOU"));
+
+            MarkerOptions marker=new MarkerOptions().position(lasLatLng);
+            marker.title("YOU").snippet("THIS IS YOU");
+            marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_airplane_l));
+
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(lasLatLng,10));
             final DataHolder dataholder = DataHolder.getInstance(getBaseContext());
             dataholder.waitForIt(new PopulateMaps(getBaseContext(),mMap,lasLatLng));

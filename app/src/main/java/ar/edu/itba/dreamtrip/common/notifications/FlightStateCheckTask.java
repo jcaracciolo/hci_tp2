@@ -8,6 +8,7 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -48,7 +49,7 @@ public class FlightStateCheckTask extends AsyncTaskInformed<Object,Void,ArrayLis
         ArrayList<String> notifications = new ArrayList<>();
 
         SettingsManager settingsManager = SettingsManager.getInstance(context);
-        Collection<FlightState> flightStates = dataHolder.getFlightStates();
+        Collection<FlightState> flightStates = dataHolder.getTrackedFlightStates();
         for (FlightState flightState: flightStates) {
             String identifier = flightState.getIdentifier();
             FlightStatus loadedStatus = flightState.getStatus();
@@ -62,10 +63,20 @@ public class FlightStateCheckTask extends AsyncTaskInformed<Object,Void,ArrayLis
         return notifications;
     }
 
+
+    public void toast(String str) {
+        Toast.makeText(context, str,
+                Toast.LENGTH_SHORT).show();
+    }
+
     @Override
     protected void onPostExecute(ArrayList<String> flightCards) {
-        for (String s: flightCards){
-            pushNotification(s);
+        if(! FlightTracker.isActive){
+            for (String s: flightCards){
+                pushNotification(s);
+            }
+        } else {
+            toast("didnt show flight notifications, app active");
         }
     }
 

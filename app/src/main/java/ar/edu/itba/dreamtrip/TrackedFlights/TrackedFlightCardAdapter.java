@@ -44,6 +44,7 @@ public class TrackedFlightCardAdapter extends BaseSwipeAdapter {
                 context.sendBroadcast(it);
             }
         };
+
         context.registerReceiver(deleteFlight,new IntentFilter(context.getResources().getString(R.string.deleteFlightIntent)));
     }
 
@@ -83,5 +84,14 @@ public class TrackedFlightCardAdapter extends BaseSwipeAdapter {
     public long getItemId(int i) {
         return i;
     }
+
+    public void unregister(){
+        context.unregisterReceiver(deleteFlight);
+    }
+
+    public void register(){
+        context.registerReceiver(deleteFlight,new IntentFilter(context.getResources().getString(R.string.deleteFlightIntent)));
+    }
+
 
 }

@@ -71,4 +71,13 @@ public class TrackedLegCardAdapter extends BaseSwipeAdapter {
     public void fillValues(int position, View view) {
         TrackedLegCardView.fillView(context,getItem(position),view);
     }
+
+    public void unregister(){
+        context.unregisterReceiver(deleteDest);
+    }
+
+    public void register(){
+        context.registerReceiver(deleteDest,new IntentFilter(context.getResources().getString(R.string.deleteDealIntent)));
+    }
+
 }

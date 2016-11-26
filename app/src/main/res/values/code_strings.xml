@@ -19,6 +19,7 @@
        <string name="deleteFlightIntent">ar.edu.itba.dreamtrip.DELETE_DEALS_INTENT</string>
        <string name="RetrieveDeleteFlightIntent">ar.edu.itba.dreamtrip.RETRIEVE_DELETE_DEALS_INTENT</string>
        <string name="UpdateTrackedDeals">"ar.edu.itba.dreamtrip.UPDATE_LIST_DEALS_TRACKER"</string>
+       <string name="ChangeTabToDeals">"ar.edu.itba.dreamtrip.CHANGE_SELECTED_TAB_TO_DEALS"</string>
 
 
        <string name="scheduled_flight_code">SCHEDULED</string>

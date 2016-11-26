@@ -1,9 +1,15 @@
 package ar.edu.itba.dreamtrip.Map;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
 import android.widget.ListView;
 
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -14,6 +20,7 @@ import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Objects;
 
+import ar.edu.itba.dreamtrip.R;
 import ar.edu.itba.dreamtrip.TrackedDestinations.TrackedLegViewModel;
 import ar.edu.itba.dreamtrip.common.API.DataHolder;
 import ar.edu.itba.dreamtrip.common.API.dependencies.DealLoadType;
@@ -66,13 +73,26 @@ public class PopulateMaps extends AsyncTaskInformed<Object,Void,ArrayList<Collec
         Collection<City> cities = (Collection<City>)arrayLists.get(1);
 
         for (Airport a: airports) {
-            map.addMarker(new MarkerOptions().position(new LatLng(a.getLocation().getLatitude(),a.getLocation().getLongitude()))
-            .title(a.getName()));
+            MarkerOptions marker = new MarkerOptions().position(new LatLng(a.getLocation().getLatitude(),a.getLocation().getLongitude()));
+            marker.title(a.getName());
+            map.addMarker(marker);
         }
 
         for (City c: cities) {
-            map.addMarker(new MarkerOptions().position(new LatLng(c.getLocation().getLatitude(),c.getLocation().getLongitude()))
-                    .title(c.getName()));
+            MarkerOptions marker = new MarkerOptions().position(new LatLng(c.getLocation().getLatitude(),c.getLocation().getLongitude()));
+            marker.title(c.getName());
+            marker.icon(getMarkerIconFromDrawable(context.getDrawable(R.drawable.ic_arrow_right)));
+            map.addMarker(marker);
+            marker.title("AAA");
         }
+    }
+    private BitmapDescriptor getMarkerIconFromDrawable(Drawable drawable) {
+        Canvas canvas = new Canvas();
+        Bitmap bitmap;
+        bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+        canvas.setBitmap(bitmap);
+        drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+        drawable.draw(canvas);
+        return BitmapDescriptorFactory.fromBitmap(bitmap);
     }
 }

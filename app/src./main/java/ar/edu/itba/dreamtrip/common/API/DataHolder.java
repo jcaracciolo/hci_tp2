@@ -330,6 +330,17 @@ public class DataHolder {
         return flightStates.values();
     }
 
+    public Collection<FlightState> getTrackedFlightStates() {
+        Collection<FlightState> trackedStates = new ArrayList<>();
+        for (String s: SettingsManager.getInstance(context).getTrackedFlights()){
+            if(flightStates.containsKey(s)){
+                trackedStates.add(flightStates.get(s));
+            }
+        }
+        return trackedStates;
+    }
+
+
     public Collection<Review> getFlightReviews(String airlineID, Integer number) {
         String identifier = airlineID.trim() + " " + number;
         return getFlightReviews(identifier);

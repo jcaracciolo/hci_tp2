@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 
+import ar.edu.itba.dreamtrip.TrackedDestinations.TrackedLegCardAdapter;
 import ar.edu.itba.dreamtrip.common.API.DataHolder;
 import ar.edu.itba.dreamtrip.common.API.dependencies.Dependency;
 import ar.edu.itba.dreamtrip.common.API.dependencies.TrackedFlightsDependency;
@@ -40,7 +41,7 @@ public class PopulateFlightTrackers extends AsyncTaskInformed<Object,Void,ArrayL
         DataHolder dataHolder = (DataHolder) params[0];
         ArrayList<TrackedFlightViewModel> flightCards = new ArrayList<>();
 
-        Collection<FlightState> flightStates = dataHolder.getFlightStates();
+        Collection<FlightState> flightStates = dataHolder.getTrackedFlightStates();
         for (FlightState flightState: flightStates) {
             flightCards.add(new TrackedFlightViewModel(context,flightState));
         }
@@ -50,6 +51,9 @@ public class PopulateFlightTrackers extends AsyncTaskInformed<Object,Void,ArrayL
 
     @Override
     protected void onPostExecute(ArrayList<TrackedFlightViewModel> flightCards) {
+        if(list.getAdapter()!=null){
+            ((TrackedLegCardAdapter)list.getAdapter()).unregister();
+        }
         list.setAdapter(new TrackedFlightCardAdapter(context, flightCards));
     }
 }

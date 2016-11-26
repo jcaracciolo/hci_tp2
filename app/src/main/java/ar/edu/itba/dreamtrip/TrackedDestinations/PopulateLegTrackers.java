@@ -68,6 +68,9 @@ public class PopulateLegTrackers extends AsyncTaskInformed<Object,Void,ArrayList
 
     @Override
     protected void onPostExecute(ArrayList<TrackedLegViewModel> flightCards) {
+        if(list.getAdapter()!=null){
+            ((TrackedLegCardAdapter)list.getAdapter()).unregister();
+        }
         list.setAdapter(new TrackedLegCardAdapter(context, flightCards));
     }
 }

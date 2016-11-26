@@ -1,9 +1,11 @@
 
 package ar.edu.itba.dreamtrip.main;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
@@ -22,6 +24,7 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 import ar.edu.itba.dreamtrip.R;
+import ar.edu.itba.dreamtrip.TrackedDestinations.PopulateLegTrackers;
 import ar.edu.itba.dreamtrip.common.API.DataHolder;
 import ar.edu.itba.dreamtrip.common.API.SettingsManager;
 import ar.edu.itba.dreamtrip.common.notifications.TrackedChangesManager;
@@ -29,6 +32,7 @@ import ar.edu.itba.dreamtrip.common.tasks.TrackFlightTask;
 import ar.edu.itba.dreamtrip.main.Adapter.PagerAdapter;
 
 public class FlightTracker extends BaseActivity {
+    public static boolean isActive= false;
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
@@ -38,11 +42,6 @@ public class FlightTracker extends BaseActivity {
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
     }
 
     @Override
@@ -80,6 +79,7 @@ public class FlightTracker extends BaseActivity {
         final PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -99,8 +99,25 @@ public class FlightTracker extends BaseActivity {
         viewPager.setCurrentItem(selectedTab);
         //SettingsManager.getInstance(getApplicationContext()).clearAllTracked();
         TrackedChangesManager.getInstance(getApplicationContext()).setupChecks();
-        SettingsManager.getInstance(getApplicationContext()).trackLeg("EZE LON");
+//        SettingsManager.getInstance(getApplicationContext()).trackLeg("EZE LON");
 
+    }
+
+    private void setTab(int i) {
+        final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
+        viewPager.setCurrentItem(2);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        isActive =true;
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        isActive = false;
     }
 
     @Override
