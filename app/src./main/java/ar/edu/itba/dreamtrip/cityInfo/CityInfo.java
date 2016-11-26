@@ -26,6 +26,8 @@ public class CityInfo extends BaseActivity implements CityDetailsFragment.OnFrag
         super.onCreate(savedInstanceState);
         setupView(R.layout.activity_city_info);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().add(R.id.activity_city_info, new CityDetailsFragment()).commit();
         }
@@ -40,6 +42,12 @@ public class CityInfo extends BaseActivity implements CityDetailsFragment.OnFrag
 
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
       //  findViewById(R.id.)
+    }
+
+    @Override
+    public boolean onSupportNavigateUp(){
+        finish();
+        return true;
     }
 
     @Override

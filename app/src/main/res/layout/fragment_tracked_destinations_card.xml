@@ -16,8 +16,7 @@
         android:layout_marginRight="15dp"
         android:layout_marginTop="30dp"
         android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:src="@drawable/quantum_ic_art_track_grey600_48"/>
+        android:layout_alignParentTop="true"/>
     <View
         android:id="@+id/card_background"
         android:layout_height="100dp"

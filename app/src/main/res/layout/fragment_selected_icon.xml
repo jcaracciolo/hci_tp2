@@ -14,11 +14,11 @@
 
     <!-- TODO: Update blank fragment layout -->
     <ImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:src="@drawable/ic_done"
+        android:src="@drawable/ic_delete"
         android:tint="#FFFFFF"/>
 
 

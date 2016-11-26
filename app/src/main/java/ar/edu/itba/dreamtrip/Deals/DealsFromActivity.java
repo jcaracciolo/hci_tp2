@@ -25,6 +25,8 @@ public class DealsFromActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setupView(R.layout.activity_deals_from);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         String id=(String)getIntent().getExtras().get(INTENT_TO_DEALS_FROM);
         grid= (GridView) findViewById(R.id.gridview);
 
@@ -36,6 +38,12 @@ public class DealsFromActivity extends BaseActivity {
 
         dataholder.waitForIt(new PopulateDeals(getBaseContext(), grid,id));
 
+    }
+
+    @Override
+    public boolean onSupportNavigateUp(){
+        finish();
+        return true;
     }
 
 

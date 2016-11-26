@@ -23,6 +23,8 @@ public class FlightInfo extends BaseActivity {
         super.onCreate(savedInstanceState);
         setupView(R.layout.activity_flight_info);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         fillFlightStateView();
 
         String id = getIntent().getExtras().getString(RESULT_ID_KEY);
@@ -34,6 +36,12 @@ public class FlightInfo extends BaseActivity {
         dataHolder.waitForIt(new LoadAirlineImageTask(getBaseContext(), id.split(" ")[0], logo_big));
         dataHolder.waitForIt(new LoadFlightDurationTask(getBaseContext(), id, duration));
 
+    }
+
+    @Override
+    public boolean onSupportNavigateUp(){
+        finish();
+        return true;
     }
 
     private void fillFlightStateView() {

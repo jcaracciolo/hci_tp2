@@ -18,6 +18,7 @@ import ar.edu.itba.dreamtrip.common.API.DataHolder;
 public class CityDetailsFragment extends Fragment {
 
     public final static String RESULT_ID_KEY = "main_activity.go_to_info_id";
+    public final static String INTENT_TO_DEALS_FROM = "ar.itba.edu.dreamtrip.deals_id";
 
     private OnFragmentInteractionListener mListener;
 
@@ -31,7 +32,7 @@ public class CityDetailsFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_destination_details, container, false);
 
         Intent intent = getActivity().getIntent();
-        String id = intent.getStringExtra(RESULT_ID_KEY);
+        final String id = intent.getStringExtra(RESULT_ID_KEY);
 
         ImageView img = (ImageView) v.findViewById(R.id.destination_icon);
         img.setImageResource(R.drawable.ic_city);
@@ -46,7 +47,7 @@ public class CityDetailsFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), DealsFromActivity.class);
-                //intent.putExtra(INTENT_TO_DEALS_FROM, )
+                intent.putExtra(INTENT_TO_DEALS_FROM,id);
                 startActivity(intent);
             }
 
