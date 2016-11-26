@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
@@ -84,6 +85,15 @@ public class FlightTracker extends BaseActivity {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
+                //HIGHLIGHT NAV DRAWER
+                String tabText = tab.getText().toString();
+                if (tabText.equals(getString(R.string.tab_flights))) {
+                    setNavSelected(0);
+                } else if (tabText.equals(getString(R.string.tab_destinations))) {
+                    setNavSelected(1);
+                } else if (tabText.equals(getString(R.string.tab_search))) {
+                    setNavSelected(2);
+                }
             }
 
             @Override

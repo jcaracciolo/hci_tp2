@@ -132,6 +132,13 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
+    public void setNavSelected(int position) {
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.getMenu().getItem(position).setChecked(true);
+        onNavigationItemSelected(navigationView.getMenu().getItem(position));
+
+    }
+
     public void setupView(int layout) {
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View contentView = inflater.inflate(layout, null, false);
