@@ -43,28 +43,10 @@ public class TrackedLegFragment extends ListFragment {
     }
 
     @Override
-    public void onListItemClick(ListView l, View v, int position, long id) {
-        TrackedLegViewModel flight = (TrackedLegViewModel)getListView().getAdapter().getItem(position);
-        toast("YOU CLICKED ");
-    }
-
-    @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         progressBar = (ProgressBar) getView().findViewById(R.id.loading_trackers);
         getListView().setEmptyView(progressBar);
-
-
-
-//        SettingsManager settingsManager = SettingsManager.getInstance(getContext());
-//        settingsManager.clearAllTracked();
-//        settingsManager.trackFlight("8R 8700");
-//        settingsManager.trackFlight("BA 2282");
-//        System.out.println(settingsManager.getTrackedFlights());
-//        settingsManager.untrackFlight("BA 2282");
-//        System.out.println(settingsManager.getTrackedFlights());
-//        settingsManager.trackFlight("BA 2282");
-//        System.out.println(settingsManager.getTrackedFlights());
     }
 
     @Override
@@ -72,12 +54,7 @@ public class TrackedLegFragment extends ListFragment {
         super.onResume();
         final DataHolder dataholder = DataHolder.getInstance(getContext());
         dataholder.waitForIt(new PopulateLegTrackers(getContext(), getListView()));
-        getActivity().registerReceiver(listUpdater,new IntentFilter("ar.edu.itba.dreamtrip.UPDATE_LIST_TRACKER"));
-    }
-
-    public void toast(String str) {
-        Toast.makeText(getActivity(), str,
-                Toast.LENGTH_SHORT).show();
+        getActivity().registerReceiver(listUpdater,new IntentFilter(getContext().getString(R.string.UpdateTrackedDeals)));
     }
 
     public void updateList() {

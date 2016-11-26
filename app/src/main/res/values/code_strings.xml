@@ -10,10 +10,15 @@
        <string name="tracked_leg_amount">amount_legsx</string>
        <string name="valid_leg_regex">^([A-Z]){3} ([A-Z]){3}$</string>
 
-       <string name="multiselectionIntent">ar.edu.itba.dreamtrip.MULTI_SELECT_INTENT</string>
-       <string name="deleteFlightIntent">ar.edu.itba.dreamtrip.DELETE_FLIGHT_INTENT</string>
-       <string name="RetrieveDeleteFlightIntent">ar.edu.itba.dreamtrip.RETRIEVE_DELETE_FLIGHT_INTENT</string>
-       <string name="UpdateTrackedFlights">"ar.edu.itba.dreamtrip.UPDATE_LIST_TRACKER"</string>
+       <string name="multiselectionFlightIntent">ar.edu.itba.dreamtrip.MULTI_SELECT_FLIGHT_INTENT</string>
+       <string name="deleteDealIntent">ar.edu.itba.dreamtrip.DELETE_FLIGHT_INTENT</string>
+       <string name="RetrieveDeleteDealIntent">ar.edu.itba.dreamtrip.RETRIEVE_DELETE_FLIGHT_INTENT</string>
+       <string name="UpdateTrackedFlights">"ar.edu.itba.dreamtrip.UPDATE_LIST_FLIGHT_TRACKER"</string>
+
+       <string name="multiselectionIntent">ar.edu.itba.dreamtrip.MULTI_SELECT_DEALS_INTENT</string>
+       <string name="deleteFlightIntent">ar.edu.itba.dreamtrip.DELETE_DEALS_INTENT</string>
+       <string name="RetrieveDeleteFlightIntent">ar.edu.itba.dreamtrip.RETRIEVE_DELETE_DEALS_INTENT</string>
+       <string name="UpdateTrackedDeals">"ar.edu.itba.dreamtrip.UPDATE_LIST_DEALS_TRACKER"</string>
 
 
        <string name="scheduled_flight_code">SCHEDULED</string>

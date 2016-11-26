@@ -48,17 +48,11 @@ public class TrackedFlightsFragment extends ListFragment {
     }
 
     @Override
-    public void onListItemClick(ListView l, View v, int position, long id) {
-        TrackedFlightViewModel flight = (TrackedFlightViewModel)getListView().getAdapter().getItem(position);
-        toast("YOU CLICKED " + flight.getIdentifier());
-    }
-
-    @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         progressBar = (ProgressBar) getView().findViewById(R.id.loading_trackers);
         getListView().setEmptyView(progressBar);
-            }
+    }
 
     @Override
     public void onResume() {
@@ -66,11 +60,6 @@ public class TrackedFlightsFragment extends ListFragment {
         final DataHolder dataholder = DataHolder.getInstance(getContext());
         dataholder.waitForIt(new PopulateFlightTrackers(getContext(), getListView()));
         getContext().registerReceiver(listUpdater,new IntentFilter(getContext().getResources().getString(R.string.UpdateTrackedFlights)));
-    }
-
-    public void toast(String str) {
-        Toast.makeText(getActivity(), str,
-                Toast.LENGTH_SHORT).show();
     }
 
     public void updateList() {

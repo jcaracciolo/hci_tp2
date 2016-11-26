@@ -31,8 +31,6 @@ public class PopulateFlightTrackers extends AsyncTaskInformed<Object,Void,ArrayL
     @Override
     public HashSet<Dependency> getDependencies() {
         HashSet<Dependency> dependencies = new HashSet<>();
-//        dependencies.add(new AirlinesReviewDependency("AR"));
-//        dependencies.add(new FlightDealsDependency("BUE",true));
         dependencies.add(new TrackedFlightsDependency(context,5));
         return dependencies;
     }

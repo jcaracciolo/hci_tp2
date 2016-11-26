@@ -2,21 +2,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="10dp"
-    android:paddingLeft="10dp"
-    android:paddingRight="10dp"
-    android:paddingTop="10dp"
+    android:layout_marginTop="0dp"
     tools:context="ar.edu.itba.dreamtrip.main.TrackedDestinationsCard"
     android:id="@+id/tracked_destination_card">
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/swipe_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="30dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"/>
     <View
         android:id="@+id/card_background"
         android:layout_height="100dp"
@@ -24,7 +13,7 @@
         android:background="@drawable/grey_rectangle">
     </View>
 
-    <ImageButton
+    <ImageView
         android:id="@+id/destination_img"
         android:layout_width="86dp"
         android:layout_height="86dp"

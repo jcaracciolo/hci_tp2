@@ -26,6 +26,8 @@ public class TrackedLegViewModel implements Serializable{
     public String destinationDescription;
     public boolean isLastMinute;
     public Double price;
+    public boolean selected;
+    public String dealID;
 
     public TrackedLegViewModel(Context context, Deal deal) {
         originID=deal.getOriginCityID();
@@ -35,5 +37,6 @@ public class TrackedLegViewModel implements Serializable{
         isLastMinute=deal.isLastMinute();
         image=deal.getImage();
         price=deal.getPrice();
+        dealID=deal.getDealIdentifier();
     }
 }
