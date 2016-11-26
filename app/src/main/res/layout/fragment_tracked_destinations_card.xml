@@ -1,17 +1,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginTop="0dp"
+    android:layout_height="wrap_content"
     tools:context="ar.edu.itba.dreamtrip.main.TrackedDestinationsCard"
-    android:id="@+id/tracked_destination_card">
-
-    <View
-        android:id="@+id/card_background"
-        android:layout_height="100dp"
-        android:layout_width="match_parent"
-        android:background="@drawable/grey_rectangle">
-    </View>
+    android:id="@+id/tracked_destination_card"
+    android:background="@drawable/grey_rectangle">
 
     <ImageView
         android:id="@+id/destination_img"
@@ -27,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:layout_toRightOf="@+id/destination_img"
-        android:text="City To Track"
+        android:text="Londres"
         android:textSize="20dp"/>
 
     <TextView

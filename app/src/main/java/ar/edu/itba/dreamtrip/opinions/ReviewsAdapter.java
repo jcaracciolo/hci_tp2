@@ -58,9 +58,10 @@ public class ReviewsAdapter extends BaseAdapter {
         }
 
         TextView text = (TextView) vi.findViewById(R.id.opinion_text);
-        String msg = HtmlManipulator.replaceHtmlEntities(URLDecoder.decode(data.get(position).comment));
+        String msg = data.get(position).comment == null ? "null" : data.get(position).comment;
+        msg = HtmlManipulator.replaceHtmlEntities(URLDecoder.decode(msg));
 
-        if (msg.equals("")) {
+        if (msg.equals("") || msg.equals("null")) {
             msg = context.getResources().getString(R.string.no_comment);
             text.setTypeface(null, Typeface.ITALIC);
         }

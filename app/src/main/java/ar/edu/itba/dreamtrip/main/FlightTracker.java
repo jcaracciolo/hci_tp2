@@ -118,7 +118,6 @@ public class FlightTracker extends BaseActivity {
     }
 
     public void addTrackedFlight(View v) {
-        toast("add tracked flight!!");
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
         LayoutInflater inflater = getLayoutInflater();
@@ -128,7 +127,7 @@ public class FlightTracker extends BaseActivity {
                 .setNeutralButton(R.string.dialog_add_tracked_flight_button, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
-                        String flightID = ((TextView) textView.findViewById(R.id.flight_id_dialog)).getText().toString().trim();
+                        String flightID = ((TextView) textView.findViewById(R.id.flight_id_dialog)).getText().toString().toUpperCase().trim();
 
                         if (!flightID.matches("^\\w{2}\\W+\\d{3,4}$")) {
 

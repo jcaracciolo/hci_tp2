@@ -19,7 +19,7 @@ import ar.edu.itba.dreamtrip.common.model.StatusSearch;
 import ar.edu.itba.dreamtrip.common.tasks.AsyncTaskInformed;
 
 
-public class LoadFlightDurationTask extends AsyncTaskInformed<Object,Void,Flight>{
+public class LoadFlightDurationTask extends AsyncTaskInformed<Object, Void, Flight> {
 
     private Context context;
     String flightID;
@@ -43,7 +43,7 @@ public class LoadFlightDurationTask extends AsyncTaskInformed<Object,Void,Flight
     protected Flight doInBackground(Object... params) {
         DataHolder dataHolder = (DataHolder) params[0];
         Collection<Flight> arr = dataHolder.getFlights();
-        for (Flight f: arr) {
+        for (Flight f : arr) {
             if (f.getIdentifier().equals(flightID)) {
                 return f;
             }
@@ -54,7 +54,11 @@ public class LoadFlightDurationTask extends AsyncTaskInformed<Object,Void,Flight
 
     @Override
     protected void onPostExecute(Flight f) {
-        duration.setText(f.getDuration());
+        if (f != null) {
+            duration.setText(f.getDuration());
+        } else {
+            duration.setText("");
+        }
     }
 
 }

@@ -6,6 +6,7 @@ import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -18,6 +19,7 @@ import ar.edu.itba.dreamtrip.common.model.City;
 import ar.edu.itba.dreamtrip.common.tasks.ImageLoadTask;
 import ar.edu.itba.dreamtrip.common.tasks.LoadAirlinesTask;
 import ar.edu.itba.dreamtrip.common.tasks.LoadCitiesTask;
+import ar.edu.itba.dreamtrip.flightInfo.FlightInfo;
 import ar.edu.itba.dreamtrip.main.BaseActivity;
 import ar.edu.itba.dreamtrip.main.SetupActivity;
 import ar.edu.itba.dreamtrip.opinions.Opinions;
@@ -28,6 +30,7 @@ public class AirlineInfo extends BaseActivity {
 
     public final static String RESULT_ID_KEY = "main_activity.go_to_info_id";
     public final static String TO_OPINIONS_KEY = "airline_id_to_opinion";
+    public final static String TO_FLIGHT_KEY = "main_activity.go_to_info_id";
 
     String id;
 
@@ -49,6 +52,21 @@ public class AirlineInfo extends BaseActivity {
         DataHolder dataHolder = DataHolder.getInstance(this);
         dataHolder.waitForIt(new LoadAirlineInfoTask(this, img, text, desc, id));
         dataHolder.waitForIt(new LoadAirlineRatingTask(this, id, ratingBar));
+    }
+
+    public void searchFlight(View v) {
+        String flightID = ((EditText) findViewById(R.id.flight_search_edit_text)).getText().toString();
+
+        if (!flightID.matches("^\\d{3,4}$")) {
+            Toast.makeText(v.getContext(), v.getContext().getString(R.string.incorrent_flight_number), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        flightID = id + " " + flightID;
+
+        Intent intent = new Intent(this, FlightInfo.class);
+        intent.putExtra(TO_FLIGHT_KEY, flightID);
+        startActivity(intent);
     }
 
     public void seeOpinions(View v) {

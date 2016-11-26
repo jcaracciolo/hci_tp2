@@ -170,7 +170,7 @@ public class TrackedLegCardView {
         });
 
         View cardView=swipeLayout.findViewById(R.id.tracked_destination_card);
-        ((TextView)cardView.findViewById(R.id.tracked_destination_desc)).setText(leg.destinationDescription);
+        ((TextView)cardView.findViewById(R.id.tracked_destination_desc)).setText(leg.destinationDescription.split(",")[0]);
         ((ImageView)cardView.findViewById(R.id.destination_img)).setImageBitmap(leg.image);
         ((TextView)cardView.findViewById(R.id.from_destination)).setText(leg.originDescription);
         if(leg.isLastMinute){
