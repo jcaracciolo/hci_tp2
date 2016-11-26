@@ -52,7 +52,7 @@ public class PopulateFlightTrackers extends AsyncTaskInformed<Object,Void,ArrayL
     @Override
     protected void onPostExecute(ArrayList<TrackedFlightViewModel> flightCards) {
         if(list.getAdapter()!=null){
-            ((TrackedLegCardAdapter)list.getAdapter()).unregister();
+            ((TrackedFlightCardAdapter)list.getAdapter()).unregister();
         }
         list.setAdapter(new TrackedFlightCardAdapter(context, flightCards));
     }

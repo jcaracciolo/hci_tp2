@@ -53,7 +53,7 @@ public class FlightTracker extends BaseActivity {
         setupView(R.layout.activity_flight_tracker);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //toolbar.setTitleTextColor(getResources().getColor(R.color.white));
+        toolbar.setTitleTextColor(getResources().getColor(R.color.white));
         //TODO SE ICONS WHITE
 //        Menu menu=toolbar.getMenu();
 //        for (int i = 0; i < menu.size(); i++) {

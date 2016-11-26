@@ -62,7 +62,7 @@ public class TrackedFlightsFragment extends ListFragment {
         dataholder.waitForIt(new PopulateFlightTrackers(getContext(), getListView()));
         getContext().registerReceiver(listUpdater,new IntentFilter(getContext().getResources().getString(R.string.UpdateTrackedFlights)));
         if(getListView().getAdapter()!=null){
-            ((TrackedLegCardAdapter)getListView().getAdapter()).register();
+            ((TrackedFlightCardAdapter)getListView().getAdapter()).register();
         }
     }
 
@@ -76,7 +76,7 @@ public class TrackedFlightsFragment extends ListFragment {
         super.onPause();
         getContext().unregisterReceiver(listUpdater);
         if(getListView().getAdapter()!=null){
-            ((TrackedLegCardAdapter)getListView().getAdapter()).unregister();
+            ((TrackedFlightCardAdapter)getListView().getAdapter()).unregister();
         }
     }
 

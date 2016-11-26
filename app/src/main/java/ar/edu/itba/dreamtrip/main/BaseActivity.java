@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 
+import ar.edu.itba.dreamtrip.Map.MapsActivity;
 import ar.edu.itba.dreamtrip.R;
 
 /**
@@ -23,6 +24,8 @@ import ar.edu.itba.dreamtrip.R;
  */
 
 public class BaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+    final static String OPEN_QR = "open_qr_in_search";
 
     public DrawerLayout mDrawer;
 
@@ -58,7 +61,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
                 if (!alreadyonmain) {
                     Intent intent = new Intent(this, FlightTracker.class);
                     intent.putExtra("selectedTab", 1);
-                    //TODO: BORRAR STACK
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                 } else {
                     final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
@@ -70,7 +73,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
                 if (!alreadyonmain) {
                     Intent intent = new Intent(this, FlightTracker.class);
                     intent.putExtra("selectedTab", 2);
-                    //TODO: BORRAR STACK
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                 } else {
                     final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
@@ -82,7 +85,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
                 if (!alreadyonmain) {
                     Intent intent = new Intent(this, FlightTracker.class);
                     intent.putExtra("selectedTab", 0);
-                    //TODO: BORRAR STACK
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                 } else {
                     final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
@@ -91,9 +94,16 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
                 break;
             }
             case R.id.drawer_qr: {
+                Intent intent = new Intent(this, FlightTracker.class);
+                intent.putExtra("selectedTab", 0);
+                intent.putExtra(OPEN_QR, true);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
                 break;
             }
             case R.id.drawer_map: {
+                Intent intent = new Intent(this, MapsActivity.class);
+                startActivity(intent);
                 break;
             }
             case R.id.drawer_currency: {

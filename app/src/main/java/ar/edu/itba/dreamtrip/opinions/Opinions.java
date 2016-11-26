@@ -9,8 +9,9 @@ import android.widget.RatingBar;
 
 import ar.edu.itba.dreamtrip.R;
 import ar.edu.itba.dreamtrip.common.API.DataHolder;
+import ar.edu.itba.dreamtrip.main.BaseActivity;
 
-public class Opinions extends AppCompatActivity {
+public class Opinions extends BaseActivity {
     public final static String FROM_AIRLINE_INFO_KEY = "airline_id_to_opinion";
 
     @Override

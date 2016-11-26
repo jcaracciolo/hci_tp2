@@ -31,6 +31,7 @@ import ar.edu.itba.dreamtrip.flightInfo.FlightInfo;
 
 public class SearchFragment extends Fragment {
     public final static String RESULT_ID_KEY = "main_activity.go_to_info_id";
+    final static String OPEN_QR = "open_qr_in_search";
 
     private EditText searchBox;
     private ListView results;
@@ -42,16 +43,16 @@ public class SearchFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_search, container, false);
 
+        boolean openQR = getActivity().getIntent().getBooleanExtra(OPEN_QR, false);
+
+        if (openQR) {
+            openQR();
+        }
+
         v.findViewById(R.id.qr_search).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                IntentIntegrator integrator = new IntentIntegrator(getActivity());
-                integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES);
-                integrator.setPrompt("Scan");
-                integrator.setCameraId(0);
-                integrator.setBeepEnabled(false);
-                integrator.setBarcodeImageEnabled(false);
-                integrator.initiateScan();
+                openQR();
             }
         });
 
@@ -78,6 +79,16 @@ public class SearchFragment extends Fragment {
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
+    }
+
+    private void openQR() {
+        IntentIntegrator integrator = new IntentIntegrator(getActivity());
+        integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES);
+        integrator.setPrompt("Scan");
+        integrator.setCameraId(0);
+        integrator.setBeepEnabled(false);
+        integrator.setBarcodeImageEnabled(false);
+        integrator.initiateScan();
     }
 
     @Override
