@@ -84,4 +84,8 @@ public class TrackedFlightCardAdapter extends BaseSwipeAdapter {
         return i;
     }
 
+    public void unregister(){
+        context.unregisterReceiver(deleteFlight);
+    }
+
 }
