@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import ar.edu.itba.dreamtrip.R;
 import ar.edu.itba.dreamtrip.cityInfo.CityInfo;
+import ar.edu.itba.dreamtrip.common.API.DataHolder;
 import ar.edu.itba.dreamtrip.common.API.SettingsManager;
 
 /**
@@ -28,7 +29,8 @@ public class DealView {
         ((TextView)dealView.findViewById(R.id.deal_to)).setText(deal.to);
         ((TextView)dealView.findViewById(R.id.deal_price)).setText(deal.price.toString());
         ImageButton destButton=((ImageButton)dealView.findViewById(R.id.deal_img));
-        destButton.setBackground(new BitmapDrawable(deal.image));
+        final DataHolder dataholder = DataHolder.getInstance(context);
+        dataholder.loadImageIntoView(destButton,deal.image);
         destButton.setTag(deal.idTo);
         destButton.setOnClickListener(new View.OnClickListener() {
             @Override

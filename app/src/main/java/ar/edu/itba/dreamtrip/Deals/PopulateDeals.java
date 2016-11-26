@@ -49,7 +49,6 @@ public class PopulateDeals extends AsyncTaskInformed<Object,Void,ArrayList<DealV
         }
 
         return deals;
-
     }
 
     @Override

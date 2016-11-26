@@ -24,9 +24,9 @@ public class FlightDealsDependency extends Dependency {
 
             imageURLDep.addDependency(dataDep);
 
-                imageDep.addDependency(dataDep);
-                imageDep.addDependency(imageURLDep);
-                addDependency(imageDep);
+            imageDep.addDependency(dataDep);
+            imageDep.addDependency(imageURLDep);
+            addDependency(imageURLDep);
             addDependency(dataDep);
         }
         creationDate = new Date();

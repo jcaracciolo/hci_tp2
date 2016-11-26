@@ -1,6 +1,10 @@
 package ar.edu.itba.dreamtrip.countryInfo;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.location.Location;
 import android.net.Uri;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -13,11 +17,13 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import ar.edu.itba.dreamtrip.R;
 import ar.edu.itba.dreamtrip.cityInfo.CityDetailsFragment;
+import ar.edu.itba.dreamtrip.common.model.Country;
 import ar.edu.itba.dreamtrip.main.BaseActivity;
 
 public class CountryInfo extends BaseActivity implements CountryDetailsFragment.OnFragmentInteractionListener, OnMapReadyCallback {
 
     private GoogleMap mMap;
+    private Country country;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,9 +49,11 @@ public class CountryInfo extends BaseActivity implements CountryDetailsFragment.
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+
+//        mMap.addMarker(new MarkerOptions().position(lasLatLng).title("YOU"));
+//        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(lasLatLng,10));
+//        +
+
     }
 
     @Override
