@@ -14,8 +14,11 @@ import android.widget.Toast;
 import com.daimajia.swipe.SwipeLayout;
 
 import ar.edu.itba.dreamtrip.R;
+import ar.edu.itba.dreamtrip.cityInfo.CityInfo;
+import ar.edu.itba.dreamtrip.flightInfo.FlightInfo;
 
 public class TrackedFlightCardView{
+    public final static String RESULT_ID_KEY = "main_activity.go_to_info_id";
 
     public static SwipeLayout getView(final Context context, LayoutInflater inflater, ViewGroup container, TrackedFlightViewModel flight) {
 
@@ -159,7 +162,15 @@ public class TrackedFlightCardView{
         swipeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                swipeLayout.close();
+                if(flight.selected)
+                    swipeLayout.close();
+                else{
+                    String id = flight.getIdentifier();
+                    Intent intent = new Intent(context, FlightInfo.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra(RESULT_ID_KEY,id);
+                    context.startActivity(intent);
+                }
             }
         });
 

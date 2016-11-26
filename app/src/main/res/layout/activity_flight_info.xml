@@ -32,69 +32,15 @@
 
 
         <Button
+            android:id="@+id/follow_flight_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:padding="20dp"
+            android:layout_below="@id/flight_name"
             android:text="Follow"
-            android:textSize="20dp" />
-
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/flight_section_opinions"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/flight_section_name">
-
-        <ImageView
-            android:id="@+id/flight_star1"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
-            android:layout_marginTop="20dp"
-            android:src="@drawable/ic_full_star" />
-
-        <ImageView
-            android:id="@+id/flight_star2"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
-            android:layout_alignBottom="@id/flight_star1"
-            android:layout_toRightOf="@id/flight_star1"
-            android:src="@drawable/ic_full_star" />
-
-        <ImageView
-            android:id="@+id/flight_star3"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
-            android:layout_alignBottom="@id/flight_star1"
-            android:layout_toRightOf="@id/flight_star2"
-            android:src="@drawable/ic_full_star" />
-
-        <ImageView
-            android:id="@+id/flight_star4"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
-            android:layout_alignBottom="@id/flight_star1"
-            android:layout_toRightOf="@id/flight_star3"
-            android:src="@drawable/ic_half_star" />
-
-        <ImageView
-            android:id="@+id/flight_star5"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
-            android:layout_alignBottom="@id/flight_star1"
-            android:layout_toRightOf="@id/flight_star4"
-            android:src="@drawable/ic_empty_star" />
-
-        <Button
-            android:id="@+id/flight_opinions"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@id/flight_star5"
-            android:layout_marginLeft="20dp"
-            android:layout_toRightOf="@id/flight_star5"
-            android:text="@string/see_more_opinions" />
+            android:textSize="20dp"
+            android:onClick="followFlight"/>
 
 
     </RelativeLayout>
@@ -104,7 +50,7 @@
         android:id="@+id/flight_section_itinerary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/flight_section_opinions"
+        android:layout_below="@id/flight_section_name"
         android:layout_marginTop="20dp"
         android:orientation="horizontal">
 

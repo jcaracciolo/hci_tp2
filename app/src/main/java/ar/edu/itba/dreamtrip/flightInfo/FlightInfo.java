@@ -1,22 +1,32 @@
 package ar.edu.itba.dreamtrip.flightInfo;
 
+import android.content.Intent;
+import android.os.health.SystemHealthManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
+
 import ar.edu.itba.dreamtrip.R;
 import ar.edu.itba.dreamtrip.common.API.DataHolder;
+import ar.edu.itba.dreamtrip.common.API.SettingsManager;
 import ar.edu.itba.dreamtrip.common.tasks.LoadFlightsTask;
+import ar.edu.itba.dreamtrip.common.tasks.TrackFlightTask;
 import ar.edu.itba.dreamtrip.main.BaseActivity;
+import ar.edu.itba.dreamtrip.main.FlightTracker;
 
 public class FlightInfo extends BaseActivity {
 
     public final static String RESULT_ID_KEY = "main_activity.go_to_info_id";
 
     FlightStateView flightStateView;
+    String id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +37,7 @@ public class FlightInfo extends BaseActivity {
 
         fillFlightStateView();
 
-        String id = getIntent().getExtras().getString(RESULT_ID_KEY);
+        id = getIntent().getExtras().getString(RESULT_ID_KEY);
         ImageView logo_big = (ImageView) findViewById(R.id.flight_airlinelogo_big);
         TextView duration = (TextView) findViewById(R.id.flight_duration);
 
@@ -36,6 +46,28 @@ public class FlightInfo extends BaseActivity {
         dataHolder.waitForIt(new LoadAirlineImageTask(getBaseContext(), id.split(" ")[0], logo_big));
         dataHolder.waitForIt(new LoadFlightDurationTask(getBaseContext(), id, duration));
 
+        ArrayList<String> trackedFlights = SettingsManager.getInstance(getApplicationContext()).getTrackedFlights();
+        if (trackedFlights.contains(id)) {
+            Button followBtn = (Button) findViewById(R.id.follow_flight_btn);
+            followBtn.setText(R.string.unfollow);
+        }
+
+    }
+
+    public void followFlight(View v) {
+        ArrayList<String> trackedFlights = SettingsManager.getInstance(getApplicationContext()).getTrackedFlights();
+        if (trackedFlights.contains(id)) {
+            SettingsManager.getInstance(getApplicationContext()).untrackFlight(id);
+            Button followBtn = (Button) findViewById(R.id.follow_flight_btn);
+            followBtn.setText(R.string.follow);
+        } else {
+            DataHolder.getInstance(getApplicationContext()).waitForIt(
+                    new TrackFlightTask(getApplicationContext(), id));
+
+            Intent intent = new Intent(getBaseContext(), FlightTracker.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        }
     }
 
     @Override
