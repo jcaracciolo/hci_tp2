@@ -43,12 +43,12 @@ public class TrackFlightTask extends AsyncTaskInformed<Object,Void,Boolean>{
         for(FlightState flightState : dataHolder.getFlightStates()){
             if(flightState.getIdentifier().equals(identifier)){
                 flightTracked = SettingsManager.getInstance(context).trackFlight(identifier);
+//                SettingsManager.getInstance(context).setFlightStatus(identifier,flightState.getStatus());
             }
         }
 
         return flightTracked;
     }
-
     @Override
     protected void onPostExecute(Boolean successfullyTracked) {
         Toast.makeText(context, successfullyTracked? "Successfully tracked!!":"That flight does not exist",

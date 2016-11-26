@@ -44,6 +44,7 @@ public class TrackedFlightCardAdapter extends BaseSwipeAdapter {
                 context.sendBroadcast(it);
             }
         };
+
         context.registerReceiver(deleteFlight,new IntentFilter(context.getResources().getString(R.string.deleteFlightIntent)));
     }
 

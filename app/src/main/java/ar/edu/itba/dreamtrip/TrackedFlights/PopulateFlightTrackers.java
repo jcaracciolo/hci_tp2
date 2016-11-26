@@ -41,7 +41,7 @@ public class PopulateFlightTrackers extends AsyncTaskInformed<Object,Void,ArrayL
         DataHolder dataHolder = (DataHolder) params[0];
         ArrayList<TrackedFlightViewModel> flightCards = new ArrayList<>();
 
-        Collection<FlightState> flightStates = dataHolder.getFlightStates();
+        Collection<FlightState> flightStates = dataHolder.getTrackedFlightStates();
         for (FlightState flightState: flightStates) {
             flightCards.add(new TrackedFlightViewModel(context,flightState));
         }

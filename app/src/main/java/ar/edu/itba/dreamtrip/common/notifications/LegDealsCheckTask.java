@@ -8,6 +8,7 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -67,9 +68,19 @@ public class LegDealsCheckTask extends AsyncTaskInformed<Object,Void,ArrayList<S
 
     @Override
     protected void onPostExecute(ArrayList<String> flightCards) {
-        for (String s: flightCards){
-            pushNotification(s);
+        if(!TrackedLegFragment.isActive){
+            for (String s: flightCards){
+                pushNotification(s);
+            }
+        } else {
+            toast("didnt show deal notifications, app active");
         }
+    }
+
+
+    public void toast(String str) {
+        Toast.makeText(context, str,
+                Toast.LENGTH_SHORT).show();
     }
 
     private void pushNotification(String msg){
@@ -81,6 +92,7 @@ public class LegDealsCheckTask extends AsyncTaskInformed<Object,Void,ArrayList<S
                         .setSound(soundUri);
         // Creates an explicit intent for an Activity in your app
         Intent resultIntent = new Intent(context, FlightTracker.class);
+        resultIntent.putExtra("selectedTab",2);
 
         // The stack builder object will contain an artificial back stack for the
         // started Activity.
@@ -91,6 +103,7 @@ public class LegDealsCheckTask extends AsyncTaskInformed<Object,Void,ArrayList<S
 //        stackBuilder.addParentStack(ResultActivity.class);
         // Adds the Intent that starts the Activity to the top of the stack
         stackBuilder.addNextIntent(resultIntent);
+//        stackBuilder.addNextIntent(changeTabIntent);
         PendingIntent resultPendingIntent =
                 stackBuilder.getPendingIntent(
                         0,

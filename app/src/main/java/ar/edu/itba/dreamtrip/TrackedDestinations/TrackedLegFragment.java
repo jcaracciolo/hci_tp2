@@ -23,6 +23,7 @@ import ar.edu.itba.dreamtrip.common.API.DataHolder;
 
 public class TrackedLegFragment extends ListFragment {
 
+    public static boolean isActive = false;
     ProgressBar progressBar;
     private BroadcastReceiver listUpdater;
 
@@ -58,6 +59,8 @@ public class TrackedLegFragment extends ListFragment {
         if(getListView().getAdapter()!=null){
             ((TrackedLegCardAdapter)getListView().getAdapter()).register();
         }
+        isActive = true;
+
     }
 
     public void updateList() {
@@ -72,6 +75,8 @@ public class TrackedLegFragment extends ListFragment {
         if(getListView().getAdapter()!=null){
             ((TrackedLegCardAdapter)getListView().getAdapter()).unregister();
         }
+        isActive = false;
+
     }
 
 }
