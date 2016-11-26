@@ -43,7 +43,7 @@ public class TrackFlightTask extends AsyncTaskInformed<Object,Void,Boolean>{
         for(FlightState flightState : dataHolder.getFlightStates()){
             if(flightState.getIdentifier().equals(identifier)){
                 flightTracked = SettingsManager.getInstance(context).trackFlight(identifier);
-//                SettingsManager.getInstance(context).setFlightStatus(identifier,flightState.getStatus());
+                SettingsManager.getInstance(context).setFlightStatus(identifier,flightState.getStatus());
             }
         }
 

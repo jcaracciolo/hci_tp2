@@ -97,7 +97,7 @@ public class FlightTracker extends BaseActivity {
             }
         });
         viewPager.setCurrentItem(selectedTab);
-        SettingsManager.getInstance(getApplicationContext()).clearAllTracked();
+//        SettingsManager.getInstance(getApplicationContext()).clearAllTracked();
         TrackedChangesManager.getInstance(getApplicationContext()).setupChecks();
 //        SettingsManager.getInstance(getApplicationContext()).trackLeg("EZE LON");
 
