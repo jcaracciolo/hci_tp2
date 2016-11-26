@@ -20,9 +20,8 @@ public class DealViewModel {
     public DealViewModel(Context context, Deal deal){
         to=deal.getDestinationDescription();
         idTo=deal.getDestinationCityID();
-        image=deal.getImage();
         price=deal.getPrice();
         fromID=deal.getOriginCityID();
-
+        image =deal.getImage();
     }
 }

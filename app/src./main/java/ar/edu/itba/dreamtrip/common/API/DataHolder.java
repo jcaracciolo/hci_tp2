@@ -3,9 +3,13 @@ package ar.edu.itba.dreamtrip.common.API;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
+import android.widget.ImageView;
 
 import com.android.volley.Request;
+import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.HurlStack;
+import com.android.volley.toolbox.ImageRequest;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -353,5 +357,23 @@ public class DataHolder {
             }
         }
         return trackedDeals;
+    }
+
+    public boolean loadImageIntoView(final ImageView imageView, String url){
+        ImageRequest request = new ImageRequest(url,
+                new Response.Listener<Bitmap>() {
+                    @Override
+                    public void onResponse(Bitmap bitmap) {
+                        imageView.setImageBitmap(bitmap);
+                        return;
+                    }
+                }, 0, 0, null,
+                new Response.ErrorListener() {
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                });
+        dataHolder.addToVolleyQueue(request);
+        return true;
     }
 }
