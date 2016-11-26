@@ -24,13 +24,13 @@ public class FlightStateAtLocation {
     private Date actualRunwayTime;
 
     private Integer baggage;
-    private Date runwayDelay;
-    private Date gateDelay;
+    private Integer runwayDelay;
+    private Integer gateDelay;
 
     public FlightStateAtLocation(String locationID, String terminal, Integer gate, Date actualTime,
                                  Date scheduledGateTime, Date actualGateTime, Date estimateRunwayTime,
-                                 Date actualRunwayTime, Integer baggage, Date runwayDelay,
-                                 Date gateDelay, Date scheduledTime) {
+                                 Date actualRunwayTime, Integer baggage, Integer runwayDelay,
+                                 Integer gateDelay, Date scheduledTime) {
         this.locationID = locationID;
         this.terminal = terminal;
         this.gate = gate;
@@ -95,11 +95,11 @@ public class FlightStateAtLocation {
         return baggage;
     }
 
-    public Date getRunwayDelay() {
+    public Integer getRunwayDelay() {
         return runwayDelay;
     }
 
-    public Date getGateDelay() {
+    public Integer getGateDelay() {
         return gateDelay;
     }
 }
