@@ -172,6 +172,26 @@ public class FlightTracker extends BaseActivity {
         dialog.show();
     }
 
+    public void addTrackedDestination(View v) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+        LayoutInflater inflater = getLayoutInflater();
+
+        final View textView = inflater.inflate(R.layout.dialog_add_tracked_destinations, null);
+        builder.setView(textView)
+                .setNeutralButton(R.string.dialog_add_tracked_destination_button, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        toast("trying to track destination");
+                        //TODO: track selected
+                    }
+                });
+
+        AlertDialog dialog = builder.create();
+
+        dialog.show();
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
