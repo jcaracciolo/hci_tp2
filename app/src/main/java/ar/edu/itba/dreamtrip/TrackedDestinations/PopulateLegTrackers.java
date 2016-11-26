@@ -12,6 +12,7 @@ import java.util.HashSet;
 
 import ar.edu.itba.dreamtrip.common.API.DataHolder;
 import ar.edu.itba.dreamtrip.common.API.SettingsManager;
+import ar.edu.itba.dreamtrip.common.API.dependencies.DealLoadType;
 import ar.edu.itba.dreamtrip.common.API.dependencies.Dependency;
 import ar.edu.itba.dreamtrip.common.API.dependencies.DependencyType;
 import ar.edu.itba.dreamtrip.common.API.dependencies.FlightDealsDependency;
@@ -38,7 +39,6 @@ public class PopulateLegTrackers extends AsyncTaskInformed<Object,Void,ArrayList
         SettingsManager settingsManager = SettingsManager.getInstance(context);
 
 //        settingsManager.clearAllTracked();
-        settingsManager.trackLeg("EZE LON");
 //        settingsManager.trackLeg("LON PAR");
 
 
@@ -48,7 +48,7 @@ public class PopulateLegTrackers extends AsyncTaskInformed<Object,Void,ArrayList
     @Override
     public HashSet<Dependency> getDependencies() {
         HashSet<Dependency> dependencies = new HashSet<>();
-        dependencies.add(new TrackedLegsDependency(context,true));
+        dependencies.add(new TrackedLegsDependency(context,true, DealLoadType.BOTH_DEALS));
         return dependencies;
     }
 

@@ -1,18 +1,11 @@
 
 package ar.edu.itba.dreamtrip.main;
 
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
@@ -22,22 +15,16 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.daimajia.swipe.SwipeLayout;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
-
-import java.util.Collection;
-import java.util.Date;
 
 import ar.edu.itba.dreamtrip.R;
 import ar.edu.itba.dreamtrip.common.API.DataHolder;
 import ar.edu.itba.dreamtrip.common.API.SettingsManager;
+import ar.edu.itba.dreamtrip.common.notifications.TrackedChangesManager;
 import ar.edu.itba.dreamtrip.common.tasks.TrackFlightTask;
 import ar.edu.itba.dreamtrip.main.Adapter.PagerAdapter;
 
@@ -110,6 +97,10 @@ public class FlightTracker extends BaseActivity {
             }
         });
         viewPager.setCurrentItem(selectedTab);
+        SettingsManager.getInstance(getApplicationContext()).clearAllTracked();
+        TrackedChangesManager.getInstance(getApplicationContext()).setupChecks();
+        SettingsManager.getInstance(getApplicationContext()).trackLeg("EZE LON");
+
     }
 
     @Override

@@ -9,9 +9,24 @@
        <string name="tracked_legs">leg</string>
        <string name="tracked_leg_amount">amount_legsx</string>
        <string name="valid_leg_regex">^([A-Z]){3} ([A-Z]){3}$</string>
+
        <string name="multiselectionIntent">ar.edu.itba.dreamtrip.MULTI_SELECT_INTENT</string>
        <string name="deleteFlightIntent">ar.edu.itba.dreamtrip.DELETE_FLIGHT_INTENT</string>
        <string name="RetrieveDeleteFlightIntent">ar.edu.itba.dreamtrip.RETRIEVE_DELETE_FLIGHT_INTENT</string>
        <string name="UpdateTrackedFlights">"ar.edu.itba.dreamtrip.UPDATE_LIST_TRACKER"</string>
+
+
+       <string name="scheduled_flight_code">SCHEDULED</string>
+       <string name="active_flight_code">ACTIVE</string>
+       <string name="landed_flight_code">LANDED</string>
+       <string name="cancelled_flight_code">CANCELLED</string>
+       <string name="delayed_flight_code">DELAYED</string>
+
+       <string name="extra_info_separator">separator</string>
+
+       <string name="flight_state_check_interval">flight_state_check_interval</string>
+       <string name="leg_deals_check_interval">leg_deals_check_interval</string>
+       <string name="notification_check_prefs">tracked_objects</string>
+
 
 </resources>
