@@ -45,7 +45,7 @@ public class TrackedChangesManager {
 //        builder.setMinimumLatency(5 * 1000); // wait at least
 //        builder.setOverrideDeadline(20 * 1000); // maximum delay
         builder.setPeriodic(24 * 60 * 60 * 1000);
-        builder.setPeriodic(60 * 1000);
+        builder.setPeriodic(30 * 1000);
         builder.setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY); // require unmetered network
         builder.setRequiresDeviceIdle(false); // device should be idle
         builder.setRequiresCharging(false); // we don't care if the device is charging or not

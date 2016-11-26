@@ -2,6 +2,8 @@ package ar.edu.itba.dreamtrip.common.API;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.widget.ImageView;
 
@@ -364,7 +366,7 @@ public class DataHolder {
                 new Response.Listener<Bitmap>() {
                     @Override
                     public void onResponse(Bitmap bitmap) {
-                        imageView.setImageBitmap(bitmap);
+                        imageView.setBackground(new BitmapDrawable(context.getResources(),bitmap));
                         return;
                     }
                 }, 0, 0, null,
