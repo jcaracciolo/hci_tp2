@@ -73,10 +73,10 @@ public class JSONParser {
             Date actualTime = parseDate(format,object,"actual_time");
             Date scheduledGateTime = parseDate(format,object,"scheduled_gate_time");
             Date actualGateTime = parseDate(format,object,"actual_gate_time");
-            Date gateDelay = parseDate(format,object,"gate_delay");
+            Integer gateDelay = safeInt(object,"gate_delay");
             Date estimatedRunwayTime = parseDate(format,object,"estimate_runway_time");
             Date actualRunwayTime = parseDate(format,object,"actual_runway_time");
-            Date runwayDelay = parseDate(format,object,"runway_delay");
+            Integer runwayDelay = safeInt(object,"runway_delay");
 
             flightStateAtLocation = new FlightStateAtLocation(airportID,terminal,gate,actualTime,
                     scheduledGateTime,actualGateTime,estimatedRunwayTime,actualRunwayTime,
