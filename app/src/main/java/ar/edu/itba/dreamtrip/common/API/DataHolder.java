@@ -361,7 +361,7 @@ public class DataHolder {
         return trackedDeals;
     }
 
-    public boolean loadImageIntoView(final ImageView imageView, String url){
+    public boolean loadImageIntoView(final ImageView imageView, final String url){
         ImageRequest request = new ImageRequest(url,
                 new Response.Listener<Bitmap>() {
                     @Override
@@ -372,7 +372,7 @@ public class DataHolder {
                 }, 0, 0, null,
                 new Response.ErrorListener() {
                     public void onErrorResponse(VolleyError error) {
-
+                        //TODO Not Found
                     }
                 });
         dataHolder.addToVolleyQueue(request);
