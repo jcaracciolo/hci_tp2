@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.daimajia.swipe.SwipeLayout;
 
 import ar.edu.itba.dreamtrip.R;
+import ar.edu.itba.dreamtrip.TrackedDestinations.TrackedLegCardAdapter;
 import ar.edu.itba.dreamtrip.common.API.DataHolder;
 import ar.edu.itba.dreamtrip.common.API.SettingsManager;
 
@@ -60,6 +61,9 @@ public class TrackedFlightsFragment extends ListFragment {
         final DataHolder dataholder = DataHolder.getInstance(getContext());
         dataholder.waitForIt(new PopulateFlightTrackers(getContext(), getListView()));
         getContext().registerReceiver(listUpdater,new IntentFilter(getContext().getResources().getString(R.string.UpdateTrackedFlights)));
+        if(getListView().getAdapter()!=null){
+            ((TrackedLegCardAdapter)getListView().getAdapter()).register();
+        }
     }
 
     public void updateList() {
@@ -71,6 +75,9 @@ public class TrackedFlightsFragment extends ListFragment {
     public void onPause(){
         super.onPause();
         getContext().unregisterReceiver(listUpdater);
+        if(getListView().getAdapter()!=null){
+            ((TrackedLegCardAdapter)getListView().getAdapter()).unregister();
+        }
     }
 
 }

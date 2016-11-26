@@ -76,4 +76,8 @@ public class TrackedLegCardAdapter extends BaseSwipeAdapter {
         context.unregisterReceiver(deleteDest);
     }
 
+    public void register(){
+        context.registerReceiver(deleteDest,new IntentFilter(context.getResources().getString(R.string.deleteDealIntent)));
+    }
+
 }
