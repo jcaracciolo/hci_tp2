@@ -18,7 +18,7 @@ import ar.edu.itba.dreamtrip.common.model.FlightStatus;
 
 public class TrackedLegViewModel implements Serializable{
 
-    public Bitmap image;
+    public String image;
 
     public String originID;
     public String originDescription;
@@ -35,7 +35,7 @@ public class TrackedLegViewModel implements Serializable{
         destinationID=deal.getDestinationCityID();
         destinationDescription=deal.getDestinationDescription();
         isLastMinute=deal.isLastMinute();
-        image=deal.getImage();
+        image=deal.getImageUrl();
         price=deal.getPrice();
         dealID=deal.getDealIdentifier();
     }

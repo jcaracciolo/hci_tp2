@@ -8,6 +8,8 @@ import android.location.LocationManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -17,6 +19,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import ar.edu.itba.dreamtrip.R;
+import ar.edu.itba.dreamtrip.TrackedDestinations.PopulateLegTrackers;
+import ar.edu.itba.dreamtrip.common.API.DataHolder;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -56,19 +60,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         try {
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION},1);
-                //    ActivityCompat#requestPermissions
-                // here to request the missing permissions, and then overriding
-                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                //                                          int[] grantResults)
-                // to handle the case where the user grants the permission. See the documentation
-                // for ActivityCompat#requestPermissions for more details.
-
             }
             Location lastLoc = locManager.getLastKnownLocation(provider);
             LatLng lasLatLng=new LatLng(lastLoc.getLatitude(),lastLoc.getLongitude());
             // Add a marker in Sydney and move the camera
             mMap.addMarker(new MarkerOptions().position(lasLatLng).title("YOU"));
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(lasLatLng,10));
+            final DataHolder dataholder = DataHolder.getInstance(getBaseContext());
+            dataholder.waitForIt(new PopulateMaps(getBaseContext(),mMap,lasLatLng));
         }catch (Exception e){
             System.out.println("ADSSDADSA");
         }

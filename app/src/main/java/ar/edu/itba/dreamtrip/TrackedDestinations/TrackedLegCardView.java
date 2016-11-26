@@ -14,6 +14,7 @@ import com.daimajia.swipe.SwipeLayout;
 
 import ar.edu.itba.dreamtrip.R;
 import ar.edu.itba.dreamtrip.cityInfo.CityInfo;
+import ar.edu.itba.dreamtrip.common.API.DataHolder;
 
 public class TrackedLegCardView {
 
@@ -76,7 +77,6 @@ public class TrackedLegCardView {
 
         View cardView=swipeLayout.findViewById(R.id.tracked_destination_card);
         ((TextView)cardView.findViewById(R.id.tracked_destination_desc)).setText(leg.destinationDescription);
-        ((ImageButton)cardView.findViewById(R.id.destination_img)).setImageBitmap(leg.image);
         ((TextView)cardView.findViewById(R.id.from_destination)).setText(leg.originDescription);
         if(leg.isLastMinute){
             ((TextView)cardView.findViewById(R.id.offer_found)).setText(R.string.offer_found);
@@ -171,7 +171,11 @@ public class TrackedLegCardView {
 
         View cardView=swipeLayout.findViewById(R.id.tracked_destination_card);
         ((TextView)cardView.findViewById(R.id.tracked_destination_desc)).setText(leg.destinationDescription);
-        ((ImageView)cardView.findViewById(R.id.destination_img)).setImageBitmap(leg.image);
+
+        ImageView destImage=((ImageView)cardView.findViewById(R.id.destination_img));
+        final DataHolder dataholder = DataHolder.getInstance(context);
+        dataholder.loadImageIntoView(destImage,leg.image);
+
         ((TextView)cardView.findViewById(R.id.from_destination)).setText(leg.originDescription);
         if(leg.isLastMinute){
             ((TextView)cardView.findViewById(R.id.offer_found)).setText(R.string.offer_found);

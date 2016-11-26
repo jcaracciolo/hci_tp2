@@ -3,6 +3,8 @@ package ar.edu.itba.dreamtrip.Deals;
 import android.content.Context;
 import android.graphics.Bitmap;
 
+import java.net.URL;
+
 import ar.edu.itba.dreamtrip.common.model.Deal;
 
 /**
@@ -13,7 +15,7 @@ public class DealViewModel {
 
     public String to;
     public String idTo;
-    public Bitmap image;
+    public String image;
     public Double price;
     public String fromID;
 
@@ -22,6 +24,6 @@ public class DealViewModel {
         idTo=deal.getDestinationCityID();
         price=deal.getPrice();
         fromID=deal.getOriginCityID();
-        image =deal.getImage();
+        image =deal.getImageUrl();
     }
 }
