@@ -47,6 +47,7 @@ public class SearchFragment extends Fragment {
 
         if (openQR) {
             openQR();
+            getActivity().getIntent().putExtra(OPEN_QR, false);
         }
 
         v.findViewById(R.id.qr_search).setOnClickListener(new View.OnClickListener() {
