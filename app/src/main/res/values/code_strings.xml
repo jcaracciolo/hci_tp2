@@ -30,9 +30,15 @@
 
        <string name="extra_info_separator" translatable="false">separator</string>
 
-       <string name="flight_state_check_interval" translatable="false">flight_state_check_interval</string>
-       <string name="leg_deals_check_interval" translatable="false">leg_deals_check_interval</string>
-       <string name="notification_check_prefs" translatable="false">tracked_objects</string>
+       <string name="general_settings_flight_check_interval">flight_state_check_interval</string>
+       <string name="general_settings_leg_check_interval">leg_deals_check_interval</string>
+       <string name="notification_check_prefs">tracked_objects</string>
 
+       <string name="general_settings_pref">settings</string>
+       <string name="general_settings_lenguage">general_settings_lenguage</string>
+       <string name="general_settings_flight_notification">general_settings_flight_notification</string>
+       <string name="general_settings_leg_notification">general_settings_leg_notification</string>
 
+       <string name="general_settings_lenguage_english">general_settings_lenguage_english</string>
+       <string name="general_settings_lenguage_spanish">general_settings_lenguage_spanish</string>
 </resources>
