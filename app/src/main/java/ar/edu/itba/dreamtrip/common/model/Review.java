@@ -26,15 +26,30 @@ public class Review {
                   Integer qualityPriceRatio,Boolean recommended, String comment) {
         this.airlineID = airlineID;
         this.flightNumber = flightNumber;
-        this.overall = overall;
-        this.friendliness = friendliness;
-        this.food = food;
-        this.punctuality = punctuality;
-        this.milageProgram = milageProgram;
-        this.confort = confort;
-        this.qualityPriceRatio = qualityPriceRatio;
+        this.overall = minimax(overall,1,10);
+        this.friendliness = minimax(friendliness,1,10);
+        this.food = minimax(food,1,10);
+        this.punctuality = minimax(punctuality,1,10);
+        this.milageProgram = minimax(milageProgram,1,10);
+        this.confort = minimax(confort,1,10);
+        this.qualityPriceRatio = minimax(qualityPriceRatio,1,10);
         this.recommended = recommended;
-        this.comment = comment;
+        if(comment != null)
+            this.comment = comment.length()> 256? comment.substring(0,255):comment;
+    }
+
+    private Integer minimax(Integer value, Integer min, Integer max){
+        if(value < min) return min;
+        if(value > max) return max;
+        return value;
+    }
+
+    public String getAirlineID() {
+        return airlineID;
+    }
+
+    public Integer getFlightNumber() {
+        return flightNumber;
     }
 
     public Integer getOverall() {

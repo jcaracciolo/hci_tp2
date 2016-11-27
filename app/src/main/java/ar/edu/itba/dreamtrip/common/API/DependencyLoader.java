@@ -1,6 +1,7 @@
 package ar.edu.itba.dreamtrip.common.API;
 
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.DeadObjectException;
 
 import com.android.volley.Request;
@@ -11,6 +12,8 @@ import com.android.volley.toolbox.JsonObjectRequest;
 
 import org.json.JSONObject;
 
+import java.net.URI;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -20,6 +23,7 @@ import ar.edu.itba.dreamtrip.common.API.dependencies.Dependency;
 import ar.edu.itba.dreamtrip.common.API.dependencies.DependencyType;
 import ar.edu.itba.dreamtrip.common.API.dependencies.FlightDealsDependency;
 import ar.edu.itba.dreamtrip.common.API.dependencies.FlightDependency;
+import ar.edu.itba.dreamtrip.common.API.dependencies.SendReviewDependency;
 import ar.edu.itba.dreamtrip.common.API.dependencies.StatusDependency;
 import ar.edu.itba.dreamtrip.common.API.dependencies.StatusSearchDependency;
 import ar.edu.itba.dreamtrip.common.model.Airline;
@@ -189,6 +193,41 @@ public abstract class DependencyLoader {
                     @Override
                     public void onResponse(JSONObject response) {
                         JSONParser.fillReviewsHashmap(response,reviews);
+                        dataHolder.somethingLoaded(dependency);
+                    }
+                }, new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        dataHolder.handleNetworkError(error,dependency);
+                    }
+                });
+        // Add the request to the RequestQueue.
+        dataHolder.addToVolleyQueue(jsObjRequest);
+    }
+    static void sendFlightReviews(final DataHolder dataHolder,
+                                   final SendReviewDependency dependency){
+        String url ="http://hci.it.itba.edu.ar/v1/api/review.groovy?method=reviewairline";
+        Review review = dependency.getReview();
+        String url2 ="http://hci.it.itba.edu.ar/v1/api/review.groovy?method=reviewairline2&review=" +
+                "%7b%22flight%22:%7b%22airline%22:%7b%22id%22:%22"+review.getAirlineID()+
+                "%22%7d,%22number%22:"+review.getFlightNumber() +
+                "%7d,%22rating%22:%7b%22friendliness%22:"+review.getFriendliness()+
+                ",%22food%22:"+review.getFood()+
+                ",%22punctuality%22:"+review.getPunctuality()+
+                ",%22mileage_program%22:"+review.getMilageProgram()+
+                ",%22comfort%22:"+review.getConfort()+
+                ",%22quality_price%22:"+review.getQualityPriceRatio()+
+                "%7d,%22yes_recommend%22:"+ (review.getRecommended()? "true":"false") +
+                ",%22comments%22:%22"+ Uri.encode(review.getComment()) +"%22%7d";
+
+        // Request a string response from the provided URL.
+//        final JSONObject requestParams =  JSONParser.unparseReview(dependency.getReview());
+        JsonObjectRequest jsObjRequest = new JsonObjectRequest
+                (Request.Method.GET, url2, null, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        dataHolder.setLastReviewValid(JSONParser.parseReviewResponse(response));
                         dataHolder.somethingLoaded(dependency);
                     }
                 }, new Response.ErrorListener() {

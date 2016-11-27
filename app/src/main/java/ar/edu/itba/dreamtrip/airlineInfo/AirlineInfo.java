@@ -1,9 +1,6 @@
 package ar.edu.itba.dreamtrip.airlineInfo;
 
 import android.content.Intent;
-import android.media.Image;
-import android.provider.ContactsContract;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -14,17 +11,9 @@ import android.widget.Toast;
 
 import ar.edu.itba.dreamtrip.R;
 import ar.edu.itba.dreamtrip.common.API.DataHolder;
-import ar.edu.itba.dreamtrip.common.model.Airline;
-import ar.edu.itba.dreamtrip.common.model.City;
-import ar.edu.itba.dreamtrip.common.tasks.ImageLoadTask;
-import ar.edu.itba.dreamtrip.common.tasks.LoadAirlinesTask;
-import ar.edu.itba.dreamtrip.common.tasks.LoadCitiesTask;
 import ar.edu.itba.dreamtrip.flightInfo.FlightInfo;
 import ar.edu.itba.dreamtrip.main.BaseActivity;
-import ar.edu.itba.dreamtrip.main.SetupActivity;
 import ar.edu.itba.dreamtrip.opinions.Opinions;
-
-import static android.R.attr.data;
 
 public class AirlineInfo extends BaseActivity {
 
