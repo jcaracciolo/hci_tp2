@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.widget.ListView;
@@ -16,6 +17,7 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.maps.android.SphericalUtil;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -94,7 +96,7 @@ public class PopulateMaps extends AsyncTaskInformed<Object,Void,ArrayList<Collec
         for (City c: cities) {
             MarkerOptions marker = new MarkerOptions().position(new LatLng(c.getLocation().getLatitude(),c.getLocation().getLongitude()));
             marker.title(c.getName());
-            marker.icon(getMarkerIconFromDrawable(context.getDrawable(R.drawable.ic_city),1.5));
+            marker.icon(getMarkerIconFromDrawable(context.getDrawable(R.drawable.ic_city),0.5));
             map.addMarker(marker);
         }
 
@@ -113,13 +115,18 @@ public class PopulateMaps extends AsyncTaskInformed<Object,Void,ArrayList<Collec
             double percentage=getPercentage(f.getStatus());
             marker.position(getLatLngAtPercentage(origLat,destLat,percentage));
             marker.position(origLat);
+            marker.title(f.getIdentifier());
+            //TODO animate only active flights
             marker.anchor(0.5f,0.5f);
-            marker.icon(getMarkerIconFromDrawable(context.getDrawable(R.drawable.ic_airplane_l),1));
+            marker.icon(getMarkerIconFromDrawable(context.getDrawable(R.drawable.ic_airplane_l),1.5));
             Marker mark=map.addMarker(marker);
+            mark.showInfoWindow();
+            mark.setRotation((float) SphericalUtil.computeHeading(origLat, destLat));
             LatLngBounds.Builder builder = new LatLngBounds.Builder();
                             builder.include(origLat).include(destLat);
                             LatLngBounds bounds = builder.build();
             MarkerAnimation.animateMarkerToHC(mark, destLat, new LatLngInterpolator.LinearFixed());
+
         }
 
 
@@ -163,4 +170,5 @@ public class PopulateMaps extends AsyncTaskInformed<Object,Void,ArrayList<Collec
         }
         return percentage;
     }
+
 }

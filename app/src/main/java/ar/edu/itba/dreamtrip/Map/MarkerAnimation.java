@@ -3,6 +3,7 @@
 
 package ar.edu.itba.dreamtrip.Map;
 
+import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.animation.TypeEvaluator;
 import android.animation.ValueAnimator;
@@ -62,7 +63,8 @@ public class MarkerAnimation {
             }
         });
         valueAnimator.setFloatValues(0, 1); // Ignored.
-        valueAnimator.setDuration(3000);
+        valueAnimator.setDuration(4000);
+        valueAnimator.setRepeatCount(-1);
         valueAnimator.start();
     }
 

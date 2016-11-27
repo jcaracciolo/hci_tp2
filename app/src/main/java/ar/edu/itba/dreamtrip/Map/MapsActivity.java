@@ -171,7 +171,6 @@ public class MapsActivity extends BaseActivity implements OnMapReadyCallback,Loc
         MarkerOptions marker=new MarkerOptions().position(lasLatLng);
         marker.title("YOU").snippet("THIS IS YOU");
         marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_airplane_l));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(lasLatLng,10));
     }
 
     @Override
