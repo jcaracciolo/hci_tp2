@@ -1,38 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-       <string name="tracked_flights_pref">tracked_objects</string>
+       <string name="tracked_flights_pref" translatable="false">tracked_objects</string>
        <string name="tracked_flight">flight</string>
-       <string name="tracked_flight_amount">amount_flights</string>
-       <string name="valid_identifier_regex">^([A-Z0-9]){2} \\d{3,4}$</string>
+       <string name="tracked_flight_amount" translatable="false">amount_flights</string>
+       <string name="valid_identifier_regex" translatable="false">^([A-Z0-9]){2} \\d{3,4}$</string>
 
-       <string name="tracked_legs_pref">tracked_objects</string>
-       <string name="tracked_legs">leg</string>
-       <string name="tracked_leg_amount">amount_legsx</string>
-       <string name="valid_leg_regex">^([A-Z]){3} ([A-Z]){3}$</string>
+       <string name="tracked_legs_pref" translatable="false">tracked_objects</string>
+       <string name="tracked_legs" translatable="false">leg</string>
+       <string name="tracked_leg_amount" translatable="false">amount_legsx</string>
+       <string name="valid_leg_regex" translatable="false">^([A-Z]){3} ([A-Z]){3}$</string>
 
-       <string name="multiselectionFlightIntent">ar.edu.itba.dreamtrip.MULTI_SELECT_FLIGHT_INTENT</string>
-       <string name="deleteDealIntent">ar.edu.itba.dreamtrip.DELETE_FLIGHT_INTENT</string>
-       <string name="RetrieveDeleteDealIntent">ar.edu.itba.dreamtrip.RETRIEVE_DELETE_FLIGHT_INTENT</string>
-       <string name="UpdateTrackedFlights">"ar.edu.itba.dreamtrip.UPDATE_LIST_FLIGHT_TRACKER"</string>
+       <string name="multiselectionFlightIntent" translatable="false">ar.edu.itba.dreamtrip.MULTI_SELECT_FLIGHT_INTENT</string>
+       <string name="deleteDealIntent" translatable="false">ar.edu.itba.dreamtrip.DELETE_FLIGHT_INTENT</string>
+       <string name="RetrieveDeleteDealIntent" translatable="false">ar.edu.itba.dreamtrip.RETRIEVE_DELETE_FLIGHT_INTENT</string>
+       <string name="UpdateTrackedFlights" translatable="false">"ar.edu.itba.dreamtrip.UPDATE_LIST_FLIGHT_TRACKER"</string>
 
-       <string name="multiselectionIntent">ar.edu.itba.dreamtrip.MULTI_SELECT_DEALS_INTENT</string>
-       <string name="deleteFlightIntent">ar.edu.itba.dreamtrip.DELETE_DEALS_INTENT</string>
-       <string name="RetrieveDeleteFlightIntent">ar.edu.itba.dreamtrip.RETRIEVE_DELETE_DEALS_INTENT</string>
-       <string name="UpdateTrackedDeals">"ar.edu.itba.dreamtrip.UPDATE_LIST_DEALS_TRACKER"</string>
-       <string name="ChangeTabToDeals">"ar.edu.itba.dreamtrip.CHANGE_SELECTED_TAB_TO_DEALS"</string>
+       <string name="multiselectionIntent" translatable="false">ar.edu.itba.dreamtrip.MULTI_SELECT_DEALS_INTENT</string>
+       <string name="deleteFlightIntent" translatable="false">ar.edu.itba.dreamtrip.DELETE_DEALS_INTENT</string>
+       <string name="RetrieveDeleteFlightIntent" translatable="false">ar.edu.itba.dreamtrip.RETRIEVE_DELETE_DEALS_INTENT</string>
+       <string name="UpdateTrackedDeals" translatable="false">"ar.edu.itba.dreamtrip.UPDATE_LIST_DEALS_TRACKER"</string>
+       <string name="ChangeTabToDeals" translatable="false">"ar.edu.itba.dreamtrip.CHANGE_SELECTED_TAB_TO_DEALS"</string>
 
 
-       <string name="scheduled_flight_code">SCHEDULED</string>
-       <string name="active_flight_code">ACTIVE</string>
-       <string name="landed_flight_code">LANDED</string>
-       <string name="cancelled_flight_code">CANCELLED</string>
-       <string name="delayed_flight_code">DELAYED</string>
+       <string name="scheduled_flight_code" translatable="false">SCHEDULED</string>
+       <string name="active_flight_code" translatable="false">ACTIVE</string>
+       <string name="landed_flight_code" translatable="false">LANDED</string>
+       <string name="cancelled_flight_code" translatable="false">CANCELLED</string>
+       <string name="delayed_flight_code" translatable="false">DELAYED</string>
 
-       <string name="extra_info_separator">separator</string>
+       <string name="extra_info_separator" translatable="false">separator</string>
 
-       <string name="flight_state_check_interval">flight_state_check_interval</string>
-       <string name="leg_deals_check_interval">leg_deals_check_interval</string>
-       <string name="notification_check_prefs">tracked_objects</string>
+       <string name="flight_state_check_interval" translatable="false">flight_state_check_interval</string>
+       <string name="leg_deals_check_interval" translatable="false">leg_deals_check_interval</string>
+       <string name="notification_check_prefs" translatable="false">tracked_objects</string>
 
 
 </resources>

@@ -9,7 +9,7 @@
     <string name="main_tab1">Search</string>
     <string name="main_tab2">Flights</string>
     <string name="main_tab3">Destinations</string>
-    <string name="qr">QR</string>
+    <string name="qr" translatable="false">QR</string>
     <string name="map">Map</string>
     <string name="currency_converter">Currency converter</string>
     <string name="settings">Settings</string>
@@ -37,14 +37,14 @@
     <string name="quality_price">Price/Quality</string>
     <string name="general">General</string>
     <string name="dialog_title">Track a flight</string>
-    <string name="dialog_add_tracked_flight_title">Add Flight to Track</string>
-    <string name="dialog_add_tracked_destination_title">Add Destination to Track</string>
+    <string name="dialog_add_tracked_flight_title">Add Flight to Follow</string>
+    <string name="dialog_add_tracked_destination_title">Add Destination to Follow</string>
     <string name="dialog_add_tracked_flight_button">Add Flight</string>
     <string name="dialog_add_tracked_destination_button">Add Destination</string>
     <string name="add_track_flight_hint">Flight number (ex: AZ 523)</string>
     <string name="follow">Follow</string>
     <string name="map_search">Map</string>
-    <string name="qr_search">QR</string>
+    <string name="qr_search" translatable="false">QR</string>
     <string name="help_search">Search airlines, flights, airports, cities or countries.</string>
     <string name="no_offer_found">No offers found.</string>
     <string name="offer_found">New offer found.</string>
@@ -55,7 +55,7 @@
     <string name="destination_to_track">Destination</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="title_activity_opinions">Opinions</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="status_not_found_flight">Status Error</string>
@@ -72,7 +72,7 @@
     <string name="gate_txt">Gate:</string>
     <string name="luggage_txt">Luggage gate:</string>
     <string name="gps_network_not_enabled">Location services not available</string>
-    <string name="open_location_settings">Please tur on location services</string>
+    <string name="open_location_settings">Please turn on location services</string>
     <string name="Cancel">Cancel</string>
     <string name="Map">Map</string>
     <string name="enable">Enable</string>
