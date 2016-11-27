@@ -15,6 +15,7 @@ import com.daimajia.swipe.SwipeLayout;
 
 import ar.edu.itba.dreamtrip.R;
 import ar.edu.itba.dreamtrip.cityInfo.CityInfo;
+import ar.edu.itba.dreamtrip.common.model.FlightStatus;
 import ar.edu.itba.dreamtrip.flightInfo.FlightInfo;
 
 public class TrackedFlightCardView{
@@ -82,24 +83,7 @@ public class TrackedFlightCardView{
         ((TextView)cardView.findViewById(R.id.departure_date)).setText(flight.date);
 
         if(context!=null) {
-            Integer color = context.getResources().getColor(R.color.status_green);
-            switch (flight.status) {
-                case SCHEDULED:
-                    color = context.getResources().getColor(R.color.status_green);
-                    break;
-                case ACTIVE:
-                    color = context.getResources().getColor(R.color.status_green);
-                    break;
-                case DELAYED:
-                    color = context.getResources().getColor(R.color.status_orange);
-                    break;
-                case LANDED:
-                    color = context.getResources().getColor(R.color.status_blue);
-                    break;
-                case CANCELLED:
-                    color = context.getResources().getColor(R.color.status_red);
-                    break;
-            }
+            Integer color = TrackedFlightCardView.getColor(context,flight.status);
             TextView statusText = ((TextView) cardView.findViewById(R.id.status_text));
             statusText.setText(context.getString(flight.getStatusString()));
             statusText.setTextColor(color);
@@ -194,8 +178,19 @@ public class TrackedFlightCardView{
         ((TextView)cardView.findViewById(R.id.departure_date)).setText(flight.date);
 
         if(context!=null) {
+            Integer color = TrackedFlightCardView.getColor(context,flight.status);
+            TextView statusText = ((TextView) cardView.findViewById(R.id.status_text));
+            statusText.setText(context.getString(flight.getStatusString()));
+            statusText.setTextColor(color);
+            cardView.findViewById(R.id.flight_status_bar).setBackgroundColor(color);
+        }
+        return swipeLayout;
+
+    }
+
+    public static Integer getColor(Context context,FlightStatus status){
             Integer color = context.getResources().getColor(R.color.status_green);
-            switch (flight.status) {
+            switch (status) {
                 case SCHEDULED:
                     color = context.getResources().getColor(R.color.status_green);
                     break;
@@ -212,14 +207,9 @@ public class TrackedFlightCardView{
                     color = context.getResources().getColor(R.color.status_red);
                     break;
             }
-            TextView statusText = ((TextView) cardView.findViewById(R.id.status_text));
-            statusText.setText(context.getString(flight.getStatusString()));
-            statusText.setTextColor(color);
-            cardView.findViewById(R.id.flight_status_bar).setBackgroundColor(color);
-        }
-        return swipeLayout;
-
+        return color;
     }
 
 }
+
 

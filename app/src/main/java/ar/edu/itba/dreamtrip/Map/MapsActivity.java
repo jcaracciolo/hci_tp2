@@ -5,20 +5,20 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
-import android.widget.ImageButton;
-import android.widget.ImageView;
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.GoogleMap.OnMapClickListener;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -28,12 +28,21 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import android.app.Activity;
+import android.content.Context;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.os.Bundle;
+import android.util.Log;
+
 import ar.edu.itba.dreamtrip.R;
 import ar.edu.itba.dreamtrip.TrackedDestinations.PopulateLegTrackers;
 import ar.edu.itba.dreamtrip.common.API.DataHolder;
 import ar.edu.itba.dreamtrip.main.BaseActivity;
 
-public class MapsActivity extends BaseActivity implements OnMapReadyCallback {
+public class MapsActivity extends BaseActivity implements OnMapReadyCallback,LocationListener {
 
     private GoogleMap mMap;
     private LocationManager locManager;
@@ -59,7 +68,7 @@ public class MapsActivity extends BaseActivity implements OnMapReadyCallback {
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(this,
                     Manifest.permission.ACCESS_FINE_LOCATION)) {
                 final AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -99,17 +108,18 @@ public class MapsActivity extends BaseActivity implements OnMapReadyCallback {
 
     void moveMapLocation(){
         try {
-            Criteria crit = new Criteria();
-            crit.setAccuracy(Criteria.ACCURACY_FINE);
-            crit.setPowerRequirement(Criteria.POWER_LOW);
-            provider = locManager.getBestProvider(crit, true);
-            Location lastLoc = locManager.getLastKnownLocation(provider);
-            LatLng lasLatLng=new LatLng(lastLoc.getLatitude(),lastLoc.getLongitude());
-            MarkerOptions marker=new MarkerOptions().position(lasLatLng);
-            marker.title("YOU").snippet("THIS IS YOU");
-            marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_airplane_l));
+            startLocationUpdates();
+            LatLng lasLatLng=null;
 
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(lasLatLng,10));
+
+            Location lastLoc = locManager.getLastKnownLocation(provider);
+            if(lastLoc != null){
+                lasLatLng=new LatLng(lastLoc.getLatitude(),lastLoc.getLongitude());
+                MarkerOptions marker=new MarkerOptions().position(lasLatLng);
+                marker.title("YOU").snippet("THIS IS YOU");
+                marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_airplane_l));
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(lasLatLng,10));
+            }
             fillMap(lasLatLng);
         }catch (SecurityException e){
 
@@ -123,10 +133,16 @@ public class MapsActivity extends BaseActivity implements OnMapReadyCallback {
     }
 
     void getProvider() {
-        locManager = (LocationManager) getBaseContext().getSystemService(getBaseContext().LOCATION_SERVICE);
-        if (!locManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+        locManager = (LocationManager) getBaseContext().getSystemService(Context.LOCATION_SERVICE);
+        Criteria crit = new Criteria();
+        crit.setAccuracy(Criteria.ACCURACY_FINE);
+        crit.setPowerRequirement(Criteria.POWER_LOW);
+        provider = locManager.getBestProvider(crit, true);
+        if (!locManager.isProviderEnabled(provider)) {
             buildAlertMessageNoGps();
-       }
+       }else{
+            moveMapLocation();
+        }
     }
 
     private void buildAlertMessageNoGps() {
@@ -147,5 +163,38 @@ public class MapsActivity extends BaseActivity implements OnMapReadyCallback {
                 });
         final AlertDialog alert = builder.create();
         alert.show();
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+        LatLng lasLatLng=new LatLng(location.getLatitude(),location.getLongitude());
+        MarkerOptions marker=new MarkerOptions().position(lasLatLng);
+        marker.title("YOU").snippet("THIS IS YOU");
+        marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_airplane_l));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(lasLatLng,10));
+    }
+
+    @Override
+    public void onStatusChanged(String s, int i, Bundle bundle) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String s) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(String s) {
+
+    }
+
+    protected void startLocationUpdates() {
+        try{
+            System.out.println("CHANGED");
+            locManager.requestLocationUpdates(provider, 400, 1, this);
+        }catch (SecurityException e){
+
+        }
     }
 }
