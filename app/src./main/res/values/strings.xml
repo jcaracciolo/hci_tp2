@@ -71,6 +71,11 @@
     <string name="terminal_txt">Terminal:</string>
     <string name="gate_txt">Gate:</string>
     <string name="luggage_txt">Luggage gate:</string>
+    <string name="gps_network_not_enabled">Location services not available</string>
+    <string name="open_location_settings">Please tur on location services</string>
+    <string name="Cancel">Cancel</string>
+    <string name="Map">Map</string>
+    <string name="enable">Enable</string>
 
 
 </resources>

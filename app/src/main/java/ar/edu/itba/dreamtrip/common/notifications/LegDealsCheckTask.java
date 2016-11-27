@@ -89,7 +89,8 @@ public class LegDealsCheckTask extends AsyncTaskInformed<Object,Void,ArrayList<S
                         .setSmallIcon(R.drawable.ic_airplane_l)
                         .setContentTitle("Dreamtrip")
                         .setContentText(msg)
-                        .setSound(soundUri);
+                        .setSound(soundUri)
+                        .setAutoCancel(true);
         // Creates an explicit intent for an Activity in your app
         Intent resultIntent = new Intent(context, FlightTracker.class);
         resultIntent.putExtra("selectedTab",2);

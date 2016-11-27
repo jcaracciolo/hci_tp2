@@ -22,6 +22,26 @@ public class FlightDependency extends Dependency {
         this.departureDate = departureDate;
     }
 
+    public FlightDependency(String originID, String destinationID, Date departureDate, Integer days) {
+        super(DependencyType.FLIGHTS);
+        this.days =days;
+        this.originID = originID;
+        this.destinationID = destinationID;
+        this.departureDate = departureDate;
+    }
+
+    public FlightDependency(String originID, String destinationID, boolean lastMinute) {
+        super(DependencyType.FLIGHTS);
+        Integer amount = lastMinute? 3: 7;
+        departureDate= new Date();
+        days =7;
+        for (int i = days+1;i<amount+days;i++){
+            addDependency(new FlightDependency(originID,destinationID,departureDate,i));
+        }
+        this.originID = originID;
+        this.destinationID = destinationID;
+    }
+
     public FlightDependency(StatusSearch statusSearch){
         super(DependencyType.FLIGHTS);
         days = 7;
@@ -34,6 +54,7 @@ public class FlightDependency extends Dependency {
         this.statusSearch = statusSearch;
         requiresStatus = true;
     }
+
 
     public Boolean isValid(){
         if(requiresStatus) return statusSearch.getValid();
@@ -61,12 +82,12 @@ public class FlightDependency extends Dependency {
     public Date getDepartureDate() {
         if(requiresStatus) return getDateAfterXDays(statusSearch.getDeparture(),days);
 
-        return departureDate;
+        return getDateAfterXDays(departureDate,days);
     }
     @Override
     public String toString(){
         if(requiresStatus) return getDependencyType() + " " + days + " " + statusSearch;
-        else return getDependencyType() + " " + originID + " to " + destinationID + " on " + departureDate;
+        else return getDependencyType() + " " + originID + " to " + destinationID + " on " + getDepartureDate();
     }
 
     @Override
@@ -85,6 +106,7 @@ public class FlightDependency extends Dependency {
             return true;
         } else {
             if(! originID.equals(that.originID)) return false;
+            if(! days.equals(that.days)) return false;
             if(! destinationID.equals(that.destinationID)) return false;
             if(! departureDate.equals(that.departureDate)) return false;
         }
@@ -100,6 +122,7 @@ public class FlightDependency extends Dependency {
 
         } else {
             result = 31 * result + originID.hashCode();
+            result = 31 * result + days.hashCode();
             result = 31 * result + destinationID.hashCode();
             result = 31 * result + departureDate.hashCode();
         }

@@ -87,7 +87,7 @@ public class DataHolder {
 
     public boolean waitForIt(AsyncTaskInformed task) {
         HashSet<Dependency> deps = task.getDependencies();
-        return waitForIt(task,task.getDependencies());
+        return waitForIt(task,deps);
     }
 
     public boolean waitForIt(AsyncTask task, HashSet<Dependency> dependencies){
@@ -388,5 +388,14 @@ public class DataHolder {
                 });
         dataHolder.addToVolleyQueue(request);
         return true;
+    }
+
+    public Flight getFlightFromDeal(Deal deal) {
+        for(Flight flight: flights.values()){
+            if(flight.getPriceData().getTotalPrice().equals(deal.getPrice())){
+                return flight;
+            }
+        }
+        return null;
     }
 }

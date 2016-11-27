@@ -10,7 +10,10 @@ import java.util.HashSet;
 import ar.edu.itba.dreamtrip.TrackedDestinations.TrackedLegCardAdapter;
 import ar.edu.itba.dreamtrip.common.API.DataHolder;
 import ar.edu.itba.dreamtrip.common.API.dependencies.Dependency;
+import ar.edu.itba.dreamtrip.common.API.dependencies.FlightDependency;
 import ar.edu.itba.dreamtrip.common.API.dependencies.TrackedFlightsDependency;
+import ar.edu.itba.dreamtrip.common.model.Deal;
+import ar.edu.itba.dreamtrip.common.model.Flight;
 import ar.edu.itba.dreamtrip.common.model.FlightState;
 import ar.edu.itba.dreamtrip.common.tasks.AsyncTaskInformed;
 
@@ -33,6 +36,8 @@ public class PopulateFlightTrackers extends AsyncTaskInformed<Object,Void,ArrayL
     public HashSet<Dependency> getDependencies() {
         HashSet<Dependency> dependencies = new HashSet<>();
         dependencies.add(new TrackedFlightsDependency(context,5));
+
+
         return dependencies;
     }
 
