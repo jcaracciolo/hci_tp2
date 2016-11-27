@@ -16,8 +16,7 @@ public class FlightDealsDependency extends Dependency {
         super(loadImages? (lastMinute? DependencyType.LAST_MINUTE_DEALS : DependencyType.DEALS)
                 : (lastMinute? DependencyType.LAST_MINUTE_DEALS_DATA: DependencyType.DEALS_DATA));
         if(loadImages ){
-            Dependency imageURLDep = new Dependency(lastMinute? DependencyType.LAST_MINUTE_DEALS_IMAGES_URLS
-                                            : DependencyType.DEALS_IMAGES_URLS);
+            Dependency imageURLDep = new FlightDealImageUrlDependency(lastMinute);
             Dependency imageDep = new Dependency(lastMinute? DependencyType.LAST_MINUTE_DEALS_IMAGES
                                             : DependencyType.DEALS_IMAGES);
             Dependency dataDep = new FlightDealsDependency(originID,false,lastMinute);
