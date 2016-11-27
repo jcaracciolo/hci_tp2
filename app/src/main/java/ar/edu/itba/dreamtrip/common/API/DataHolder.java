@@ -25,6 +25,7 @@ import ar.edu.itba.dreamtrip.common.API.dependencies.Dependency;
 import ar.edu.itba.dreamtrip.common.API.dependencies.FlightDependency;
 import ar.edu.itba.dreamtrip.common.API.dependencies.ImageDependency;
 import ar.edu.itba.dreamtrip.common.API.dependencies.FlightDealsDependency;
+import ar.edu.itba.dreamtrip.common.API.dependencies.SendReviewDependency;
 import ar.edu.itba.dreamtrip.common.API.dependencies.StatusDependency;
 import ar.edu.itba.dreamtrip.common.API.dependencies.StatusSearchDependency;
 import ar.edu.itba.dreamtrip.common.model.Airline;
@@ -48,7 +49,6 @@ public class DataHolder {
     private HashMap<String,HashSet<Review>> reviews = new HashMap<>();
     private HashMap<String,Deal> deals = new HashMap<>();
 
-
     public Collection<Airline> getAirlines() {
         return airlines.values();
     }
@@ -69,6 +69,7 @@ public class DataHolder {
 
     private ConcurrentHashMap<HashSet<Dependency>, ArrayList<AsyncTask>> tasks = new ConcurrentHashMap<>();
 
+    private Boolean lastReviewValid;
     private Context context;
 
     private DataHolder(Context context) {
@@ -208,6 +209,9 @@ public class DataHolder {
                 break;
             case AIRLINE_WIKI_INFO:
                 DependencyLoader.loadAirlineWikiData(this,dependency);
+                break;
+            case SEND_REVIEW:
+                DependencyLoader.sendFlightReviews(this,(SendReviewDependency) dependency);
                 break;
             case AIRLINES:
             case TRACKED_FLIGHTS:
@@ -397,5 +401,13 @@ public class DataHolder {
             }
         }
         return null;
+    }
+
+    protected void setLastReviewValid(Boolean valid){
+        this.lastReviewValid = valid;
+    }
+
+    public Boolean lastReviewValid(){
+        return lastReviewValid;
     }
 }

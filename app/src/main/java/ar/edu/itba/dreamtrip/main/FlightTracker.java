@@ -24,11 +24,15 @@ import android.widget.Toast;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import ar.edu.itba.dreamtrip.Deals.DealsFromActivity;
 import ar.edu.itba.dreamtrip.R;
 import ar.edu.itba.dreamtrip.TrackedDestinations.PopulateLegTrackers;
 import ar.edu.itba.dreamtrip.common.API.DataHolder;
 import ar.edu.itba.dreamtrip.common.API.SettingsManager;
+import ar.edu.itba.dreamtrip.common.model.Deal;
+import ar.edu.itba.dreamtrip.common.model.Review;
 import ar.edu.itba.dreamtrip.common.notifications.TrackedChangesManager;
+import ar.edu.itba.dreamtrip.common.tasks.SendFlightReviewTask;
 import ar.edu.itba.dreamtrip.common.tasks.TrackFlightTask;
 import ar.edu.itba.dreamtrip.main.Adapter.PagerAdapter;
 
@@ -109,6 +113,8 @@ public class FlightTracker extends BaseActivity {
         viewPager.setCurrentItem(selectedTab);
         //SettingsManager.getInstance(getApplicationContext()).clearAllTracked();
         TrackedChangesManager.getInstance(getApplicationContext()).setupChecks();
+//        Review review = new Review("CM", 360,1,2,3,4,5,6,7,true,"Test review  please ignore");
+//        DataHolder.getInstance(getApplicationContext()).waitForIt(new SendFlightReviewTask(getApplicationContext(),review));
 //        SettingsManager.getInstance(getApplicationContext()).trackLeg("EZE LON");
 
     }

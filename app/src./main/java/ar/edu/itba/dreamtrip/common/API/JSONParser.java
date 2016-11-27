@@ -406,4 +406,37 @@ public class JSONParser {
             e.printStackTrace();
         }
     }
+
+    public static JSONObject unparseReview(Review review) {
+        JSONObject obj = new JSONObject();
+        try {JSONObject flight = new JSONObject();
+            flight.put("airline",new JSONObject().put("id",review.getAirlineID()));
+            flight.put("number",review.getFlightNumber());
+            JSONObject rating = new JSONObject();
+            rating.put("friendliness",review.getFriendliness());
+            rating.put("food",review.getFood());
+            rating.put("punctuality",review.getPunctuality());
+            rating.put("mileage_program",review.getMilageProgram());
+            rating.put("comfort",review.getConfort());
+            rating.put("quality_price",review.getQualityPriceRatio());
+            obj.put("flight",flight);
+            obj.put("rating",rating);
+            obj.put("yes_recommend",review.getRecommended());
+            if(review.getComment() != null) obj.put("comments",review.getComment());
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+        String st = obj.toString();
+        return obj;
+    }
+
+    public static Boolean parseReviewResponse(JSONObject response) {
+        try {
+            return response.getBoolean("review");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }
