@@ -66,7 +66,7 @@ public class FlightStateCheckTask extends AsyncTaskInformed<Object,Void,ArrayLis
 
     public void toast(String str) {
         Toast.makeText(context, str,
-                Toast.LENGTH_SHORT).show();
+                Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -76,7 +76,9 @@ public class FlightStateCheckTask extends AsyncTaskInformed<Object,Void,ArrayLis
                 pushNotification(s);
             }
         } else {
-            toast("didnt show flight notifications, app active");
+            Intent intent = new Intent(context.getResources().getString(R.string.UpdateTrackedFlights));
+            toast("didnt show flight notifications, update flights list");
+            context.sendBroadcast(intent);
         }
     }
 
@@ -86,7 +88,8 @@ public class FlightStateCheckTask extends AsyncTaskInformed<Object,Void,ArrayLis
                         .setSmallIcon(R.drawable.ic_airplane_l)
                         .setContentTitle("Dreamtrip")
                         .setContentText(msg)
-                        .setSound(soundUri);
+                        .setSound(soundUri)
+                        .setAutoCancel(true);
         // Creates an explicit intent for an Activity in your app
         Intent resultIntent = new Intent(context, FlightTracker.class);
 

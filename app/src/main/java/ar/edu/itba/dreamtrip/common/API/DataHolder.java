@@ -389,4 +389,13 @@ public class DataHolder {
         dataHolder.addToVolleyQueue(request);
         return true;
     }
+
+    public Flight getFlightFromDeal(Deal deal) {
+        for(Flight flight: flights.values()){
+            if(flight.getPriceData().getTotalPrice().equals(deal.getPrice())){
+                return flight;
+            }
+        }
+        return null;
+    }
 }
