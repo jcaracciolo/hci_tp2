@@ -73,7 +73,12 @@ public class TrackedLegCardAdapter extends BaseSwipeAdapter {
     }
 
     public void unregister(){
-        context.unregisterReceiver(deleteDest);
+
+        try {
+            context.unregisterReceiver(deleteDest);
+        }catch (Exception e){
+
+        }
     }
 
     public void register(){

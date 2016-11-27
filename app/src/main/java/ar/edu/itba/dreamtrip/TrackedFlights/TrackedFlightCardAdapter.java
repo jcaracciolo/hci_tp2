@@ -49,12 +49,6 @@ public class TrackedFlightCardAdapter extends BaseSwipeAdapter {
     }
 
     @Override
-    protected void finalize() throws Throwable {
-        context.unregisterReceiver(deleteFlight);
-        super.finalize();
-    }
-
-    @Override
     public int getSwipeLayoutResourceId(int position) {
         return R.id.swipe_track_flight;
     }
@@ -86,7 +80,11 @@ public class TrackedFlightCardAdapter extends BaseSwipeAdapter {
     }
 
     public void unregister(){
-        context.unregisterReceiver(deleteFlight);
+        try{
+            context.unregisterReceiver(deleteFlight);
+        }catch (Exception e){
+
+        }
     }
 
     public void register(){

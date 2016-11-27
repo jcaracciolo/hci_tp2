@@ -87,7 +87,7 @@ public class DataHolder {
 
     public boolean waitForIt(AsyncTaskInformed task) {
         HashSet<Dependency> deps = task.getDependencies();
-        return waitForIt(task,task.getDependencies());
+        return waitForIt(task,deps);
     }
 
     public boolean waitForIt(AsyncTask task, HashSet<Dependency> dependencies){
