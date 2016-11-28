@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import ar.edu.itba.dreamtrip.R;
 import ar.edu.itba.dreamtrip.common.LenguageType;
 import ar.edu.itba.dreamtrip.common.model.FlightStatus;
+import ar.edu.itba.dreamtrip.common.model.MyCurrency;
 
 public class SettingsManager {
     private static SettingsManager ourInstance ;
@@ -338,5 +339,23 @@ public class SettingsManager {
         SharedPreferences sharedPref = context.getSharedPreferences(prefsString, Context.MODE_PRIVATE);
 
         return sharedPref.getBoolean(identifier,true);
+    }
+    public boolean setPreferedCurrency(MyCurrency currency){
+        if(currency == null) return false;
+        String prefsString = context.getString(R.string.general_settings_pref);
+        String identifier = context.getString(R.string.general_settings_currency);
+        SharedPreferences sharedPref = context.getSharedPreferences(prefsString, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+
+        editor.putString(identifier,currency.getID());
+        editor.apply();
+        return true;
+    }
+    public String getPreferredCurrencyID(){
+        String prefsString = context.getString(R.string.general_settings_pref);
+        String identifier = context.getString(R.string.general_settings_currency);
+        SharedPreferences sharedPref = context.getSharedPreferences(prefsString, Context.MODE_PRIVATE);
+
+        return sharedPref.getString(identifier,null);
     }
 }

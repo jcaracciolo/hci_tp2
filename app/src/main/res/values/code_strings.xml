@@ -38,6 +38,7 @@
        <string name="general_settings_lenguage" translatable="false">general_settings_lenguage</string>
        <string name="general_settings_flight_notification" translatable="false">general_settings_flight_notification</string>
        <string name="general_settings_leg_notification" translatable="false">general_settings_leg_notification</string>
+       <string name="general_settings_currency" translatable="false">general_settings_currency</string>
 
        <string name="general_settings_lenguage_english" translatable="false">general_settings_lenguage_english</string>
        <string name="general_settings_lenguage_spanish" translatable="false">general_settings_lenguage_spanish</string>
