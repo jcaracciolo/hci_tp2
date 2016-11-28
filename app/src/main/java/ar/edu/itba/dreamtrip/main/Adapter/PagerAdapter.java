@@ -1,19 +1,23 @@
 package ar.edu.itba.dreamtrip.main.Adapter;
 
+import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+import ar.edu.itba.dreamtrip.R;
 import ar.edu.itba.dreamtrip.TrackedDestinations.TrackedLegFragment;
 import ar.edu.itba.dreamtrip.main.SearchFragment;
 import ar.edu.itba.dreamtrip.TrackedFlights.TrackedFlightsFragment;
 
 public class PagerAdapter extends FragmentStatePagerAdapter {
     int mNumOfTabs;
+    Context context;
 
-    public PagerAdapter(FragmentManager fm, int NumOfTabs) {
+    public PagerAdapter(FragmentManager fm, int NumOfTabs, Context context) {
         super(fm);
         this.mNumOfTabs = NumOfTabs;
+        this.context = context;
     }
 
     @Override
@@ -21,8 +25,12 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
 
         switch (position) {
             case 0:
-                SearchFragment tab1 = new SearchFragment();
-                return tab1;
+                String isLandTablet = context.getResources().getString(R.id.isLandTablet);
+                if (isLandTablet.equals("false")) {
+                    return new SearchFragment();
+                } else {
+                    return new SearchFragment();
+                }
             case 1:
                 TrackedFlightsFragment tab2 = new TrackedFlightsFragment();
                 return tab2;

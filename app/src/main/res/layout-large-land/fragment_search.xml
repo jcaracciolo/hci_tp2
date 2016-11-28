@@ -7,13 +7,6 @@
     android:paddingRight="8dp"
     android:paddingTop="16dp">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1">
-
-    </RelativeLayout>
-
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -145,4 +138,11 @@
 
     </RelativeLayout>
 
+    <RelativeLayout
+        android:id="@+id/result_side"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+    </RelativeLayout>
 </LinearLayout>
