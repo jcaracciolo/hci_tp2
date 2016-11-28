@@ -48,7 +48,7 @@ public class MapsActivity extends BaseActivity implements OnMapReadyCallback,Loc
     private LocationManager locManager;
     private String provider;
     private static final int MY_PERMISSIONS_REQUEST_FINE_LOCATION = 1;
-
+    private boolean moved=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +67,7 @@ public class MapsActivity extends BaseActivity implements OnMapReadyCallback,Loc
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
+        mMap.clear();
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(this,
                     Manifest.permission.ACCESS_FINE_LOCATION)) {
@@ -119,6 +119,7 @@ public class MapsActivity extends BaseActivity implements OnMapReadyCallback,Loc
                 marker.title("YOU").snippet("THIS IS YOU");
                 marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_airplane_l));
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(lasLatLng,10));
+                moved=true;
             }
             fillMap(lasLatLng);
         }catch (SecurityException e){
@@ -137,7 +138,7 @@ public class MapsActivity extends BaseActivity implements OnMapReadyCallback,Loc
         Criteria crit = new Criteria();
         crit.setAccuracy(Criteria.ACCURACY_FINE);
         crit.setPowerRequirement(Criteria.POWER_LOW);
-        provider = locManager.getBestProvider(crit, true);
+        provider = locManager.getBestProvider(crit,true);
         if (!locManager.isProviderEnabled(provider)) {
             buildAlertMessageNoGps();
        }else{
@@ -171,6 +172,10 @@ public class MapsActivity extends BaseActivity implements OnMapReadyCallback,Loc
         MarkerOptions marker=new MarkerOptions().position(lasLatLng);
         marker.title("YOU").snippet("THIS IS YOU");
         marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_airplane_l));
+        if(!moved){
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(lasLatLng,10));
+            moved=true;
+        }
     }
 
     @Override
