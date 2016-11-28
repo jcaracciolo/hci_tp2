@@ -32,7 +32,7 @@ public class DealsFromActivity extends BaseActivity {
 
         ActionBar bar = getSupportActionBar();
 
-        bar.setTitle(bar.getTitle() + id );
+        bar.setTitle(bar.getTitle() + " " + id );
 
         final DataHolder dataholder = DataHolder.getInstance(getBaseContext());
 

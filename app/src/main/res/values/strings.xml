@@ -1,4 +1,6 @@
 <resources>
+
+    <!--TODO: CHECK TRANSLATABLE = FALSE, SOME HAVE TO BE DELETED IF NOT USED-->
     <string name="app_name">DreamTrip</string>
 
     <string name="tab_search">Search</string>
