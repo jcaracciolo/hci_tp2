@@ -44,7 +44,7 @@ public class PopulateLegTrackers extends AsyncTaskInformed<Object,Void,ArrayList
     public HashSet<Dependency> getDependencies() {
         HashSet<Dependency> dependencies = new HashSet<>();
         dependencies.add(new Dependency(DependencyType.CURRENCIES));
-        dependencies.add(new TrackedLegsDependency(context,true, DealLoadType.BOTH_DEALS));
+        dependencies.add(new TrackedLegsDependency(context,false, DealLoadType.BOTH_DEALS));
         return dependencies;
     }
 
