@@ -118,6 +118,7 @@ public class FlightTracker extends BaseActivity {
         });
         viewPager.setCurrentItem(selectedTab);
         //SettingsManager.getInstance(getApplicationContext()).clearAllTracked();\
+//        SettingsManager.getInstance(getApplicationContext()).clearAllTracked();
         TrackedChangesManager.getInstance(getApplicationContext()).setupChecks();
         SettingsManager.getInstance(getApplicationContext()).setFlightNotifications(true);
 //        SettingsManager.getInstance(getApplicationContext()).setPreferedCurrency(new MyCurrency("ARS","as","$ARS",0.065));
@@ -250,8 +251,9 @@ public class FlightTracker extends BaseActivity {
                             toast(getResources().getString(R.string.destination_not_found));
                             return;
                         }
-                        boolean res=SettingsManager.getInstance(getBaseContext()).trackLeg(originID.substring(1,4) + " " + destinationID.substring(1,4));
-
+//                        boolean res=SettingsManager.getInstance(getBaseContext()).trackLeg(originID.substring(1,4) + " " + destinationID.substring(1,4));
+                        DataHolder.getInstance(getApplicationContext()).waitForIt(
+                                new TrackLegTask(getApplicationContext(),originID.substring(1,4) + " " + destinationID.substring(1,4)));
                     }
                 });
 

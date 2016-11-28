@@ -25,7 +25,7 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
 
         switch (position) {
             case 0:
-                String isLandTablet = context.getResources().getString(R.id.isLandTablet);
+                String isLandTablet = context.getResources().getString(R.string.isLandTablet);
                 if (isLandTablet.equals("false")) {
                     return new SearchFragment();
                 } else {

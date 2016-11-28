@@ -62,6 +62,10 @@
     <string name="send_opinion_title">Send opinion of</string>
     <string name="incorrect_flight_number">Incorrect flight number</string>
     <string name="error_opinion_send">Error sending opinion</string>
+    <string name="error_tracking_flight">Error: Flight not found</string>
+    <string name="error_tracking_leg">Error: Not a valid airport or city</string>
+    <string name="success_tracking_flight">Successfully tracked flight!</string>
+    <string name="success_tracking_leg">Successfully added destination!</string>
     <string name="ok_opinion_send">Opinion successfully registered</string>
     <string name="comment_list_title">Other opinions:</string>
     <string name="from">from</string>
@@ -102,6 +106,7 @@
     <string name="Map">Map</string>
     <string name="enable">Enable</string>
     <string name="title_activity_settings">Settings</string>
+    <string name="error_tracked_leg">Sorry, could not track deal.</string>
 
     <!-- Strings related to Settings -->
 
