@@ -16,6 +16,11 @@
         android:src="@drawable/ic_add_l"
         android:onClick="addTrackedDestination"/>
 
+    <View
+        android:id="@+id/bullshit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
     <RelativeLayout
         android:id="@+id/help_arrow"
         android:layout_width="wrap_content"

@@ -53,7 +53,7 @@ public class TrackLegTask extends AsyncTaskInformed<Object,Void,Boolean>{
     protected void onPostExecute(Boolean successfullyTracked) {
         Toast.makeText(context, successfullyTracked? "Successfully tracked!!":"That flight does not exist",
                 Toast.LENGTH_LONG).show();
-        Intent intent = new Intent(context.getResources().getString(R.string.UpdateTrackedFlights));
+        Intent intent = new Intent(context.getResources().getString(R.string.UpdateTrackedDeals));
         context.sendBroadcast(intent);
     }
 

@@ -11,6 +11,7 @@ import ar.edu.itba.dreamtrip.R;
 import ar.edu.itba.dreamtrip.common.API.DataHolder;
 import ar.edu.itba.dreamtrip.common.API.dependencies.Dependency;
 import ar.edu.itba.dreamtrip.common.API.dependencies.DependencyType;
+import ar.edu.itba.dreamtrip.common.API.dependencies.FlightDependency;
 import ar.edu.itba.dreamtrip.common.API.dependencies.StatusDependency;
 import ar.edu.itba.dreamtrip.common.API.dependencies.StatusSearchDependency;
 import ar.edu.itba.dreamtrip.common.model.Flight;
@@ -38,8 +39,7 @@ public class LoadFlightInfoTask extends AsyncTaskInformed<Object, Void, Flight> 
     @Override
     public HashSet<Dependency> getDependencies() {
         HashSet<Dependency> dependencies = new HashSet<>();
-        dependencies.add(new StatusSearchDependency(new StatusSearch(flightID.split(" ")[0],
-                Integer.parseInt(flightID.split(" ")[1]))));
+        dependencies.add(new FlightDependency(new StatusSearch(flightID.split(" ")[0], Integer.parseInt(flightID.split(" ")[1]))));
         return dependencies;
     }
 

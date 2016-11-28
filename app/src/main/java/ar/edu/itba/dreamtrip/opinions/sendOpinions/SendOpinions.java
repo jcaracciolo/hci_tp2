@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.appyvet.rangebar.RangeBar;
@@ -32,6 +33,8 @@ public class SendOpinions extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         airlineID = getIntent().getExtras().getString(AIRLINE_ID_GIVE_OPINIONS);
+
+        DataHolder.getInstance(getBaseContext()).waitForIt(new LoadAirlineNameTask(getBaseContext(), airlineID, this));
 
     }
 
