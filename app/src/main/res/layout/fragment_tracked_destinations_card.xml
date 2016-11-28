@@ -27,10 +27,10 @@
         android:id="@+id/from_destination"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
         android:layout_marginRight="5dp"
         android:layout_below="@id/tracked_destination_desc"
-        android:layout_alignParentRight="true"
-        android:text="from City"/>
+        android:text="from AAA"/>
 
     <TextView
         android:id="@+id/offer_found"

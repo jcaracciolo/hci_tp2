@@ -6,8 +6,9 @@ import android.content.SharedPreferences;
 import java.util.ArrayList;
 
 import ar.edu.itba.dreamtrip.R;
-import ar.edu.itba.dreamtrip.common.model.Flight;
+import ar.edu.itba.dreamtrip.common.LenguageType;
 import ar.edu.itba.dreamtrip.common.model.FlightStatus;
+import ar.edu.itba.dreamtrip.common.model.MyCurrency;
 
 public class SettingsManager {
     private static SettingsManager ourInstance ;
@@ -265,8 +266,8 @@ public class SettingsManager {
 
     public boolean setFlightStateCheckInterval(Integer interval){
         if(interval <= 2) return false;
-        String prefsString = context.getString(R.string.notification_check_prefs);
-        String identifier = context.getString(R.string.flight_state_check_interval);
+        String prefsString = context.getString(R.string.general_settings_pref);
+        String identifier = context.getString(R.string.general_settings_flight_check_interval);
         SharedPreferences sharedPref = context.getSharedPreferences(prefsString, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
 
@@ -276,10 +277,85 @@ public class SettingsManager {
     }
 
     public Integer getFlightStateCheckInterval(){
-        String prefsString = context.getString(R.string.notification_check_prefs);
-        String identifier = context.getString(R.string.flight_state_check_interval);
+        String prefsString = context.getString(R.string.general_settings_pref);
+        String identifier = context.getString(R.string.general_settings_flight_check_interval);
         SharedPreferences sharedPref = context.getSharedPreferences(prefsString, Context.MODE_PRIVATE);
 
         return sharedPref.getInt(identifier,1);
+    }
+    public boolean setSavedLenguage(LenguageType lenguageType){
+        if(lenguageType == null) return false;
+        String prefsString = context.getString(R.string.general_settings_pref);
+        String identifier = context.getString(R.string.general_settings_lenguage);
+        SharedPreferences sharedPref = context.getSharedPreferences(prefsString, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+
+        editor.putString(identifier,LenguageType.toString(context,lenguageType));
+        editor.apply();
+        return true;
+    }
+
+    public LenguageType getSavedLanguage(){
+        String prefsString = context.getString(R.string.general_settings_pref);
+        String identifier = context.getString(R.string.general_settings_lenguage);
+        SharedPreferences sharedPref = context.getSharedPreferences(prefsString, Context.MODE_PRIVATE);
+        String language = sharedPref.getString(identifier,context.getString(R.string.general_settings_lenguage_english));
+        return LenguageType.parseLenguage(context,language);
+    }
+
+    public boolean setFlightNotifications(Boolean enabled){
+        if(enabled == null) return false;
+        String prefsString = context.getString(R.string.general_settings_pref);
+        String identifier = context.getString(R.string.general_settings_flight_notification);
+        SharedPreferences sharedPref = context.getSharedPreferences(prefsString, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+
+        editor.putBoolean(identifier,enabled);
+        editor.apply();
+        return true;
+    }
+    public boolean getFlightNotifications(){
+        String prefsString = context.getString(R.string.general_settings_pref);
+        String identifier = context.getString(R.string.general_settings_flight_notification);
+        SharedPreferences sharedPref = context.getSharedPreferences(prefsString, Context.MODE_PRIVATE);
+
+        return sharedPref.getBoolean(identifier,true);
+    }
+
+    public boolean setDealsNotifications(Boolean enabled){
+        if(enabled == null) return false;
+        String prefsString = context.getString(R.string.general_settings_pref);
+        String identifier = context.getString(R.string.general_settings_leg_notification);
+        SharedPreferences sharedPref = context.getSharedPreferences(prefsString, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+
+        editor.putBoolean(identifier,enabled);
+        editor.apply();
+        return true;
+    }
+    public boolean getDealsNotifications(){
+        String prefsString = context.getString(R.string.general_settings_pref);
+        String identifier = context.getString(R.string.general_settings_leg_notification);
+        SharedPreferences sharedPref = context.getSharedPreferences(prefsString, Context.MODE_PRIVATE);
+
+        return sharedPref.getBoolean(identifier,true);
+    }
+    public boolean setPreferedCurrency(MyCurrency currency){
+        if(currency == null) return false;
+        String prefsString = context.getString(R.string.general_settings_pref);
+        String identifier = context.getString(R.string.general_settings_currency);
+        SharedPreferences sharedPref = context.getSharedPreferences(prefsString, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+
+        editor.putString(identifier,currency.getID());
+        editor.apply();
+        return true;
+    }
+    public String getPreferredCurrencyID(){
+        String prefsString = context.getString(R.string.general_settings_pref);
+        String identifier = context.getString(R.string.general_settings_currency);
+        SharedPreferences sharedPref = context.getSharedPreferences(prefsString, Context.MODE_PRIVATE);
+
+        return sharedPref.getString(identifier,null);
     }
 }

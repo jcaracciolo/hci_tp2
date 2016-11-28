@@ -9,6 +9,7 @@ import java.util.HashSet;
 
 import ar.edu.itba.dreamtrip.common.API.DataHolder;
 import ar.edu.itba.dreamtrip.common.API.dependencies.Dependency;
+import ar.edu.itba.dreamtrip.common.API.dependencies.DependencyType;
 import ar.edu.itba.dreamtrip.common.API.dependencies.FlightDealsDependency;
 import ar.edu.itba.dreamtrip.common.API.dependencies.TrackedLegsDependency;
 import ar.edu.itba.dreamtrip.common.model.Deal;
@@ -33,6 +34,7 @@ public class PopulateDeals extends AsyncTaskInformed<Object,Void,ArrayList<DealV
 
     public HashSet<Dependency> getDependencies() {
         HashSet<Dependency> dependencies = new HashSet<>();
+        dependencies.add(new Dependency(DependencyType.AIRPORTS));
         dependencies.add(new FlightDealsDependency(originID,true, false));
 //        dependencies.add(new TrackedLegsDependency(context,5));
         return dependencies;
@@ -43,7 +45,7 @@ public class PopulateDeals extends AsyncTaskInformed<Object,Void,ArrayList<DealV
         DataHolder dataHolder = (DataHolder) params[0];
         ArrayList<DealViewModel> deals = new ArrayList<>();
 
-        Collection<Deal> dealsModels = dataHolder.getDeals();
+        Collection<Deal> dealsModels = dataHolder.getDealsFromOrigin(originID);
         for (Deal d: dealsModels) {
             deals.add(new DealViewModel(context,d));
         }

@@ -28,6 +28,7 @@ public class AirportDetailsFragment extends Fragment {
     public final static String RESULT_ID_KEY = "main_activity.go_to_info_id";
     public final static String RESULT_TYPE_KEY = "main_activity.go_to_info_key";
     public final static String INTENT_TO_DEALS_FROM = "ar.itba.edu.dreamtrip.deals_id";
+    public final static String INTENT_TO_DEALS_DESCR = "ar.itba.edu.dreamtrip.deals_descr";
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -95,6 +96,7 @@ public class AirportDetailsFragment extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), DealsFromActivity.class);
                 intent.putExtra(INTENT_TO_DEALS_FROM,id);
+                intent.putExtra(INTENT_TO_DEALS_DESCR, DataHolder.getInstance(getContext()).getAirportById(id).getID());
                 startActivity(intent);
             }
 

@@ -19,6 +19,7 @@ import ar.edu.itba.dreamtrip.main.BaseActivity;
 public class DealsFromActivity extends BaseActivity {
     GridView grid;
     public final static String INTENT_TO_DEALS_FROM = "ar.itba.edu.dreamtrip.deals_id";
+    public final static String INTENT_TO_DEALS_DESCR = "ar.itba.edu.dreamtrip.deals_descr";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,11 +29,12 @@ public class DealsFromActivity extends BaseActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         String id=(String)getIntent().getExtras().get(INTENT_TO_DEALS_FROM);
+        String descr=(String)getIntent().getExtras().get(INTENT_TO_DEALS_DESCR);
         grid= (GridView) findViewById(R.id.gridview);
 
         ActionBar bar = getSupportActionBar();
 
-        bar.setTitle(bar.getTitle() + id );
+        bar.setTitle(bar.getTitle() + " " + descr );
 
         final DataHolder dataholder = DataHolder.getInstance(getBaseContext());
 

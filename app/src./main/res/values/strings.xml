@@ -1,15 +1,17 @@
 <resources>
+
+    <!--TODO: CHECK TRANSLATABLE = FALSE, SOME HAVE TO BE DELETED IF NOT USED-->
     <string name="app_name">DreamTrip</string>
 
     <string name="tab_search">Search</string>
     <string name="tab_flights">Flights</string>
     <string name="tab_destinations">Destinations</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
     <string name="main_tab1">Search</string>
     <string name="main_tab2">Flights</string>
     <string name="main_tab3">Destinations</string>
-    <string name="qr">QR</string>
+    <string name="qr" translatable="false">QR</string>
     <string name="map">Map</string>
     <string name="currency_converter">Currency converter</string>
     <string name="settings">Settings</string>
@@ -37,14 +39,14 @@
     <string name="quality_price">Price/Quality</string>
     <string name="general">General</string>
     <string name="dialog_title">Track a flight</string>
-    <string name="dialog_add_tracked_flight_title">Add Flight to Track</string>
-    <string name="dialog_add_tracked_destination_title">Add Destination to Track</string>
+    <string name="dialog_add_tracked_flight_title">Add Flight to Follow</string>
+    <string name="dialog_add_tracked_destination_title">Add Destination to Follow</string>
     <string name="dialog_add_tracked_flight_button">Add Flight</string>
     <string name="dialog_add_tracked_destination_button">Add Destination</string>
     <string name="add_track_flight_hint">Flight number (ex: AZ 523)</string>
     <string name="follow">Follow</string>
     <string name="map_search">Map</string>
-    <string name="qr_search">QR</string>
+    <string name="qr_search" translatable="false">QR</string>
     <string name="help_search">Search airlines, flights, airports, cities or countries.</string>
     <string name="no_offer_found">No offers found.</string>
     <string name="offer_found">New offer found.</string>
@@ -53,11 +55,30 @@
     <string name="unfollow">Unfollow</string>
     <string name="origin_to_track">Origin</string>
     <string name="destination_to_track">Destination</string>
+    <string name="write_a_comment">Write a comment</string>
+    <string name="send_opinion">Send</string>
+    <string name="write_comment_here">Write comment here...</string>
+    <string name="recommend">Recommend:</string>
+    <string name="send_opinion_title">Send opinion of</string>
+    <string name="incorrect_flight_number">Incorrect flight number</string>
+    <string name="error_opinion_send">Error sending opinion</string>
+    <string name="ok_opinion_send">Opinion successfully registered</string>
+    <string name="comment_list_title">Other opinions:</string>
+    <string name="from">from</string>
+    <string name="origin_not_found">Origin not found</string>
+    <string name="destination_not_found">Destination not found</string>
+    <string name="flight_info_title">Flight Information</string>
+    <string name="send_opinions_title">Send Opinion</string>
+    <string name="airports">Airports</string>
+    <string name="cities">Cities</string>
+    <string name="tracked_flights">Tracked Flights</string>
+    <string name="deals">Deals</string>
+    <string name="filters">Filters</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="title_activity_opinions">Opinions</string>
-    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="section_format" translatable="false">Hello World from section: %1$d</string>
     <string name="status_not_found_flight">Status Error</string>
     <string name="scheduled_flight">Programmed</string>
     <string name="active_flight">Active</string>
@@ -72,7 +93,7 @@
     <string name="gate_txt">Gate:</string>
     <string name="luggage_txt">Luggage gate:</string>
     <string name="gps_network_not_enabled">Location services not available</string>
-    <string name="open_location_settings">Please tur on location services</string>
+    <string name="open_location_settings">Please turn on location services</string>
     <string name="Cancel">Cancel</string>
     <string name="Map">Map</string>
     <string name="enable">Enable</string>

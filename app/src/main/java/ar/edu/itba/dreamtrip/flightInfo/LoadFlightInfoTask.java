@@ -19,16 +19,20 @@ import ar.edu.itba.dreamtrip.common.model.StatusSearch;
 import ar.edu.itba.dreamtrip.common.tasks.AsyncTaskInformed;
 
 
-public class LoadFlightDurationTask extends AsyncTaskInformed<Object, Void, Flight> {
+public class LoadFlightInfoTask extends AsyncTaskInformed<Object, Void, Flight> {
 
     private Context context;
     String flightID;
     TextView duration;
+    TextView cityOrigin;
+    TextView cityDestination;
 
-    public LoadFlightDurationTask(Context context, String flightID, TextView duration) {
+    public LoadFlightInfoTask(Context context, String flightID, TextView duration, TextView cityOrigin, TextView cityDestination) {
         this.context = context;
         this.flightID = flightID;
         this.duration = duration;
+        this.cityOrigin = cityOrigin;
+        this.cityDestination = cityDestination;
     }
 
     @Override
@@ -59,6 +63,8 @@ public class LoadFlightDurationTask extends AsyncTaskInformed<Object, Void, Flig
         } else {
             duration.setText("");
         }
+        cityOrigin.setText(f.getOrigin().getCity().getName().split(",")[0]);
+        cityDestination.setText(f.getDestination().getCity().getName().split(",")[0]);
     }
 
 }

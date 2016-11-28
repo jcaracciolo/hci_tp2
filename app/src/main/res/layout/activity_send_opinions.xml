@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_send_opinions"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ar.edu.itba.dreamtrip.opinions.sendOpinions.SendOpinions">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/send_opinion_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/send_opinion_title"
+            android:textSize="20dp"/>
+
+        <View
+            android:id="@+id/bullshit"
+            android:layout_below="@id/send_opinion_title"
+            android:layout_width="50dp"
+            android:layout_height="0dp"/>
+
+        <EditText
+            android:id="@+id/flight_number_send_opinion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/bullshit"
+            android:layout_below="@id/send_opinion_title"
+            android:hint="@string/hint_flight_number"/>
+
+        <RelativeLayout
+            android:id="@+id/kindness_block"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="7dp"
+            android:layout_below="@id/flight_number_send_opinion"
+            android:orientation="horizontal"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp">
+
+            <TextView
+                android:id="@+id/kindness_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/kindness"
+                android:textSize="18dp" />
+
+            <com.appyvet.rangebar.RangeBar
+                xmlns:custom="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/kindness_rating"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                custom:tickStart="0"
+                custom:rangeBar="false"
+                custom:tickInterval="1"
+                custom:tickEnd="10"
+                custom:connectingLineColor="@color/colorPrimary"
+                custom:selectorColor="@color/colorPrimary"
+                custom:pinColor="@color/colorPrimary"
+                custom:pinMaxFont="16dp"
+                custom:tickColor="#00FFFFFF"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/comfort_block"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/kindness_block"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="7dp"
+            android:orientation="horizontal"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/comfort"
+                android:textSize="18dp" />
+
+            <com.appyvet.rangebar.RangeBar
+                xmlns:custom="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/comfort_rating"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                custom:tickStart="0"
+                custom:rangeBar="false"
+                custom:tickInterval="1"
+                custom:tickEnd="10"
+                custom:connectingLineColor="@color/colorPrimary"
+                custom:selectorColor="@color/colorPrimary"
+                custom:pinColor="@color/colorPrimary"
+                custom:pinMaxFont="16dp"
+                custom:tickColor="#00FFFFFF"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/food_block"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/comfort_block"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="7dp"
+            android:orientation="horizontal"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/food"
+                android:textSize="18dp" />
+
+            <com.appyvet.rangebar.RangeBar
+                xmlns:custom="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/food_rating"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                custom:tickStart="0"
+                custom:rangeBar="false"
+                custom:tickInterval="1"
+                custom:tickEnd="10"
+                custom:connectingLineColor="@color/colorPrimary"
+                custom:selectorColor="@color/colorPrimary"
+                custom:pinColor="@color/colorPrimary"
+                custom:pinMaxFont="16dp"
+                custom:tickColor="#00FFFFFF"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/miles_block"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/food_block"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="7dp"
+            android:orientation="horizontal"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/miles"
+                android:textSize="18dp" />
+
+            <com.appyvet.rangebar.RangeBar
+                xmlns:custom="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/miles_rating"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                custom:tickStart="0"
+                custom:rangeBar="false"
+                custom:tickInterval="1"
+                custom:tickEnd="10"
+                custom:connectingLineColor="@color/colorPrimary"
+                custom:selectorColor="@color/colorPrimary"
+                custom:pinColor="@color/colorPrimary"
+                custom:pinMaxFont="16dp"
+                custom:tickColor="#00FFFFFF"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/punctuality_block"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/miles_block"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="7dp"
+            android:orientation="horizontal"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/punctuality"
+                android:textSize="18dp" />
+
+            <com.appyvet.rangebar.RangeBar
+                xmlns:custom="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/punctuality_rating"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                custom:tickStart="0"
+                custom:rangeBar="false"
+                custom:tickInterval="1"
+                custom:tickEnd="10"
+                custom:connectingLineColor="@color/colorPrimary"
+                custom:selectorColor="@color/colorPrimary"
+                custom:pinColor="@color/colorPrimary"
+                custom:pinMaxFont="16dp"
+                custom:tickColor="#00FFFFFF"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/quality_price_block"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/punctuality_block"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="7dp"
+            android:layout_marginBottom="7dp"
+            android:orientation="horizontal"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/quality_price"
+                android:textSize="18dp" />
+
+            <com.appyvet.rangebar.RangeBar
+                xmlns:custom="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/quality_price_rating"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                custom:tickStart="0"
+                custom:rangeBar="false"
+                custom:tickInterval="1"
+                custom:tickEnd="10"
+                custom:connectingLineColor="@color/colorPrimary"
+                custom:selectorColor="@color/colorPrimary"
+                custom:pinColor="@color/colorPrimary"
+                custom:pinMaxFont="16dp"
+                custom:tickColor="#00FFFFFF"/>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/recommend_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/quality_price_block"
+            android:paddingLeft="50dp"
+            android:text="@string/recommend"
+            android:textSize="18dp"/>
+
+        <ImageView
+            android:id="@+id/recommend_review"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/ic_thumb_up"
+            android:layout_below="@id/quality_price_block"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/recommend_txt"
+            android:tint="@color/status_green"
+            android:tag="true"
+            android:onClick="recommendFlight"/>
+
+        <ImageView
+            android:id="@+id/not_recommend_review"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/ic_thumb_down"
+            android:layout_below="@id/quality_price_block"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/recommend_review"
+            android:onClick="notRecommendFlight"/>
+
+        <EditText
+            android:id="@+id/comment_entry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/quality_price_block"
+            android:layout_marginTop="35dp"
+            android:hint="@string/write_comment_here"
+            android:minHeight="75dp" />
+
+        <Button
+            android:id="@+id/send_opinion_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/comment_entry"
+            android:text="@string/send_opinion"
+            android:onClick="sendOpinion"/>
+    </RelativeLayout>
+</ScrollView>

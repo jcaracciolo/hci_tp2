@@ -40,4 +40,9 @@ public class City implements Identificable{
         location.setLatitude(latitude);
         location.setLongitude(longitude);
     }
+
+    public boolean containsID(String id) {
+        if(ID.equals(id)) return true;
+        else return false;
+    }
 }

@@ -15,6 +15,7 @@ import ar.edu.itba.dreamtrip.R;
 import ar.edu.itba.dreamtrip.cityInfo.CityInfo;
 import ar.edu.itba.dreamtrip.common.API.DataHolder;
 import ar.edu.itba.dreamtrip.common.API.SettingsManager;
+import ar.edu.itba.dreamtrip.main.FlightTracker;
 
 /**
  * Created by juanfra on 23/11/16.
@@ -46,9 +47,11 @@ public class DealView {
         dealView.findViewById(R.id.deals_follow).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println(SettingsManager.getInstance(context).getTrackedLegs());
                 boolean res=SettingsManager.getInstance(context).trackLeg(deal.fromID + " " + deal.idTo);
-                System.out.println(SettingsManager.getInstance(context).getTrackedLegs());
+                Intent intent = new Intent(context, FlightTracker.class);
+                intent.putExtra("selectedTab", 2);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                context.startActivity(intent);
             }
         });
 

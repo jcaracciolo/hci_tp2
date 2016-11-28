@@ -36,6 +36,7 @@
         android:stepSize="0.1" />
 
     <Button
+        android:id="@+id/see_opinions_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/airline_rating"

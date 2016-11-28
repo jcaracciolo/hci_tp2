@@ -10,12 +10,16 @@ import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import ar.edu.itba.dreamtrip.R;
 import ar.edu.itba.dreamtrip.common.API.DataHolder;
+
+import static ar.edu.itba.dreamtrip.common.API.dependencies.DependencyType.COUNTRIES;
 
 /**
  * Created by Julian Benitez on 11/17/2016.
@@ -40,7 +44,10 @@ public class TrackedLegFragment extends ListFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_tracked_destinations, container, false);
+        View v = inflater.inflate(R.layout.fragment_tracked_destinations, container, false);
+
+        return v;
+
     }
 
     @Override

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp">
 
 
     <TextView
@@ -9,7 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Opinions of AIRLINE"
-        android:textSize="20dp" />
+        android:textSize="20dp"
+        android:layout_marginTop="5dp"/>
 
     <Button
         android:id="@+id/give_opinion_btn"
@@ -199,6 +202,7 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/general_rating_block"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/quality_price_block"
@@ -227,6 +231,15 @@
                 android:scaleY="0.8"
                 android:stepSize="0.1" />
         </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/comment_list_title"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="5dp"
+            android:layout_below="@+id/general_rating_block"
+            android:textSize="22dp"/>
 
     </RelativeLayout>
 

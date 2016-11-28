@@ -35,8 +35,12 @@ public class TrackedChangesManager {
     private FlightStateCheckService myJobService;
 
     public void setupChecks(){
-        setupLegDealsCheck();
-        setupFlightStateCheck();
+        if(SettingsManager.getInstance(context).getFlightNotifications()){
+            setupFlightStateCheck();
+        }
+        if(SettingsManager.getInstance(context).getDealsNotifications()){
+            setupLegDealsCheck();
+        }
     }
 
     public void setupLegDealsCheck(){
@@ -59,7 +63,7 @@ public class TrackedChangesManager {
         JobInfo.Builder builder = new JobInfo.Builder(flightStateCheckJobID, mServiceComponent);
 //        builder.setMinimumLatency(5 * 1000); // wait at least
 //        builder.setOverrideDeadline(20 * 1000); // maximum delay
-        builder.setPeriodic(getFlightStateCheckInterval() * 60 * 1000);
+        builder.setPeriodic(getFlightStateCheckInterval() * 30 * 1000);
         builder.setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY); // require unmetered network
         builder.setRequiresDeviceIdle(false); // device should be idle
         builder.setRequiresCharging(false); // we don't care if the device is charging or not
@@ -70,5 +74,11 @@ public class TrackedChangesManager {
 
     private Integer getFlightStateCheckInterval(){
         return SettingsManager.getInstance(context).getFlightStateCheckInterval();
+    }
+
+    private void stopJobs(){
+        JobScheduler jobScheduler = (JobScheduler) context.getSystemService(Context.JOB_SCHEDULER_SERVICE);
+        jobScheduler.cancel(flightStateCheckJobID);
+        jobScheduler.cancel(legDealsCheckJobID);
     }
 }
