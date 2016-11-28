@@ -4,8 +4,8 @@
     <string name="tab_search">Search</string>
     <string name="tab_flights">Flights</string>
     <string name="tab_destinations">Destinations</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
     <string name="main_tab1">Search</string>
     <string name="main_tab2">Flights</string>
     <string name="main_tab3">Destinations</string>
@@ -57,7 +57,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="title_activity_opinions">Opinions</string>
-    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="section_format" translatable="false">Hello World from section: %1$d</string>
     <string name="status_not_found_flight">Status Error</string>
     <string name="scheduled_flight">Programmed</string>
     <string name="active_flight">Active</string>

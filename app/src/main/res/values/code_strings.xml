@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
        <string name="tracked_flights_pref" translatable="false">tracked_objects</string>
-       <string name="tracked_flight">flight</string>
+       <string name="tracked_flight" translatable="false">flight</string>
        <string name="tracked_flight_amount" translatable="false">amount_flights</string>
        <string name="valid_identifier_regex" translatable="false">^([A-Z0-9]){2} \\d{3,4}$</string>
 
