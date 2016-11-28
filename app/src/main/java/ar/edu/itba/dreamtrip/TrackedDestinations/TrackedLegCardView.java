@@ -11,10 +11,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.daimajia.swipe.SwipeLayout;
+import com.google.android.gms.wearable.DataApi;
 
 import ar.edu.itba.dreamtrip.R;
 import ar.edu.itba.dreamtrip.cityInfo.CityInfo;
 import ar.edu.itba.dreamtrip.common.API.DataHolder;
+import ar.edu.itba.dreamtrip.common.tasks.LoadDealFlightTask;
 
 public class TrackedLegCardView {
 
@@ -152,11 +154,8 @@ public class TrackedLegCardView {
                     swipeLayout.close();
                 else{
                     String id=leg.destinationID;
-                    Intent intent = new Intent(context, CityInfo.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent.putExtra(RESULT_ID_KEY,id);
-                    context.startActivity(intent);
-                }
+                    DataHolder.getInstance(context).waitForIt(new LoadDealFlightTask(context,leg));
+                    }
             }
         });
 

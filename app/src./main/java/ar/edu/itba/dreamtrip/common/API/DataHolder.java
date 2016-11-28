@@ -219,7 +219,7 @@ public class DataHolder {
             case LAST_MINUTE_DEALS:
             case DEALS:
             case TRACKED_LEGS:
-
+            case FLIGHT_BUNDLE:
                 somethingLoaded(dependency);
                 break;
         }
@@ -375,6 +375,13 @@ public class DataHolder {
             }
         }
         return trackedDeals;
+    }
+
+    public boolean loadDealsImageIntoView(final ImageView imageView, final String description){
+        if(description != null && imageView != null){
+
+        }
+        return false;
     }
 
     public boolean loadImageIntoView(final ImageView imageView, final String url){

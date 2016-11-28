@@ -32,6 +32,7 @@ public class TrackedLegViewModel implements Serializable{
     public Double price;
     public boolean selected;
     public String dealID;
+    public Double ratio;
     public String currencySimbol;
 
     public TrackedLegViewModel(Context context, Deal deal, MyCurrency currency) {
@@ -45,11 +46,14 @@ public class TrackedLegViewModel implements Serializable{
         dealID=deal.getDealIdentifier();
         if(currency != null) {
             currencySimbol = currency.getSymbol();
-            price = price / currency.getRatio();
-        } else currencySimbol = "$";
+            ratio = currency.getRatio();
+        } else {
+            currencySimbol = "$";
+            ratio = 1.0;
+        }
     }
 
     public String getFormatedPrice(){
-        return currencySimbol + new DecimalFormat("#").format(price);
+        return currencySimbol + new DecimalFormat("#").format(price/ratio);
     }
 }
