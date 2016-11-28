@@ -7,6 +7,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.RatingBar;
+import android.widget.TextView;
 
 import ar.edu.itba.dreamtrip.R;
 import ar.edu.itba.dreamtrip.common.API.DataHolder;
@@ -35,6 +36,7 @@ public class Opinions extends BaseActivity {
         RatingsView ratingsView = fillRatingsView();
 
         DataHolder dataHolder = DataHolder.getInstance(this);
+        dataHolder.waitForIt(new LoadAirlineNameTask(getBaseContext(), airlineID, (TextView)findViewById(R.id.opinions_title)));
         dataHolder.waitForIt(new LoadAllAirlineRatingTask(this, airlineID, ratingsView));
 
         findViewById(R.id.give_opinion_btn).setOnClickListener(new View.OnClickListener() {

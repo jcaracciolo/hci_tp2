@@ -26,7 +26,7 @@
     <string name="deals_from_activity_title">Deals From</string>
     <string name="see_more_opinions">See opinions</string>
     <string name="search_a_flight">Search a flight:</string>
-    <string name="hint_flight_number">Flight number</string>
+    <string name="hint_flight_number">Flight number (ex: 1234)</string>
     <string name="subscription">Subscribe</string>
     <string name="show_on_map">Show on map</string>
     <string name="opinions_activity_title">Opinions</string>
@@ -76,6 +76,8 @@
     <string name="filters">Filters</string>
     <string name="help_add_flights">Click add button and\ntrack a flight</string>
     <string name="help_add_destinations">Click add button and\ntrack a destination</string>
+    <string name="opinions_of_title">Opinions of</string>
+    <string name="send_opinions_of_title">Send opinion of</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
