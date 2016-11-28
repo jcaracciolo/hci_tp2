@@ -12,12 +12,17 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +32,7 @@ import com.google.zxing.integration.android.IntentResult;
 
 import ar.edu.itba.dreamtrip.Deals.DealsFromActivity;
 import ar.edu.itba.dreamtrip.R;
+import ar.edu.itba.dreamtrip.TrackedDestinations.AutocompleteElement;
 import ar.edu.itba.dreamtrip.TrackedDestinations.PopulateLegTrackers;
 import ar.edu.itba.dreamtrip.common.API.DataHolder;
 import ar.edu.itba.dreamtrip.common.API.SettingsManager;
@@ -35,12 +41,16 @@ import ar.edu.itba.dreamtrip.common.model.Deal;
 import ar.edu.itba.dreamtrip.common.model.MyCurrency;
 import ar.edu.itba.dreamtrip.common.model.Review;
 import ar.edu.itba.dreamtrip.common.notifications.TrackedChangesManager;
+import ar.edu.itba.dreamtrip.common.tasks.PopulateAutocompleteTask;
 import ar.edu.itba.dreamtrip.common.tasks.SendFlightReviewTask;
 import ar.edu.itba.dreamtrip.common.tasks.TrackFlightTask;
 import ar.edu.itba.dreamtrip.main.Adapter.PagerAdapter;
 
 public class FlightTracker extends BaseActivity {
-    public static boolean isActive= false;
+    public static boolean isActive = false;
+    private static final String[] COUNTRIES = new String[]{
+            "Belgium", "France", "Italy", "Germany", "Spain"
+    };
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
@@ -132,7 +142,7 @@ public class FlightTracker extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        isActive =true;
+        isActive = true;
     }
 
     @Override
@@ -143,9 +153,9 @@ public class FlightTracker extends BaseActivity {
 
     @Override
     public void onBackPressed() {
-        if (mDrawer.isDrawerOpen(GravityCompat.START)){
+        if (mDrawer.isDrawerOpen(GravityCompat.START)) {
             final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
-        }else {
+        } else {
             final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
             if (viewPager.getCurrentItem() == 1) {
                 super.onBackPressed();
@@ -188,13 +198,60 @@ public class FlightTracker extends BaseActivity {
 
         LayoutInflater inflater = getLayoutInflater();
 
-        final View textView = inflater.inflate(R.layout.dialog_add_tracked_destinations, null);
-        builder.setView(textView)
+        final View dialogView = inflater.inflate(R.layout.dialog_add_tracked_destinations, null);
+
+
+        final AutoCompleteTextView originAuto = (AutoCompleteTextView) dialogView.findViewById(R.id.origin_to_track);
+        originAuto.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                DataHolder dataHolder = DataHolder.getInstance(getBaseContext());
+                dataHolder.waitForIt(new PopulateAutocompleteTask(dialogView.getContext(), (AutoCompleteTextView)dialogView.findViewById(R.id.origin_to_track), originAuto.getText().toString()));
+
+            }
+        });
+
+        final AutoCompleteTextView destinationAuto = (AutoCompleteTextView) dialogView.findViewById(R.id.destination_to_track);
+        destinationAuto.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                DataHolder dataHolder = DataHolder.getInstance(getBaseContext());
+                dataHolder.waitForIt(new PopulateAutocompleteTask(dialogView.getContext(), (AutoCompleteTextView)dialogView.findViewById(R.id.destination_to_track), destinationAuto.getText().toString()));
+
+            }
+        });
+
+
+        builder.setView(dialogView)
                 .setNeutralButton(R.string.dialog_add_tracked_destination_button, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
                         toast("trying to track destination");
                         //TODO: track selected
+                        String originID = ((AutoCompleteTextView) dialogView.findViewById(R.id.origin_to_track)).getText().toString().substring(1,4);
+                        String destinationID = ((AutoCompleteTextView) dialogView.findViewById(R.id.destination_to_track)).getText().toString().substring(1,4);
+                        boolean res=SettingsManager.getInstance(getBaseContext()).trackLeg(originID + " " + destinationID);
+
                     }
                 });
 
