@@ -45,7 +45,6 @@
     <string name="map">Mapa</string>
     <string name="map_search">Mapa</string>
     <string name="miles">Millas</string>
-    <string name="navigation_drawer_close"></string>
     <string name="no_comment">Sin comentarios</string>
     <string name="no_offer_found">No se encontraron ofertas.</string>
     <string name="notification_check_prefs"></string>
@@ -72,4 +71,14 @@
     <string name="title_activity_maps">Mapa</string>
     <string name="title_activity_opinions">Opiniones</string>
     <string name="unfollow">Dejar de seguir</string>
+    <string name="comment_list_title">Otras opiniones:</string>
+    <string name="destination_not_found">Destino no encontrado</string>
+    <string name="error_opinion_send">Error enviando opinión</string>
+    <string name="from">desde</string>
+    <string name="ok_opinion_send">Opinión registrada satisfactoriamente</string>
+    <string name="origin_not_found">Origen no encontrado</string>
+    <string name="send_opinion">Enviar</string>
+    <string name="send_opinion_title">Enviar opinión de</string>
+    <string name="write_a_comment">Escribe un comentario</string>
+    <string name="write_comment_here">Escribe un comentario...</string>
 </resources>
