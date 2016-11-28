@@ -67,6 +67,8 @@
     <string name="from">from</string>
     <string name="origin_not_found">Origin not found</string>
     <string name="destination_not_found">Destination not found</string>
+    <string name="flight_info_title">Flight Information</string>
+    <string name="send_opinions_title">Send Opinion</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>

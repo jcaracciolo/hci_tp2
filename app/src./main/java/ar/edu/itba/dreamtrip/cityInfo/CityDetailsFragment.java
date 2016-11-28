@@ -19,6 +19,7 @@ public class CityDetailsFragment extends Fragment {
 
     public final static String RESULT_ID_KEY = "main_activity.go_to_info_id";
     public final static String INTENT_TO_DEALS_FROM = "ar.itba.edu.dreamtrip.deals_id";
+    public final static String INTENT_TO_DEALS_DESCR = "ar.itba.edu.dreamtrip.deals_descr";
 
     private OnFragmentInteractionListener mListener;
 
@@ -48,6 +49,7 @@ public class CityDetailsFragment extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), DealsFromActivity.class);
                 intent.putExtra(INTENT_TO_DEALS_FROM,id);
+                intent.putExtra(INTENT_TO_DEALS_DESCR, DataHolder.getInstance(getContext()).getCityById(id).getName());
                 startActivity(intent);
             }
 

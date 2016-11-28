@@ -27,6 +27,7 @@ public class CountryDetailsFragment extends Fragment {
 
     public final static String RESULT_ID_KEY = "main_activity.go_to_info_id";
     public final static String INTENT_TO_DEALS_FROM = "ar.itba.edu.dreamtrip.deals_id";
+    public final static String INTENT_TO_DEALS_DESCR = "ar.itba.edu.dreamtrip.deals_descr";
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -82,7 +83,7 @@ public class CountryDetailsFragment extends Fragment {
         ImageView img = (ImageView) v.findViewById(R.id.destination_icon);
         img.setImageResource(R.drawable.ic_place);
 
-        DataHolder dataHolder = DataHolder.getInstance(getActivity());
+        final DataHolder dataHolder = DataHolder.getInstance(getActivity());
         TextView text = (TextView) v.findViewById(R.id.destination_name);
         TextView destFrom = (TextView) v.findViewById(R.id.destinations_from_button);
         dataHolder.waitForIt(new LoadCountryInfoTask(getContext(), text, destFrom, id));
@@ -93,6 +94,7 @@ public class CountryDetailsFragment extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), DealsFromActivity.class);
                 intent.putExtra(INTENT_TO_DEALS_FROM,id);
+                intent.putExtra(INTENT_TO_DEALS_DESCR, dataHolder.getCountryById(id).getName());
                 startActivity(intent);
             }
 

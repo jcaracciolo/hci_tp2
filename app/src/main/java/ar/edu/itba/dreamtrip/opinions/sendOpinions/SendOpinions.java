@@ -65,6 +65,7 @@ public class SendOpinions extends AppCompatActivity {
 
         DataHolder dataHolder = DataHolder.getInstance(getBaseContext());
         dataHolder.waitForIt(new SendFlightReviewTask(getBaseContext(), review));
+        finish();
     }
 
     public void recommendFlight(View v) {
