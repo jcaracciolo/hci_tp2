@@ -4,9 +4,15 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
+import android.support.v4.graphics.ColorUtils;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ListView;
 
 import com.google.android.gms.maps.GoogleMap;
@@ -37,6 +43,7 @@ import ar.edu.itba.dreamtrip.common.API.DataHolder;
 import ar.edu.itba.dreamtrip.common.API.dependencies.DealLoadType;
 import ar.edu.itba.dreamtrip.common.API.dependencies.Dependency;
 import ar.edu.itba.dreamtrip.common.API.dependencies.DependencyType;
+import ar.edu.itba.dreamtrip.common.API.dependencies.FlightDealsDependency;
 import ar.edu.itba.dreamtrip.common.API.dependencies.TrackedFlightsDependency;
 import ar.edu.itba.dreamtrip.common.API.dependencies.TrackedLegsDependency;
 import ar.edu.itba.dreamtrip.common.model.Airport;
@@ -46,6 +53,7 @@ import ar.edu.itba.dreamtrip.common.model.Flight;
 import ar.edu.itba.dreamtrip.common.model.FlightState;
 import ar.edu.itba.dreamtrip.common.model.FlightStatus;
 import ar.edu.itba.dreamtrip.common.tasks.AsyncTaskInformed;
+import ar.edu.itba.dreamtrip.flightInfo.FlightInfo;
 
 /**
  * Created by juanfra on 26/11/16.
@@ -79,10 +87,24 @@ public class PopulateMaps extends AsyncTaskInformed<Object,Void,ArrayList<Collec
 
     public HashMap<MarkerOptions,Trace> animated=new HashMap<>();
 
-    public PopulateMaps(Context context, GoogleMap map, LatLng location) {
+    CheckBox cbAirpots;
+    CheckBox cbCities;
+    CheckBox cbFlights;
+    CheckBox cbDeals;
+
+    public PopulateMaps(Context context, GoogleMap map,LatLng location,AppCompatActivity view) {
         this.context = context;
         this.map = map;
-        this.location = location;
+        this.location=location;
+        cbAirpots=(CheckBox)view.findViewById(R.id.airport_check);
+        cbCities=(CheckBox)view.findViewById(R.id.cities_check);
+        cbFlights=(CheckBox)view.findViewById(R.id.tracked_flights_check);
+        cbDeals=(CheckBox)view.findViewById(R.id.deals_check);
+
+        cbAirpots.setEnabled(false);
+        cbCities.setEnabled(false);
+        cbDeals.setEnabled(false);
+        cbFlights.setEnabled(false);
     }
 
     @Override
@@ -91,6 +113,7 @@ public class PopulateMaps extends AsyncTaskInformed<Object,Void,ArrayList<Collec
         dependencies.add(new Dependency(DependencyType.AIRPORTS));
         dependencies.add(new Dependency(DependencyType.CITIES));
         dependencies.add(new TrackedFlightsDependency(context,5));
+        dependencies.add(new TrackedLegsDependency(context,true, DealLoadType.LAST_MINUTE_DEALS));
         return dependencies;
     }
 
@@ -101,22 +124,25 @@ public class PopulateMaps extends AsyncTaskInformed<Object,Void,ArrayList<Collec
         ArrayList<Collection<? extends Object>> ans = new ArrayList<>();
         ans.add(dataHolder.getAirports());
         ans.add(dataHolder.getCities());
-        ans.add(dataHolder.getFlightStates());
-
+        ans.add(dataHolder.getTrackedFlightStates());
+        ans.add(dataHolder.getTrackedDeals());
         return ans;
     }
 
     @Override
     protected void onPostExecute(ArrayList<Collection<? extends Object>> arrayLists) {
-        Collection<Airport> airports = (Collection<Airport>)arrayLists.get(0);
+        final Collection<Airport> airports = (Collection<Airport>)arrayLists.get(0);
         Collection<City> cities = (Collection<City>)arrayLists.get(1);
         Collection<FlightState> flights = (Collection<FlightState>)arrayLists.get(2);
+        Collection<Deal> deals = (Collection<Deal>)arrayLists.get(3);
+
+        DataHolder data= DataHolder.getInstance(context);
 
         for (Airport a: airports) {
             MarkerOptions marker = new MarkerOptions().position(new LatLng(a.getLocation().getLatitude(),a.getLocation().getLongitude()));
             marker.title(a.getName());
             marker.icon(getMarkerIconFromDrawable(context.getDrawable(R.drawable.ic_place),1.5));
-            jumper.put(a.getName(),new ToNewActivity(AirportInfo.class,context,a.getID(),RESULT_ID_KEY));
+            jumper.put(marker.getTitle(),new ToNewActivity(AirportInfo.class,context,a.getID(),RESULT_ID_KEY));
             mOpAirports.add(marker);
         }
 
@@ -124,11 +150,9 @@ public class PopulateMaps extends AsyncTaskInformed<Object,Void,ArrayList<Collec
             MarkerOptions marker = new MarkerOptions().position(new LatLng(c.getLocation().getLatitude(),c.getLocation().getLongitude()));
             marker.title(c.getName());
             marker.icon(getMarkerIconFromDrawable(context.getDrawable(R.drawable.ic_city),0.5));
-            jumper.put(c.getName(),new ToNewActivity(CityInfo.class,context,c.getID(),RESULT_ID_KEY));
+            jumper.put(marker.getTitle(),new ToNewActivity(CityInfo.class,context,c.getID(),RESULT_ID_KEY));
             mOpCities.add(marker);
         }
-
-        DataHolder data= DataHolder.getInstance(context);
 
         for(FlightState f: flights){
             Airport origin=data.getAirportById(f.getOrigin().getLocationID());
@@ -138,7 +162,7 @@ public class PopulateMaps extends AsyncTaskInformed<Object,Void,ArrayList<Collec
 
             PolylineOptions route = new PolylineOptions().add(origLat).add(destLat);
             route.color(TrackedFlightCardView.getColor(context,f.getStatus()));
-            map.addPolyline(route);
+            lOpFLights.add(route);
 
             MarkerOptions marker = new MarkerOptions();
             double percentage=getPercentage(f.getStatus());
@@ -147,12 +171,42 @@ public class PopulateMaps extends AsyncTaskInformed<Object,Void,ArrayList<Collec
             marker.title(f.getIdentifier());
             marker.anchor(0.5f,0.5f);
             marker.icon(getMarkerIconFromDrawable(context.getDrawable(R.drawable.ic_airplane_l),1.5));
-            jumper.put(f.getIdentifier(),new ToNewActivity(AirportInfo.class,context,f.getIdentifier(),RESULT_ID_KEY));
+            jumper.put(marker.getTitle(),new ToNewActivity(FlightInfo.class,context,f.getIdentifier(),RESULT_ID_KEY));
             mOpFLights.add(marker);
 
             if(f.getStatus()==FlightStatus.ACTIVE){
                 animated.put(marker,new Trace(origLat,destLat));
             }
+        }
+
+        double maxPrice=1;
+        if(!deals.isEmpty()){
+            maxPrice=Collections.max(deals, new Comparator<Deal>() {
+                @Override
+                public int compare(Deal d1, Deal d2) {
+                    return Double.compare(d1.getPrice(),d2.getPrice());
+                }
+            }).getPrice();
+        }
+
+        for(Deal d: deals) {
+            Airport origin = data.getAirportById(d.getOriginCityID());
+            Airport dest = data.getAirportById(d.getDestinationCityID());
+            LatLng origLat = latLng(origin.getLocation());
+            LatLng destLat = latLng(dest.getLocation());
+
+            PolylineOptions route = new PolylineOptions().add(origLat).add(destLat);
+            route.color(getDealColor(d.getPrice() / maxPrice));
+            lOpDeals.add(route);
+
+            MarkerOptions marker = new MarkerOptions();
+            marker.position(destLat);
+            marker.title(d.getDestinationDescription());
+            marker.anchor(0.5f, 0.5f);
+            marker.icon(getMarkerIconFromDrawable(context.getDrawable(R.drawable.ic_city), 0.5));
+            mOpDeals.add(marker);
+            animated.put(marker, new Trace(origLat, destLat));
+            jumper.put(marker.getTitle(),new ToNewActivity(CityInfo.class,context,d.getDestinationCityID(),RESULT_ID_KEY));
         }
 
         map.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
@@ -161,6 +215,73 @@ public class PopulateMaps extends AsyncTaskInformed<Object,Void,ArrayList<Collec
                 jumper.get(marker.getTitle()).jump();
             }
         });
+
+        cbAirpots.setEnabled(true);
+        cbCities.setEnabled(true);
+        cbDeals.setEnabled(true);
+        cbFlights.setEnabled(true);
+
+        cbAirpots.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView,
+                                         boolean isChecked) {
+                if(isChecked){
+                    addMarkers(mOpAirports,mAirports);
+                }else{
+                    deleteMarkers(mAirports);
+                }
+            }
+        });
+
+        cbCities.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView,
+                                         boolean isChecked) {
+                if(isChecked){
+                    addMarkers(mOpCities,mCities);
+                }else{
+                    deleteMarkers(mCities);
+                }
+            }
+        });
+
+        cbFlights.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView,
+                                         boolean isChecked) {
+                if(isChecked){
+                    addMarkers(mOpFLights,mFLights);
+                    addLines(lOpFLights,lFLights);
+                }else{
+                    deleteMarkers(mFLights);
+                    deleteLines(lFLights);
+                }
+            }
+        });
+
+        cbDeals.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView,
+                                         boolean isChecked) {
+                if(isChecked){
+                    addMarkers(mOpDeals,mDeals);
+                    addLines(lOpDeals,lDeals);
+                }else{
+                    deleteMarkers(mDeals);
+                    deleteLines(lDeals);
+                }
+            }
+        });
+
+
+        cbCities.toggle();
+        cbAirpots.toggle();
+        cbDeals.toggle();
+        cbFlights.toggle();
     }
 
     public void deleteMarkers(Collection<Marker> markers){
@@ -245,6 +366,14 @@ public class PopulateMaps extends AsyncTaskInformed<Object,Void,ArrayList<Collec
             this.orig = orig;
             this.dest = dest;
         }
+    }
+
+    public Integer getDealColor(double percentage){
+        float hsl[]=new float[3];
+        hsl[0] = (float)Math.floor((100 - percentage*100) * 120 / 100.0);  // go from green to red
+        hsl[1] = (float)Math.abs(percentage*100 - 50)/50.0f;   // fade to white as it approaches 50
+        hsl[2] = 100;
+        return ColorUtils.HSLToColor(hsl);
     }
 
 }

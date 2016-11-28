@@ -5,12 +5,14 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.os.Bundle;
+import android.support.v4.graphics.ColorUtils;
 import android.support.v7.app.AlertDialog;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -36,6 +38,8 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 
 import ar.edu.itba.dreamtrip.R;
 import ar.edu.itba.dreamtrip.TrackedDestinations.PopulateLegTrackers;
@@ -49,7 +53,7 @@ public class MapsActivity extends BaseActivity implements OnMapReadyCallback,Loc
     private String provider;
     private static final int MY_PERMISSIONS_REQUEST_FINE_LOCATION = 1;
     private boolean moved=false;
-
+    private PopulateMaps populator;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +66,17 @@ public class MapsActivity extends BaseActivity implements OnMapReadyCallback,Loc
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(populator!=null){
+            populator.cbCities.toggle();
+            populator.cbAirpots.toggle();
+            populator.cbDeals.toggle();
+            populator.cbFlights.toggle();
+        }
     }
 
     @Override
@@ -130,7 +145,8 @@ public class MapsActivity extends BaseActivity implements OnMapReadyCallback,Loc
 
     void fillMap(LatLng lastLatLng){
         final DataHolder dataholder = DataHolder.getInstance(getBaseContext());
-        dataholder.waitForIt(new PopulateMaps(getBaseContext(),mMap,lastLatLng));
+        populator=new PopulateMaps(getBaseContext(),mMap,lastLatLng,this);
+        dataholder.waitForIt(populator);
     }
 
     void getProvider() {
@@ -201,4 +217,5 @@ public class MapsActivity extends BaseActivity implements OnMapReadyCallback,Loc
 
         }
     }
+
 }
