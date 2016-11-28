@@ -69,6 +69,11 @@
     <string name="destination_not_found">Destination not found</string>
     <string name="flight_info_title">Flight Information</string>
     <string name="send_opinions_title">Send Opinion</string>
+    <string name="airports">Airports</string>
+    <string name="cities">Cities</string>
+    <string name="tracked_flights">Tracked Flights</string>
+    <string name="deals">Deals</string>
+    <string name="filters">Filters</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>

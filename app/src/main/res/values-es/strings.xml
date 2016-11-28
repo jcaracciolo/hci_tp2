@@ -85,4 +85,9 @@
     <string name="incorrect_flight_number">Número de vuelo incorrecto</string>
     <string name="flight_info_title">Información de vuelo</string>
     <string name="recommend">Recomendado:</string>
+    <string name="airports">Aeropuertos</string>
+    <string name="cities">Ciudades</string>
+    <string name="deals">Ofertas</string>
+    <string name="filters">Filtros</string>
+    <string name="tracked_flights">Vuelos Seguidos</string>
 </resources>

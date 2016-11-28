@@ -96,7 +96,7 @@ public class AirportDetailsFragment extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), DealsFromActivity.class);
                 intent.putExtra(INTENT_TO_DEALS_FROM,id);
-                intent.putExtra(INTENT_TO_DEALS_DESCR, DataHolder.getInstance(getContext()).getAirportById(id).getName());
+                intent.putExtra(INTENT_TO_DEALS_DESCR, DataHolder.getInstance(getContext()).getAirportById(id).getID());
                 startActivity(intent);
             }
 

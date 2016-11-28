@@ -49,7 +49,7 @@ public class CityDetailsFragment extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), DealsFromActivity.class);
                 intent.putExtra(INTENT_TO_DEALS_FROM,id);
-                intent.putExtra(INTENT_TO_DEALS_DESCR, DataHolder.getInstance(getContext()).getCityById(id).getName());
+                intent.putExtra(INTENT_TO_DEALS_DESCR, DataHolder.getInstance(getContext()).getCityById(id).getName().split(",")[0]);
                 startActivity(intent);
             }
 

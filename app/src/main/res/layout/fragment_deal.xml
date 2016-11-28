@@ -25,7 +25,7 @@
             android:layout_margin="5dp"
             android:padding="3dp"
             android:textColor="#FFFFFF"
-            android:background="#55000000"
+            android:background="@color/translucid_black"
             android:text="$9999"
             android:textSize="16dp"/>
 
@@ -39,7 +39,7 @@
             android:padding="3dp"
             android:textAlignment="textEnd"
             android:textColor="#FFFFFF"
-            android:background="#55000000"
+            android:background="@color/translucid_black"
             android:text="Very long city name in a deal card"/>
 
         <Button

@@ -12,4 +12,5 @@
     <color name="status_red">#FF5C5C</color>
     <color name="status_orange">#FFA05C</color>
     <color name="black">#000000</color>
+    <color name="translucid_black">#55000000</color>
 </resources>
