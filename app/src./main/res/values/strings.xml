@@ -53,6 +53,15 @@
     <string name="unfollow">Unfollow</string>
     <string name="origin_to_track">Origin</string>
     <string name="destination_to_track">Destination</string>
+    <string name="write_a_comment">Write a comment</string>
+    <string name="send_opinion">Send</string>
+    <string name="write_comment_here">Write comment here...</string>
+    <string name="recommend">Recommend:</string>
+    <string name="send_opinion_title">Send opinion of</string>
+    <string name="incorrect_flight_number">Incorrect flight number</string>
+    <string name="error_opinion_send">Error sending opinion</string>
+    <string name="ok_opinion_send">Opinion successfully registered</string>
+    <string name="comment_list_title">Other opinions:</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>

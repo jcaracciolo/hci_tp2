@@ -1,5 +1,6 @@
 package ar.edu.itba.dreamtrip.opinions;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -10,9 +11,13 @@ import android.widget.RatingBar;
 import ar.edu.itba.dreamtrip.R;
 import ar.edu.itba.dreamtrip.common.API.DataHolder;
 import ar.edu.itba.dreamtrip.main.BaseActivity;
+import ar.edu.itba.dreamtrip.opinions.sendOpinions.SendOpinions;
 
 public class Opinions extends BaseActivity {
     public final static String FROM_AIRLINE_INFO_KEY = "airline_id_to_opinion";
+    public final static String SEND_AIRLINE_ID_GIVE_OPINIONS = "airline_id_to_give_opinion";
+
+    String airlineID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,12 +30,21 @@ public class Opinions extends BaseActivity {
         View header = getLayoutInflater().inflate(R.layout.layout_review_detail, null);
         list.addHeaderView(header);
 
-        String airlineID = getIntent().getExtras().getString(FROM_AIRLINE_INFO_KEY);
+        airlineID = getIntent().getExtras().getString(FROM_AIRLINE_INFO_KEY);
 
         RatingsView ratingsView = fillRatingsView();
 
         DataHolder dataHolder = DataHolder.getInstance(this);
         dataHolder.waitForIt(new LoadAllAirlineRatingTask(this, airlineID, ratingsView));
+
+        findViewById(R.id.give_opinion_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getBaseContext(), SendOpinions.class);
+                intent.putExtra(SEND_AIRLINE_ID_GIVE_OPINIONS, airlineID);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

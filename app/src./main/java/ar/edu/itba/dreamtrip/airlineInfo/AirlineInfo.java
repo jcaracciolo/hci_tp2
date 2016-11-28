@@ -2,6 +2,7 @@ package ar.edu.itba.dreamtrip.airlineInfo;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -14,6 +15,10 @@ import ar.edu.itba.dreamtrip.common.API.DataHolder;
 import ar.edu.itba.dreamtrip.flightInfo.FlightInfo;
 import ar.edu.itba.dreamtrip.main.BaseActivity;
 import ar.edu.itba.dreamtrip.opinions.Opinions;
+import ar.edu.itba.dreamtrip.opinions.sendOpinions.SendOpinions;
+
+import static android.R.attr.data;
+import static android.R.attr.start;
 
 public class AirlineInfo extends BaseActivity {
 

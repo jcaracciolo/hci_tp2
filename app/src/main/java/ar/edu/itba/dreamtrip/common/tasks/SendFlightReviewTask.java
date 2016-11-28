@@ -6,6 +6,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.HashSet;
 
+import ar.edu.itba.dreamtrip.R;
 import ar.edu.itba.dreamtrip.common.API.DataHolder;
 import ar.edu.itba.dreamtrip.common.API.dependencies.Dependency;
 import ar.edu.itba.dreamtrip.common.API.dependencies.FlightDependency;
@@ -21,7 +22,7 @@ import ar.edu.itba.dreamtrip.common.model.Review;
 public class SendFlightReviewTask extends AsyncTaskInformed<Object,Void,ArrayList<String>> {
     private Context context;
     private Review review;
-
+    private Boolean reviewRecievedCorrectly;
     public SendFlightReviewTask(Context context, Review review) {
         this.context = context;
         this.review = review;
@@ -38,13 +39,18 @@ public class SendFlightReviewTask extends AsyncTaskInformed<Object,Void,ArrayLis
     protected ArrayList<String> doInBackground(Object... params) {
         DataHolder dataHolder = (DataHolder) params[0];
         ArrayList<String> strings = new ArrayList<>();
-        Boolean reviewRecievedCorrectly = dataHolder.lastReviewValid();
+        reviewRecievedCorrectly = dataHolder.lastReviewValid();
 
         return strings;
     }
 
     @Override
     protected void onPostExecute(ArrayList<String> result) {
+        if (!reviewRecievedCorrectly) {
+            Toast.makeText(context, context.getResources().getString(R.string.error_opinion_send), Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, context.getResources().getString(R.string.ok_opinion_send), Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void toast(String str) {
