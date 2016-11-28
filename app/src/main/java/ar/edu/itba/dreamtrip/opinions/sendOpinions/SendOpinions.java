@@ -29,8 +29,16 @@ public class SendOpinions extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_send_opinions);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         airlineID = getIntent().getExtras().getString(AIRLINE_ID_GIVE_OPINIONS);
 
+    }
+
+    @Override
+    public boolean onSupportNavigateUp(){
+        finish();
+        return true;
     }
 
     public void sendOpinion(View v) {

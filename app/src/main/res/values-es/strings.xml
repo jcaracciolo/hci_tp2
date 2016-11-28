@@ -81,4 +81,8 @@
     <string name="send_opinion_title">Enviar opinión de</string>
     <string name="write_a_comment">Escribe un comentario</string>
     <string name="write_comment_here">Escribe un comentario...</string>
+    <string name="send_opinions_title">Enviar opinión</string>
+    <string name="incorrect_flight_number">Número de vuelo incorrecto</string>
+    <string name="flight_info_title">Información de vuelo</string>
+    <string name="recommend">Recomendado:</string>
 </resources>
