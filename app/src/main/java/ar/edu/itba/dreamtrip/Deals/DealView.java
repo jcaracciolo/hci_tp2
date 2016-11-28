@@ -31,7 +31,7 @@ public class DealView {
         ((TextView)dealView.findViewById(R.id.deal_price)).setText(deal.price.toString());
         ImageButton destButton=((ImageButton)dealView.findViewById(R.id.deal_img));
         final DataHolder dataholder = DataHolder.getInstance(context);
-        dataholder.loadImageIntoView(destButton,deal.image);
+        dataholder.loadDealsImageIntoView(destButton,deal.to);
         destButton.setTag(deal.idTo);
         destButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -12,6 +12,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.ImageRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -379,7 +382,26 @@ public class DataHolder {
 
     public boolean loadDealsImageIntoView(final ImageView imageView, final String description){
         if(description != null && imageView != null){
+            String url = "https://api.flickr.com/services/rest/?method=flickr.photos.search" +
+                    "&api_key=" + "9d6b40067159b728b85feeaac2bf7f6f" +
+                    "&tags=landscape" +
+                    "&text=" + description.replace(' ', '+') +
+                    "&sort=interestingness-desc&format=json&nojsoncallback=1";
 
+            JsonObjectRequest jsObjRequest = new JsonObjectRequest
+                    (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            String imageUrl = JSONParser.parseFlickerImageUrl(response);
+                            loadImageIntoView(imageView,imageUrl);
+                        }
+                    }, new Response.ErrorListener() {
+
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                        }
+                    });
+            dataHolder.addToVolleyQueue(jsObjRequest);
         }
         return false;
     }

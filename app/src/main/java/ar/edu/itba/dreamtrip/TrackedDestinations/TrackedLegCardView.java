@@ -173,7 +173,7 @@ public class TrackedLegCardView {
 
         ImageView destImage=((ImageView)cardView.findViewById(R.id.destination_img));
         final DataHolder dataholder = DataHolder.getInstance(context);
-        dataholder.loadImageIntoView(destImage,leg.image);
+        dataholder.loadDealsImageIntoView(destImage,leg.destinationDescription);
 
         ((TextView)cardView.findViewById(R.id.from_destination)).setText(leg.originDescription);
         if(leg.isLastMinute){
