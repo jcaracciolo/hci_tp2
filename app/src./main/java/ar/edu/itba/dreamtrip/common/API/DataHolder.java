@@ -59,17 +59,17 @@ public class DataHolder {
     private VolleyRequestQueue queue ;
     private static DataHolder dataHolder;
 
+    private HashMap<String,String> flickrImageUrls = new HashMap<>();
+    private HashMap<String , Bitmap> images =  new HashMap<>();
+
     private HashMap<String,Airline> airlines = new HashMap<>();
 
     private HashMap<Integer,Flight> flights = new HashMap<>();
-    private HashMap<Country,Flight> flightsFrom = new HashMap<>();
-    private HashMap<Country,Flight> flightsTo = new HashMap<>();
 
     private HashSet<Dependency> loaded = new HashSet<>();
     private HashSet<Dependency> requested = new HashSet<>();
     private HashSet<Dependency> waiting = new HashSet<>();
 
-    private HashMap<String , Bitmap> images =  new HashMap<>();
 
     private ConcurrentHashMap<HashSet<Dependency>, ArrayList<AsyncTask>> tasks = new ConcurrentHashMap<>();
 
@@ -271,14 +271,6 @@ public class DataHolder {
         return false;
     }
 
-    private void setImage(ImageDependency imageDependency, Bitmap bitmap){
-        images.put(imageDependency.getUrl(),bitmap);
-        switch (imageDependency.getImageType()){
-            case AIRLINE_LOGO:
-                getAirlineByUrl(imageDependency.getUrl()).setLogo(bitmap);
-                break;
-        }
-    }
 
     private ArrayList<HashSet<Dependency>> getDependenciesWithDependencies(Dependency dependency) {
         ArrayList<Dependency> dependencies = new ArrayList<>();
@@ -382,6 +374,9 @@ public class DataHolder {
 
     public boolean loadDealsImageIntoView(final ImageView imageView, final String description){
         if(description != null && imageView != null){
+            if(flickrImageUrls.containsKey(description)){
+               return loadImageIntoView(imageView,flickrImageUrls.get(description));
+            }
             String url = "https://api.flickr.com/services/rest/?method=flickr.photos.search" +
                     "&api_key=" + "9d6b40067159b728b85feeaac2bf7f6f" +
                     "&tags=landscape" +
@@ -393,6 +388,7 @@ public class DataHolder {
                         @Override
                         public void onResponse(JSONObject response) {
                             String imageUrl = JSONParser.parseFlickerImageUrl(response);
+                            flickrImageUrls.put(description,imageUrl);
                             loadImageIntoView(imageView,imageUrl);
                         }
                     }, new Response.ErrorListener() {
@@ -407,11 +403,17 @@ public class DataHolder {
     }
 
     public boolean loadImageIntoView(final ImageView imageView, final String url){
-        if(url == null) throw new RuntimeException("Null url trying lo load image");
+
+        if(imageView == null || url == null) return false;
+        if(images.containsKey(url)){
+            imageView.setBackground(new BitmapDrawable(context.getResources(),images.get(url)));
+            return true;
+        }
         ImageRequest request = new ImageRequest(url,
                 new Response.Listener<Bitmap>() {
                     @Override
                     public void onResponse(Bitmap bitmap) {
+                        images.put(url,bitmap);
                         imageView.setBackground(new BitmapDrawable(context.getResources(),bitmap));
                         return;
                     }
