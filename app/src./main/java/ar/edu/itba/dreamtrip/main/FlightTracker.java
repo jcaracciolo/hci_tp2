@@ -21,6 +21,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.games.GameEntity;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -31,6 +32,7 @@ import ar.edu.itba.dreamtrip.common.API.DataHolder;
 import ar.edu.itba.dreamtrip.common.API.SettingsManager;
 import ar.edu.itba.dreamtrip.common.Tester;
 import ar.edu.itba.dreamtrip.common.model.Deal;
+import ar.edu.itba.dreamtrip.common.model.MyCurrency;
 import ar.edu.itba.dreamtrip.common.model.Review;
 import ar.edu.itba.dreamtrip.common.notifications.TrackedChangesManager;
 import ar.edu.itba.dreamtrip.common.tasks.SendFlightReviewTask;
@@ -112,9 +114,11 @@ public class FlightTracker extends BaseActivity {
             }
         });
         viewPager.setCurrentItem(selectedTab);
-        //SettingsManager.getInstance(getApplicationContext()).clearAllTracked();
+        //SettingsManager.getInstance(getApplicationContext()).clearAllTracked();\
         TrackedChangesManager.getInstance(getApplicationContext()).setupChecks();
-//        Review review = new Review("CM", 360,1,2,3,4,5,6,7,true,"Test review  please ignore");
+        SettingsManager.getInstance(getApplicationContext()).setFlightNotifications(true);
+//        SettingsManager.getInstance(getApplicationContext()).setPreferedCurrency(new MyCurrency("ARS","as","$ARS",0.065));
+//  Review review = new Review("CM", 360,1,2,3,4,5,6,7,true,"Test review  please ignore");
 //        DataHolder.getInstance(getApplicationContext()).waitForIt(new SendFlightReviewTask(getApplicationContext(),review));
 //        SettingsManager.getInstance(getApplicationContext()).trackLeg("EZE LON");
 //        Tester.testLenguageSettings(getApplicationContext());

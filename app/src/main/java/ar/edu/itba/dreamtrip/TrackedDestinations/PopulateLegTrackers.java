@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Currency;
 import java.util.Date;
 import java.util.HashSet;
 
@@ -20,6 +21,7 @@ import ar.edu.itba.dreamtrip.common.API.dependencies.TrackedFlightsDependency;
 import ar.edu.itba.dreamtrip.common.API.dependencies.TrackedLegsDependency;
 import ar.edu.itba.dreamtrip.common.model.Deal;
 import ar.edu.itba.dreamtrip.common.model.FlightState;
+import ar.edu.itba.dreamtrip.common.model.MyCurrency;
 import ar.edu.itba.dreamtrip.common.model.StatusSearch;
 import ar.edu.itba.dreamtrip.common.tasks.AsyncTaskInformed;
 
@@ -41,6 +43,7 @@ public class PopulateLegTrackers extends AsyncTaskInformed<Object,Void,ArrayList
     @Override
     public HashSet<Dependency> getDependencies() {
         HashSet<Dependency> dependencies = new HashSet<>();
+        dependencies.add(new Dependency(DependencyType.CURRENCIES));
         dependencies.add(new TrackedLegsDependency(context,true, DealLoadType.BOTH_DEALS));
         return dependencies;
     }
@@ -52,8 +55,11 @@ public class PopulateLegTrackers extends AsyncTaskInformed<Object,Void,ArrayList
 
         Collection<Deal> deals = dataHolder.getTrackedDeals();
 
+        String preferredCurrencyID = SettingsManager.getInstance(context).getPreferredCurrencyID();
+        MyCurrency preferredCurrency = dataHolder.getCurrencyByID(preferredCurrencyID);
+
         for(Deal deal: deals){
-            dealCards.add(new TrackedLegViewModel(context,deal));
+            dealCards.add(new TrackedLegViewModel(context,deal,preferredCurrency));
         }
 
         Collections.sort(dealCards,new Comparator<TrackedLegViewModel>() {

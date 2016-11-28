@@ -15,6 +15,7 @@ import com.android.volley.toolbox.ImageRequest;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Currency;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -428,5 +429,10 @@ public class DataHolder {
             }
         }
         return validDeals;
+    }
+
+    public MyCurrency getCurrencyByID(String preferredCurrencyID) {
+        if(currencies.containsKey(preferredCurrencyID)) return currencies.get(preferredCurrencyID);
+        return null;
     }
 }

@@ -80,7 +80,7 @@ public class TrackedLegCardView {
         ((TextView)cardView.findViewById(R.id.from_destination)).setText(leg.originDescription);
         if(leg.isLastMinute){
             ((TextView)cardView.findViewById(R.id.offer_found)).setText(R.string.offer_found);
-            ((TextView)cardView.findViewById(R.id.price_tracked_destination)).setText(leg.price.toString());
+            ((TextView)cardView.findViewById(R.id.price_tracked_destination)).setText(leg.getFormatedPrice());
         }else{
             ((TextView)cardView.findViewById(R.id.offer_found)).setText(R.string.no_offer_found);
 
@@ -179,7 +179,7 @@ public class TrackedLegCardView {
         ((TextView)cardView.findViewById(R.id.from_destination)).setText(leg.originDescription);
         if(leg.isLastMinute){
             ((TextView)cardView.findViewById(R.id.offer_found)).setText(R.string.offer_found);
-            ((TextView)cardView.findViewById(R.id.price_tracked_destination)).setText(leg.price.toString());
+            ((TextView)cardView.findViewById(R.id.price_tracked_destination)).setText(leg.getFormatedPrice());
         }else {
             ((TextView) cardView.findViewById(R.id.offer_found)).setText(R.string.no_offer_found);
 

@@ -55,7 +55,7 @@ public class StatusDependency extends Dependency {
 
     @Override
     public String toString(){
-        return getDependencyType() + " " + flightIdentifier;
+        return getDependencyType() + " " + flightIdentifier ;
     }
 
     @Override

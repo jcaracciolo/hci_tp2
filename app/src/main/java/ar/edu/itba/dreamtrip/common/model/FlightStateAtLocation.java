@@ -46,7 +46,7 @@ public class FlightStateAtLocation {
     }
 
     public String getScheduledHour(){
-        SimpleDateFormat format = new SimpleDateFormat("hh:mm");
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm");
         return format.format(scheduledTime);
     }
 
