@@ -63,7 +63,7 @@ public class TrackedLegFragment extends ListFragment {
         super.onResume();
         final DataHolder dataholder = DataHolder.getInstance(getContext());
         dataholder.waitForIt(new PopulateLegTrackers(getContext(), getListView()));
-        getActivity().registerReceiver(listUpdater,new IntentFilter(getContext().getString(R.string.UpdateTrackedDeals)));
+        getContext().registerReceiver(listUpdater,new IntentFilter(getContext().getString(R.string.UpdateTrackedDeals)));
         if(getListView().getAdapter()!=null){
             ((TrackedLegCardAdapter)getListView().getAdapter()).register();
         }
@@ -101,11 +101,12 @@ public class TrackedLegFragment extends ListFragment {
     @Override
     public void onPause(){
         super.onPause();
-        getActivity().unregisterReceiver(listUpdater);
         if(getListView().getAdapter()!=null){
             ((TrackedLegCardAdapter)getListView().getAdapter()).unregister();
         }
         isActive = false;
+
+        getContext().unregisterReceiver(listUpdater);
 
     }
 

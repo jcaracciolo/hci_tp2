@@ -44,6 +44,7 @@ import ar.edu.itba.dreamtrip.common.notifications.TrackedChangesManager;
 import ar.edu.itba.dreamtrip.common.tasks.PopulateAutocompleteTask;
 import ar.edu.itba.dreamtrip.common.tasks.SendFlightReviewTask;
 import ar.edu.itba.dreamtrip.common.tasks.TrackFlightTask;
+import ar.edu.itba.dreamtrip.common.tasks.TrackLegTask;
 import ar.edu.itba.dreamtrip.main.Adapter.PagerAdapter;
 
 public class FlightTracker extends BaseActivity {
@@ -238,7 +239,6 @@ public class FlightTracker extends BaseActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
                         toast("trying to track destination");
-                        //TODO: track selected
                         String originID = ((AutoCompleteTextView) dialogView.findViewById(R.id.origin_to_track)).getText().toString();
                         String destinationID = ((AutoCompleteTextView) dialogView.findViewById(R.id.destination_to_track)).getText().toString();
 
@@ -250,7 +250,6 @@ public class FlightTracker extends BaseActivity {
                             toast(getResources().getString(R.string.destination_not_found));
                             return;
                         }
-
                         boolean res=SettingsManager.getInstance(getBaseContext()).trackLeg(originID.substring(1,4) + " " + destinationID.substring(1,4));
 
                     }
