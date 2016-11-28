@@ -68,7 +68,6 @@ public class PopulateDealsMap extends AsyncTaskInformed<Object,Void,ArrayList<De
             dependencies.add(new Dependency(DependencyType.CITIES));
         }else {
             dependencies.add(new Dependency(DependencyType.AIRPORTS));
-
         }
         dependencies.add(new FlightDealsDependency(originID,false, false));
 

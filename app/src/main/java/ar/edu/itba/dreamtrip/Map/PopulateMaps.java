@@ -85,7 +85,7 @@ public class PopulateMaps extends AsyncTaskInformed<Object,Void,ArrayList<Collec
 
     public HashMap<String,ToNewActivity> jumper=new HashMap<>();
 
-    public HashMap<MarkerOptions,Trace> animated=new HashMap<>();
+    public HashMap<String,Trace> animated=new HashMap<>();
 
     CheckBox cbAirpots;
     CheckBox cbCities;
@@ -175,13 +175,21 @@ public class PopulateMaps extends AsyncTaskInformed<Object,Void,ArrayList<Collec
             mOpFLights.add(marker);
 
             if(f.getStatus()==FlightStatus.ACTIVE){
-                animated.put(marker,new Trace(origLat,destLat));
+                animated.put(marker.getTitle(),new Trace(origLat,destLat));
             }
         }
 
         double maxPrice=1;
+        double minPrice=1;
         if(!deals.isEmpty()){
             maxPrice=Collections.max(deals, new Comparator<Deal>() {
+                @Override
+                public int compare(Deal d1, Deal d2) {
+                    return Double.compare(d1.getPrice(),d2.getPrice());
+                }
+            }).getPrice();
+
+            minPrice=Collections.min(deals, new Comparator<Deal>() {
                 @Override
                 public int compare(Deal d1, Deal d2) {
                     return Double.compare(d1.getPrice(),d2.getPrice());
@@ -190,13 +198,18 @@ public class PopulateMaps extends AsyncTaskInformed<Object,Void,ArrayList<Collec
         }
 
         for(Deal d: deals) {
-            Airport origin = data.getAirportById(d.getOriginCityID());
-            Airport dest = data.getAirportById(d.getDestinationCityID());
+            City origin = data.getCityById(d.getOriginCityID());
+            City dest = data.getCityById(d.getDestinationCityID());
             LatLng origLat = latLng(origin.getLocation());
             LatLng destLat = latLng(dest.getLocation());
 
             PolylineOptions route = new PolylineOptions().add(origLat).add(destLat);
-            route.color(getDealColor(d.getPrice() / maxPrice));
+            route.width(1f);
+            if(maxPrice!=minPrice) {
+                route.color(getDealColor((maxPrice - d.getPrice()) / (maxPrice - minPrice)));
+            }else{
+                route.color(Color.rgb(0,255,0));
+            }
             lOpDeals.add(route);
 
             MarkerOptions marker = new MarkerOptions();
@@ -205,7 +218,6 @@ public class PopulateMaps extends AsyncTaskInformed<Object,Void,ArrayList<Collec
             marker.anchor(0.5f, 0.5f);
             marker.icon(getMarkerIconFromDrawable(context.getDrawable(R.drawable.ic_city), 0.5));
             mOpDeals.add(marker);
-            animated.put(marker, new Trace(origLat, destLat));
             jumper.put(marker.getTitle(),new ToNewActivity(CityInfo.class,context,d.getDestinationCityID(),RESULT_ID_KEY));
         }
 
@@ -295,7 +307,7 @@ public class PopulateMaps extends AsyncTaskInformed<Object,Void,ArrayList<Collec
         for(MarkerOptions o: moptions){
             Marker m=map.addMarker(o);
             markers.add(m);
-            Trace t=animated.get(o);
+            Trace t=animated.get(o.getTitle());
             if(t!=null){
                 m.showInfoWindow();
                 m.setRotation((float) SphericalUtil.computeHeading(t.orig, t.dest));
@@ -371,8 +383,9 @@ public class PopulateMaps extends AsyncTaskInformed<Object,Void,ArrayList<Collec
     public Integer getDealColor(double percentage){
         float hsl[]=new float[3];
         hsl[0] = (float)Math.floor((100 - percentage*100) * 120 / 100.0);  // go from green to red
-        hsl[1] = (float)Math.abs(percentage*100 - 50)/50.0f;   // fade to white as it approaches 50
-        hsl[2] = 100;
+        hsl[1] = 0.6f;   // fade to white as it approaches 50
+        hsl[2] = 0.5f;
+
         return ColorUtils.HSLToColor(hsl);
     }
 
