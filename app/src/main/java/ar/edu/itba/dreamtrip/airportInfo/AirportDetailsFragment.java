@@ -83,7 +83,7 @@ public class AirportDetailsFragment extends Fragment {
         System.out.println("id: " + id + ".");
 
         ImageView img = (ImageView) v.findViewById(R.id.destination_icon);
-        img.setImageResource(R.drawable.ic_flight);
+        img.setImageResource(R.mipmap.ic_airport);
         TextView text = (TextView) v.findViewById(R.id.destination_name);
         TextView destFrom = (TextView) v.findViewById(R.id.destinations_from_button);
 

@@ -70,11 +70,9 @@ public class ResultAdapter extends BaseAdapter {
         if (elem.getDepType() == DependencyType.CITIES) {
             return R.mipmap.ic_city;
         } else if (elem.getDepType() == DependencyType.AIRPORTS) {
-            return R.drawable.ic_flight;
+            return R.mipmap.ic_airport;
         } else if (elem.getDepType() == DependencyType.COUNTRIES) {
             return R.mipmap.ic_place;
-        } else if (elem.getDepType() == DependencyType.AIRPORTS) {
-            return R.drawable.ic_flight;
         } else if (elem.getDepType() == DependencyType.FLIGHT_SEARCH) {
             return R.drawable.ic_flight_takeoff;
         } else{

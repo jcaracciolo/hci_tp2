@@ -16,6 +16,32 @@
         android:src="@drawable/ic_add_l"
         android:onClick="addTrackedDestination"/>
 
+    <RelativeLayout
+        android:id="@+id/help_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:padding="50dp"
+            android:src="@drawable/curved_arrow" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/help_add_destinations"
+            android:textSize="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:paddingRight="30dp"
+            android:paddingBottom="250dp"/>
+    </RelativeLayout>
+
     <ProgressBar
         android:id="@+id/loading_trackers"
         android:layout_width="wrap_content"

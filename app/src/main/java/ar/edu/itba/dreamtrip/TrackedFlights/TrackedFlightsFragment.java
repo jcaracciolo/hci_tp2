@@ -52,7 +52,14 @@ public class TrackedFlightsFragment extends ListFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         progressBar = (ProgressBar) getView().findViewById(R.id.loading_trackers);
-        getListView().setEmptyView(progressBar);
+        View arrow = getView().findViewById(R.id.help_arrow);
+        if (SettingsManager.getInstance(getContext()).getTrackedFlights().size() > 0) {
+            getListView().setEmptyView(progressBar);
+            arrow.setVisibility(View.INVISIBLE);
+        } else {
+            progressBar.setVisibility(View.INVISIBLE);
+            arrow.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -64,11 +71,31 @@ public class TrackedFlightsFragment extends ListFragment {
         if(getListView().getAdapter()!=null){
             ((TrackedFlightCardAdapter)getListView().getAdapter()).register();
         }
+
+        progressBar = (ProgressBar) getView().findViewById(R.id.loading_trackers);
+        View arrow = getView().findViewById(R.id.help_arrow);
+        if (SettingsManager.getInstance(getContext()).getTrackedFlights().size() > 0) {
+            getListView().setEmptyView(progressBar);
+            arrow.setVisibility(View.INVISIBLE);
+        } else {
+            progressBar.setVisibility(View.INVISIBLE);
+            arrow.setVisibility(View.VISIBLE);
+        }
     }
 
     public void updateList() {
         final DataHolder dataholder = DataHolder.getInstance(getContext());
         dataholder.waitForIt(new PopulateFlightTrackers(getContext(), getListView()));
+
+        progressBar = (ProgressBar) getView().findViewById(R.id.loading_trackers);
+        View arrow = getView().findViewById(R.id.help_arrow);
+        if (SettingsManager.getInstance(getContext()).getTrackedFlights().size() > 0) {
+            getListView().setEmptyView(progressBar);
+            arrow.setVisibility(View.INVISIBLE);
+        } else {
+            progressBar.setVisibility(View.INVISIBLE);
+            arrow.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
