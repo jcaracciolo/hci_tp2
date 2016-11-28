@@ -283,6 +283,25 @@ public class SettingsManager {
 
         return sharedPref.getInt(identifier,1);
     }
+    public boolean setDealCheckInterval(Integer interval){
+        if(interval <= 2) return false;
+        String prefsString = context.getString(R.string.general_settings_pref);
+        String identifier = context.getString(R.string.general_settings_leg_check_interval);
+        SharedPreferences sharedPref = context.getSharedPreferences(prefsString, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+
+        editor.putInt(identifier,interval);
+        editor.apply();
+        return true;
+    }
+
+    public Integer getDealCheckInterval(){
+        String prefsString = context.getString(R.string.general_settings_pref);
+        String identifier = context.getString(R.string.general_settings_leg_check_interval);
+        SharedPreferences sharedPref = context.getSharedPreferences(prefsString, Context.MODE_PRIVATE);
+
+        return sharedPref.getInt(identifier,60 );
+    }
     public boolean setSavedLenguage(LenguageType lenguageType){
         if(lenguageType == null) return false;
         String prefsString = context.getString(R.string.general_settings_pref);

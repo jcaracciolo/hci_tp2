@@ -258,6 +258,9 @@ public class DataHolder {
         findDependencies();
     }
 
+    private boolean allDependenciesLoaded(HashSet<Dependency> dependencies){
+        return false;
+    }
 
     void handleNetworkError(VolleyError error, Dependency dependency){
         requested.remove(dependency);

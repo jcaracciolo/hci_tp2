@@ -31,12 +31,13 @@
         android:layout_below="@id/destination_icon"
         android:text="Destinations from&#xA;XYZ"/>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@id/destination_icon"
-        android:text="@string/subscription"/>
+    <!--<Button-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:id="@+id/susbscribe_destination_button"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_below="@id/destination_icon"-->
+        <!--android:text="@string/subscription"/>-->
 
     <Button
         android:layout_width="wrap_content"

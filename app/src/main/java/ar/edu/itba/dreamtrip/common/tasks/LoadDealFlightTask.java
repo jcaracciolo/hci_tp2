@@ -11,6 +11,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
 
+import ar.edu.itba.dreamtrip.R;
 import ar.edu.itba.dreamtrip.TrackedDestinations.TrackedLegViewModel;
 import ar.edu.itba.dreamtrip.cityInfo.CityInfo;
 import ar.edu.itba.dreamtrip.common.API.DataHolder;
@@ -38,6 +39,7 @@ public class LoadDealFlightTask extends AsyncTaskInformed<Object,Void,ArrayList<
     public LoadDealFlightTask(Context context, TrackedLegViewModel deal) {
         this.context = context;
         this.deal = deal;
+        toast(context.getString(R.string.loading_flight));
     }
 
     @Override

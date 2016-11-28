@@ -24,7 +24,7 @@
     <string name="enable">Activar</string>
     <string name="estimated_arr_time_txt">Horario estimado de llegada:</string>
     <string name="estimated_dep_time_txt">Horario estimado de salida:</string>
-    <string name="flight_status_txt">El vuelo es</string>
+    <string name="flight_status_txt">El vuelo esta</string>
     <string name="follow">Seguir</string>
     <string name="food">Comida</string>
     <string name="gate_txt">Puerta:</string>
