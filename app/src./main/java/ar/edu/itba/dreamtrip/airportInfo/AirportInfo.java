@@ -14,7 +14,6 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import ar.edu.itba.dreamtrip.R;
 import ar.edu.itba.dreamtrip.main.BaseActivity;
-import ar.edu.itba.dreamtrip.main.SetupActivity;
 
 public class AirportInfo extends BaseActivity implements AirportDetailsFragment.OnFragmentInteractionListener,OnMapReadyCallback {
 

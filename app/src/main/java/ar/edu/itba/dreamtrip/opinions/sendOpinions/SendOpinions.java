@@ -34,7 +34,7 @@ public class SendOpinions extends AppCompatActivity {
 
         airlineID = getIntent().getExtras().getString(AIRLINE_ID_GIVE_OPINIONS);
 
-        DataHolder.getInstance(getBaseContext()).waitForIt(new LoadAirlineNameTask(getBaseContext(), airlineID, (TextView)findViewById(R.id.send_opinion_title)));
+        DataHolder.getInstance(getBaseContext()).waitForIt(new LoadAirlineNameTask(getBaseContext(), airlineID, this));
 
     }
 

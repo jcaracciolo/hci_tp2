@@ -1,5 +1,6 @@
 package ar.edu.itba.dreamtrip.opinions.sendOpinions;
 
+import android.app.Activity;
 import android.content.Context;
 import android.widget.TextView;
 
@@ -18,12 +19,12 @@ public class LoadAirlineNameTask extends AsyncTaskInformed<Object,Void,Airline>{
 
     private Context context;
     private String id;
-    TextView title;
+    Activity activity;
 
-    public LoadAirlineNameTask(Context context, String id, TextView title) {
+    public LoadAirlineNameTask(Context context, String id, Activity activity) {
         this.context = context;
         this.id = id;
-        this.title = title;
+        this.activity = activity;
     }
 
     @Override
@@ -47,7 +48,7 @@ public class LoadAirlineNameTask extends AsyncTaskInformed<Object,Void,Airline>{
 
     @Override
     protected void onPostExecute(Airline a) {
-        title.setText(context.getResources().getString(R.string.send_opinions_of_title) + " " + a.getName());
+        activity.setTitle(context.getResources().getString(R.string.send_opinions_of_title) + " " + a.getName());
     }
 
 }

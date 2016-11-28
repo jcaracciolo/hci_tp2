@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import ar.edu.itba.dreamtrip.R;
 import ar.edu.itba.dreamtrip.common.API.DataHolder;
+import ar.edu.itba.dreamtrip.common.API.SettingsManager;
 
 import static ar.edu.itba.dreamtrip.common.API.dependencies.DependencyType.COUNTRIES;
 
@@ -68,11 +69,33 @@ public class TrackedLegFragment extends ListFragment {
         }
         isActive = true;
 
+        progressBar = (ProgressBar) getView().findViewById(R.id.loading_trackers);
+        View arrow = getView().findViewById(R.id.help_arrow);
+        if (SettingsManager.getInstance(getContext()).getTrackedLegs().size() > 0) {
+            getListView().setEmptyView(progressBar);
+            arrow.setVisibility(View.INVISIBLE);
+        } else {
+            getListView().setEmptyView(getView().findViewById(R.id.bullshit));
+            progressBar.setVisibility(View.INVISIBLE);
+            arrow.setVisibility(View.VISIBLE);
+        }
+
     }
 
     public void updateList() {
         final DataHolder dataholder = DataHolder.getInstance(getContext());
         dataholder.waitForIt(new PopulateLegTrackers(getContext(), getListView()));
+
+        progressBar = (ProgressBar) getView().findViewById(R.id.loading_trackers);
+        View arrow = getView().findViewById(R.id.help_arrow);
+        if (SettingsManager.getInstance(getContext()).getTrackedLegs().size() > 0) {
+            getListView().setEmptyView(progressBar);
+            arrow.setVisibility(View.INVISIBLE);
+        } else {
+            getListView().setEmptyView(getView().findViewById(R.id.bullshit));
+            progressBar.setVisibility(View.INVISIBLE);
+            arrow.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override

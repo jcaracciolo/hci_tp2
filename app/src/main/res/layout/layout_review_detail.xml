@@ -17,7 +17,7 @@
         android:id="@+id/give_opinion_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentLeft="true"
         android:layout_below="@id/opinions_title"
         android:text="@string/give_us_opinions" />
 

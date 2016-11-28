@@ -36,7 +36,7 @@ public class Opinions extends BaseActivity {
         RatingsView ratingsView = fillRatingsView();
 
         DataHolder dataHolder = DataHolder.getInstance(this);
-        dataHolder.waitForIt(new LoadAirlineNameTask(getBaseContext(), airlineID, (TextView)findViewById(R.id.opinions_title)));
+        dataHolder.waitForIt(new LoadAirlineNameTask(getBaseContext(), airlineID, this));
         dataHolder.waitForIt(new LoadAllAirlineRatingTask(this, airlineID, ratingsView));
 
         findViewById(R.id.give_opinion_btn).setOnClickListener(new View.OnClickListener() {

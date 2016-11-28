@@ -57,6 +57,7 @@ public class TrackedFlightsFragment extends ListFragment {
             getListView().setEmptyView(progressBar);
             arrow.setVisibility(View.INVISIBLE);
         } else {
+            getListView().setEmptyView(getView().findViewById(R.id.bullshit));
             progressBar.setVisibility(View.INVISIBLE);
             arrow.setVisibility(View.VISIBLE);
         }
@@ -78,6 +79,7 @@ public class TrackedFlightsFragment extends ListFragment {
             getListView().setEmptyView(progressBar);
             arrow.setVisibility(View.INVISIBLE);
         } else {
+            getListView().setEmptyView(getView().findViewById(R.id.bullshit));
             progressBar.setVisibility(View.INVISIBLE);
             arrow.setVisibility(View.VISIBLE);
         }
@@ -93,6 +95,7 @@ public class TrackedFlightsFragment extends ListFragment {
             getListView().setEmptyView(progressBar);
             arrow.setVisibility(View.INVISIBLE);
         } else {
+            getListView().setEmptyView(getView().findViewById(R.id.bullshit));
             progressBar.setVisibility(View.INVISIBLE);
             arrow.setVisibility(View.VISIBLE);
         }

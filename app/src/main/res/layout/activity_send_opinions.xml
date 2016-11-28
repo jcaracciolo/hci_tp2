@@ -11,16 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/send_opinion_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/send_opinion_title"
-            android:textSize="20dp"/>
-
         <View
             android:id="@+id/bullshit"
-            android:layout_below="@id/send_opinion_title"
             android:layout_width="50dp"
             android:layout_height="0dp"/>
 
@@ -30,7 +22,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_toRightOf="@id/bullshit"
-            android:layout_below="@id/send_opinion_title"
             android:hint="@string/hint_flight_number"/>
 
         <RelativeLayout
