@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
@@ -30,6 +31,7 @@ import ar.edu.itba.dreamtrip.common.API.SettingsManager;
 import ar.edu.itba.dreamtrip.common.notifications.TrackedChangesManager;
 import ar.edu.itba.dreamtrip.common.tasks.PopulateAutocompleteTask;
 import ar.edu.itba.dreamtrip.common.tasks.TrackFlightTask;
+import ar.edu.itba.dreamtrip.common.tasks.TrackLegTask;
 import ar.edu.itba.dreamtrip.main.Adapter.PagerAdapter;
 
 public class FlightTracker extends BaseActivity {
@@ -101,12 +103,8 @@ public class FlightTracker extends BaseActivity {
 
             }
         });
+
         viewPager.setCurrentItem(selectedTab);
-        //SettingsManager.getInstance(getApplicationContext()).clearAllTracked();\
-//        SettingsManager.getInstance(getApplicationContext()).clearAllTracked();
-                }
-            });
-            viewPager.setCurrentItem(selectedTab);
 
         TrackedChangesManager.getInstance(getApplicationContext()).setupChecks();
         SettingsManager.getInstance(getApplicationContext()).setFlightNotifications(true);
