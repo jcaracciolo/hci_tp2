@@ -31,6 +31,8 @@ import java.util.Objects;
 import ar.edu.itba.dreamtrip.R;
 import ar.edu.itba.dreamtrip.TrackedDestinations.TrackedLegViewModel;
 import ar.edu.itba.dreamtrip.TrackedFlights.TrackedFlightCardView;
+import ar.edu.itba.dreamtrip.airportInfo.AirportInfo;
+import ar.edu.itba.dreamtrip.cityInfo.CityInfo;
 import ar.edu.itba.dreamtrip.common.API.DataHolder;
 import ar.edu.itba.dreamtrip.common.API.dependencies.DealLoadType;
 import ar.edu.itba.dreamtrip.common.API.dependencies.Dependency;
@@ -51,6 +53,8 @@ import ar.edu.itba.dreamtrip.common.tasks.AsyncTaskInformed;
 
 public class PopulateMaps extends AsyncTaskInformed<Object,Void,ArrayList<Collection<? extends Object>>> {
 
+    public final static String RESULT_ID_KEY = "main_activity.go_to_info_id";
+
     public Context context;
     public GoogleMap map;
     public LatLng location;
@@ -70,6 +74,8 @@ public class PopulateMaps extends AsyncTaskInformed<Object,Void,ArrayList<Collec
 
     public Collection<Polyline> lFLights=new ArrayList<>();;
     public Collection<Polyline> lDeals=new ArrayList<>();
+
+    public HashMap<String,ToNewActivity> jumper=new HashMap<>();
 
     public HashMap<MarkerOptions,Trace> animated=new HashMap<>();
 
@@ -110,6 +116,7 @@ public class PopulateMaps extends AsyncTaskInformed<Object,Void,ArrayList<Collec
             MarkerOptions marker = new MarkerOptions().position(new LatLng(a.getLocation().getLatitude(),a.getLocation().getLongitude()));
             marker.title(a.getName());
             marker.icon(getMarkerIconFromDrawable(context.getDrawable(R.drawable.ic_place),1.5));
+            jumper.put(a.getName(),new ToNewActivity(AirportInfo.class,context,a.getID(),RESULT_ID_KEY));
             mOpAirports.add(marker);
         }
 
@@ -117,6 +124,7 @@ public class PopulateMaps extends AsyncTaskInformed<Object,Void,ArrayList<Collec
             MarkerOptions marker = new MarkerOptions().position(new LatLng(c.getLocation().getLatitude(),c.getLocation().getLongitude()));
             marker.title(c.getName());
             marker.icon(getMarkerIconFromDrawable(context.getDrawable(R.drawable.ic_city),0.5));
+            jumper.put(c.getName(),new ToNewActivity(CityInfo.class,context,c.getID(),RESULT_ID_KEY));
             mOpCities.add(marker);
         }
 
@@ -139,12 +147,20 @@ public class PopulateMaps extends AsyncTaskInformed<Object,Void,ArrayList<Collec
             marker.title(f.getIdentifier());
             marker.anchor(0.5f,0.5f);
             marker.icon(getMarkerIconFromDrawable(context.getDrawable(R.drawable.ic_airplane_l),1.5));
+            jumper.put(f.getIdentifier(),new ToNewActivity(AirportInfo.class,context,f.getIdentifier(),RESULT_ID_KEY));
             mOpFLights.add(marker);
 
             if(f.getStatus()==FlightStatus.ACTIVE){
                 animated.put(marker,new Trace(origLat,destLat));
             }
         }
+
+        map.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+                jumper.get(marker.getTitle()).jump();
+            }
+        });
     }
 
     public void deleteMarkers(Collection<Marker> markers){
