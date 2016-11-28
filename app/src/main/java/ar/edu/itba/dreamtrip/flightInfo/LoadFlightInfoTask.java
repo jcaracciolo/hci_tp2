@@ -63,6 +63,7 @@ public class LoadFlightInfoTask extends AsyncTaskInformed<Object, Void, Flight> 
         } else {
             duration.setText("");
         }
+
         cityOrigin.setText(f.getOrigin().getCity().getName().split(",")[0]);
         cityDestination.setText(f.getDestination().getCity().getName().split(",")[0]);
     }

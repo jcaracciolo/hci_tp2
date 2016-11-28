@@ -25,7 +25,9 @@ import ar.edu.itba.dreamtrip.Map.MapsActivity;
 import ar.edu.itba.dreamtrip.R;
 import ar.edu.itba.dreamtrip.airlineInfo.AirlineInfo;
 import ar.edu.itba.dreamtrip.airportInfo.AirportInfo;
+import ar.edu.itba.dreamtrip.cityInfo.CityDetailsFragment;
 import ar.edu.itba.dreamtrip.cityInfo.CityInfo;
+import ar.edu.itba.dreamtrip.cityInfo.FragmentCityInfo;
 import ar.edu.itba.dreamtrip.common.API.DataHolder;
 import ar.edu.itba.dreamtrip.common.model.Flight;
 import ar.edu.itba.dreamtrip.common.tasks.PopulateSearchResultsTask;
@@ -135,6 +137,8 @@ public class SearchTabletFragment extends Fragment {
                         intent = new Intent(getActivity(), AirlineInfo.class);
                         View v = LayoutInflater.from(getContext()).inflate(R.layout.fragment_airline_info, null);
                         ((RelativeLayout)getView().findViewById(R.id.result_side)).addView(v);
+                        getActivity().getSupportFragmentManager().beginTransaction().add(R.id.result_side, new FragmentCityInfo()).commit();
+
                         break;
                     case CITIES:
                         intent = new Intent(getActivity(), CityInfo.class);
