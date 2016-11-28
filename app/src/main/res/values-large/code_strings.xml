@@ -42,5 +42,5 @@
 
        <string name="general_settings_lenguage_english" translatable="false">general_settings_lenguage_english</string>
        <string name="general_settings_lenguage_spanish" translatable="false">general_settings_lenguage_spanish</string>
-       <string name="isLandTablet">true</string>
+       <string name="isTablet">true</string>
 </resources>

@@ -12,7 +12,7 @@ public class Country implements Identificable{
     private String ID;
     private String name;
 
-    private Location location;
+    public Location location;
 
     public String getID() {
         return ID;

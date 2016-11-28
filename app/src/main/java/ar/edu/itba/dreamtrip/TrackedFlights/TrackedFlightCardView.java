@@ -184,6 +184,12 @@ public class TrackedFlightCardView{
             statusText.setTextColor(color);
             cardView.findViewById(R.id.flight_status_bar).setBackgroundColor(color);
         }
+
+        String isLandTablet = context.getResources().getString(R.string.isTablet);
+        if (isLandTablet.equals("true")) {
+            //TODO fill with more DATA
+        }
+
         return swipeLayout;
 
     }

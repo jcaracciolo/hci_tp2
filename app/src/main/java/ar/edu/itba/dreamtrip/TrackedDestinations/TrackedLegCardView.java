@@ -184,6 +184,11 @@ public class TrackedLegCardView {
             ((TextView) cardView.findViewById(R.id.offer_found)).setText(R.string.no_offer_found);
             ((TextView)cardView.findViewById(R.id.price_tracked_destination)).setText("");
         }
+
+        String isTable = context.getResources().getString(R.string.isTablet);
+        if (isTable.equals("true")) {
+            //TODO FILL WITH MORE DATA
+        }
     }
 }
 

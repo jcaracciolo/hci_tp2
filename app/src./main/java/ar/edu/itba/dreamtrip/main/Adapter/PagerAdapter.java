@@ -5,7 +5,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import ar.edu.itba.dreamtrip.R;
 import ar.edu.itba.dreamtrip.TrackedDestinations.TrackedLegFragment;
 import ar.edu.itba.dreamtrip.main.SearchFragment;
 import ar.edu.itba.dreamtrip.TrackedFlights.TrackedFlightsFragment;
@@ -25,12 +24,7 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
 
         switch (position) {
             case 0:
-                String isLandTablet = context.getResources().getString(R.id.isLandTablet);
-                if (isLandTablet.equals("false")) {
-                    return new SearchFragment();
-                } else {
-                    return new SearchFragment();
-                }
+                return new SearchFragment();
             case 1:
                 TrackedFlightsFragment tab2 = new TrackedFlightsFragment();
                 return tab2;
