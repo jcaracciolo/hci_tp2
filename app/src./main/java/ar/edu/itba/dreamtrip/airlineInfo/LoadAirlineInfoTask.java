@@ -54,7 +54,7 @@ public class LoadAirlineInfoTask extends AsyncTaskInformed<Object,Void,Airline>{
     @Override
     protected void onPostExecute(Airline airline) {
         airlineName.setText(airline.getName());
-        descr.setText(airline.getWikiData().substring(0, 250) + "... [Wikipedia]");
+        descr.setText(airline.getWikiData().substring(0, airline.getWikiData().length() < 250 ? airline.getWikiData().length() : 250) + "... [Wikipedia]");
         new ImageLoadTask(airline.getLogoUrl(), img).execute();
     }
 
