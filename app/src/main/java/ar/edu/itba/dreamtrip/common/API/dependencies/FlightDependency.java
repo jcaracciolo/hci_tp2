@@ -1,5 +1,6 @@
 package ar.edu.itba.dreamtrip.common.API.dependencies;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -11,7 +12,7 @@ public class FlightDependency extends Dependency {
     private Date departureDate;
     private Boolean requiresStatus = false;
     private StatusSearch statusSearch;
-
+    private String departureDateToSearch;
     private Integer days;
 
     public FlightDependency(String originID, String destinationID, Date departureDate) {
@@ -19,7 +20,14 @@ public class FlightDependency extends Dependency {
         days =0;
         this.originID = originID;
         this.destinationID = destinationID;
+        setDepartureDate(departureDate);
+    }
+
+    private void setDepartureDate(Date departureDate) {
         this.departureDate = departureDate;
+
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        departureDateToSearch = format.format(departureDate);
     }
 
     public FlightDependency(String originID, String destinationID, Date departureDate, Integer days) {
@@ -27,30 +35,13 @@ public class FlightDependency extends Dependency {
         this.days =days;
         this.originID = originID;
         this.destinationID = destinationID;
-        this.departureDate = departureDate;
-    }
-
-    public FlightDependency(String originID, String destinationID, boolean lastMinute) {
-        super(DependencyType.FLIGHTS);
-        Integer amount = lastMinute? 3: 7;
-        departureDate= new Date();
-        days =7;
-        for (int i = days+1;i<amount+days;i++){
-            addDependency(new FlightDependency(originID,destinationID,departureDate,i));
-        }
-        this.originID = originID;
-        this.destinationID = destinationID;
+        setDepartureDate(departureDate);
     }
 
     public FlightDependency(StatusSearch statusSearch){
         super(DependencyType.FLIGHTS);
         days = 7;
-        addDependency(new FlightDependency(statusSearch,8));
-        addDependency(new FlightDependency(statusSearch,9));
-        addDependency(new FlightDependency(statusSearch,10));
-        addDependency(new FlightDependency(statusSearch,11));
-        addDependency(new FlightDependency(statusSearch,12));
-        addDependency(new FlightDependency(statusSearch,13));
+        addDependency(new StatusSearchDependency(statusSearch));
         this.statusSearch = statusSearch;
         requiresStatus = true;
     }
@@ -61,13 +52,6 @@ public class FlightDependency extends Dependency {
         else return true;
     }
 
-    public FlightDependency(StatusSearch statusSearch, Integer days){
-        super(DependencyType.FLIGHTS);
-        addDependency(new StatusSearchDependency(statusSearch));
-        this.days = days;
-        this.statusSearch = statusSearch;
-        requiresStatus = true;
-    }
 
     public String getOriginID() {
         if(requiresStatus) return statusSearch.getOriginAirportID();
@@ -108,7 +92,7 @@ public class FlightDependency extends Dependency {
             if(! originID.equals(that.originID)) return false;
             if(! days.equals(that.days)) return false;
             if(! destinationID.equals(that.destinationID)) return false;
-            if(! departureDate.equals(that.departureDate)) return false;
+            if(! departureDateToSearch.equals(that.departureDateToSearch)) return false;
         }
         return true;
     }
@@ -119,12 +103,11 @@ public class FlightDependency extends Dependency {
         if(requiresStatus) {
             result = 31 * result + statusSearch.hashCode();
             result = 31 * result + days.hashCode();
-
         } else {
             result = 31 * result + originID.hashCode();
             result = 31 * result + days.hashCode();
             result = 31 * result + destinationID.hashCode();
-            result = 31 * result + departureDate.hashCode();
+            result = 31 * result + departureDateToSearch.hashCode();
         }
         return result;
     }
