@@ -237,7 +237,6 @@ public class FlightTracker extends BaseActivity {
             public void afterTextChanged(Editable editable) {
                 DataHolder dataHolder = DataHolder.getInstance(getBaseContext());
                 dataHolder.waitForIt(new PopulateAutocompleteTask(dialogView.getContext(), (AutoCompleteTextView)dialogView.findViewById(R.id.destination_to_track), destinationAuto.getText().toString()));
-
             }
         });
 
@@ -248,9 +247,19 @@ public class FlightTracker extends BaseActivity {
                     public void onClick(DialogInterface dialog, int id) {
                         toast("trying to track destination");
                         //TODO: track selected
-                        String originID = ((AutoCompleteTextView) dialogView.findViewById(R.id.origin_to_track)).getText().toString().substring(1,4);
-                        String destinationID = ((AutoCompleteTextView) dialogView.findViewById(R.id.destination_to_track)).getText().toString().substring(1,4);
-                        boolean res=SettingsManager.getInstance(getBaseContext()).trackLeg(originID + " " + destinationID);
+                        String originID = ((AutoCompleteTextView) dialogView.findViewById(R.id.origin_to_track)).getText().toString();
+                        String destinationID = ((AutoCompleteTextView) dialogView.findViewById(R.id.destination_to_track)).getText().toString();
+
+                        if (originID.length() < 4 || DataHolder.getInstance(getBaseContext()).getCityById(originID.substring(1,4)) == null) {
+                            toast(getResources().getString(R.string.origin_not_found));
+                            return;
+                        }
+                        if (destinationID.length() < 4 || DataHolder.getInstance(getBaseContext()).getCityById(destinationID.substring(1,4)) == null) {
+                            toast(getResources().getString(R.string.destination_not_found));
+                            return;
+                        }
+
+                        boolean res=SettingsManager.getInstance(getBaseContext()).trackLeg(originID.substring(1,4) + " " + destinationID.substring(1,4));
 
                     }
                 });

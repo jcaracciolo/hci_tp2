@@ -64,6 +64,9 @@
     <string name="error_opinion_send">Error sending opinion</string>
     <string name="ok_opinion_send">Opinion successfully registered</string>
     <string name="comment_list_title">Other opinions:</string>
+    <string name="from">from</string>
+    <string name="origin_not_found">Origin not found</string>
+    <string name="destination_not_found">Destination not found</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>

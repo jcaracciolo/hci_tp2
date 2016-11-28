@@ -36,7 +36,7 @@ public class TrackedLegViewModel implements Serializable{
 
     public TrackedLegViewModel(Context context, Deal deal, MyCurrency currency) {
         originID=deal.getOriginCityID();
-        originDescription=deal.getOriginCityID();
+        originDescription=context.getResources().getString(R.string.from) + " " + deal.getOriginCityID();
         destinationID=deal.getDestinationCityID();
         destinationDescription=deal.getDestinationDescription();
         isLastMinute=deal.isLastMinute();
