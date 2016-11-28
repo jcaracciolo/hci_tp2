@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_flight_info"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -30,17 +31,18 @@
             android:layout_toRightOf="@id/flight_airlinelogo_big"
             android:textSize="40dp" />
 
-
-        <Button
-            android:id="@+id/follow_flight_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <com.sackcentury.shinebuttonlib.ShineButton
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
             android:layout_alignParentEnd="true"
-            android:padding="20dp"
-            android:layout_below="@id/flight_name"
-            android:text="Follow"
-            android:textSize="20dp"
-            android:onClick="followFlight"/>
+            android:src="@android:color/darker_gray"
+            android:id="@+id/follow_flight_btn"
+            app:btn_color="@android:color/darker_gray"
+            app:btn_fill_color="#FFD600"
+            app:allow_random_color="false"
+            app:siShape="@raw/star"/>
 
 
     </RelativeLayout>

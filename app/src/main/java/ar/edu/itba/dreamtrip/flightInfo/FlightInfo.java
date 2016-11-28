@@ -7,6 +7,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.github.rubensousa.raiflatbutton.RaiflatImageButton;
+
 import java.util.ArrayList;
 
 import ar.edu.itba.dreamtrip.R;
@@ -44,10 +46,10 @@ public class FlightInfo extends BaseActivity {
         dataHolder.waitForIt(new LoadFlightInfoTask(getBaseContext(), id, duration, cityOrigin, cityDestination));
 
         ArrayList<String> trackedFlights = SettingsManager.getInstance(getApplicationContext()).getTrackedFlights();
-        if (trackedFlights.contains(id)) {
-            Button followBtn = (Button) findViewById(R.id.follow_flight_btn);
-            followBtn.setText(R.string.unfollow);
-        }
+//        if (trackedFlights.contains(id)) {
+//            RaiflatImageButton followBtn = (RaiflatImageButton) findViewById(R.id.follow_flight_btn);
+//            followBtn.text(R.string.unfollow);
+//        }
 
     }
 
@@ -56,7 +58,7 @@ public class FlightInfo extends BaseActivity {
         if (trackedFlights.contains(id)) {
             SettingsManager.getInstance(getApplicationContext()).untrackFlight(id);
             Button followBtn = (Button) findViewById(R.id.follow_flight_btn);
-            followBtn.setText(R.string.follow);
+            //followBtn.setText(R.string.follow);
         } else {
             DataHolder.getInstance(getApplicationContext()).waitForIt(
                     new TrackFlightTask(getApplicationContext(), id));
