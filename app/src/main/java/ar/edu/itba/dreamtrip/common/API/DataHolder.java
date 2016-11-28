@@ -377,6 +377,7 @@ public class DataHolder {
     }
 
     public boolean loadImageIntoView(final ImageView imageView, final String url){
+        if(url == null) throw new RuntimeException("Null url trying lo load image");
         ImageRequest request = new ImageRequest(url,
                 new Response.Listener<Bitmap>() {
                     @Override
@@ -388,6 +389,7 @@ public class DataHolder {
                 new Response.ErrorListener() {
                     public void onErrorResponse(VolleyError error) {
                         //TODO Not Found
+
                     }
                 });
         dataHolder.addToVolleyQueue(request);
@@ -409,5 +411,22 @@ public class DataHolder {
 
     public Boolean lastReviewValid(){
         return lastReviewValid;
+    }
+
+    public Collection<Deal> getDealsFromOrigin(String originID) {
+        ArrayList<Deal> validDeals = new ArrayList<>();
+        if(airports.containsKey(originID)){
+            //El originID es de un aeropuerto
+            Airport originAirport = airports.get(originID);
+            for(Deal deal:deals.values()){
+                if(originAirport.getCity().getID().equals(originID))validDeals.add(deal);
+            }
+        } else if( cities.containsKey(originID)){
+            //El originID es de una ciudad
+            for(Deal deal:deals.values()){
+                if(deal.getOriginCityID().equals(originID)) validDeals.add(deal);
+            }
+        }
+        return validDeals;
     }
 }

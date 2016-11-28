@@ -2,6 +2,7 @@ package ar.edu.itba.dreamtrip.common.model;
 
 import android.location.Location;
 
+import ar.edu.itba.dreamtrip.common.API.SettingsManager;
 import ar.edu.itba.dreamtrip.common.interfaces.Identificable;
 
 /**
@@ -38,5 +39,10 @@ public class Airport implements Identificable{
         location = new Location("Airport" + ID);
         location.setLatitude(latitude);
         location.setLongitude(longitude);
+    }
+
+    public boolean containsID(String id){
+        if(ID.equals(id)) return true;
+        else return city.containsID(id);
     }
 }
