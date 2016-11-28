@@ -1,5 +1,6 @@
 package ar.edu.itba.dreamtrip.airportInfo;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,16 +14,26 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import ar.edu.itba.dreamtrip.R;
+import ar.edu.itba.dreamtrip.common.API.DataHolder;
+import ar.edu.itba.dreamtrip.common.API.dependencies.DependencyType;
+import ar.edu.itba.dreamtrip.common.CenterMaper;
 import ar.edu.itba.dreamtrip.main.BaseActivity;
 
 public class AirportInfo extends BaseActivity implements AirportDetailsFragment.OnFragmentInteractionListener,OnMapReadyCallback {
 
     private GoogleMap mMap;
+    public final static String RESULT_ID_KEY = "main_activity.go_to_info_id";
+    String id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setupView(R.layout.activity_airport_info);
+
+
+        Intent intent = getIntent();
+        this.id = intent.getStringExtra(RESULT_ID_KEY);
+
 
         //ESTO ES EL BOTON DE BACK
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -42,11 +53,8 @@ public class AirportInfo extends BaseActivity implements AirportDetailsFragment.
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        DataHolder.getInstance(getBaseContext()).waitForIt(new CenterMaper(getBaseContext(),mMap,id, DependencyType.AIRPORTS));
 
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
 
     @Override

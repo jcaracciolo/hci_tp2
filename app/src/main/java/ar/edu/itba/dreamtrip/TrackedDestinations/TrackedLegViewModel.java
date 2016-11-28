@@ -48,7 +48,7 @@ public class TrackedLegViewModel implements Serializable{
             currencySimbol = currency.getSymbol();
             ratio = currency.getRatio();
         } else {
-            currencySimbol = "$";
+            currencySimbol = "U$S";
             ratio = 1.0;
         }
     }

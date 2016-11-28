@@ -20,6 +20,7 @@ import ar.edu.itba.dreamtrip.common.API.SettingsManager;
 public class TrackedFlightsDependency extends Dependency {
 
     private Integer timeout;
+    private Date creationDate;
 
     public TrackedFlightsDependency(Context context, Integer timeout) {
         super(DependencyType.TRACKED_FLIGHTS);
@@ -40,8 +41,4 @@ public class TrackedFlightsDependency extends Dependency {
         return that == this;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), timeout);
-    }
 }

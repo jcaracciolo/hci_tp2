@@ -24,7 +24,16 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
 
         switch (position) {
             case 0:
+<<<<<<< HEAD
                 return new SearchFragment();
+=======
+                String isLandTablet = context.getResources().getString(R.string.isLandTablet);
+                if (isLandTablet.equals("false")) {
+                    return new SearchFragment();
+                } else {
+                    return new SearchFragment();
+                }
+>>>>>>> origin/master
             case 1:
                 TrackedFlightsFragment tab2 = new TrackedFlightsFragment();
                 return tab2;

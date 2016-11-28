@@ -1,6 +1,7 @@
 package ar.edu.itba.dreamtrip.countryInfo;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.net.Uri;
@@ -17,6 +18,9 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import ar.edu.itba.dreamtrip.R;
 import ar.edu.itba.dreamtrip.cityInfo.CityDetailsFragment;
+import ar.edu.itba.dreamtrip.common.API.DataHolder;
+import ar.edu.itba.dreamtrip.common.API.dependencies.DependencyType;
+import ar.edu.itba.dreamtrip.common.CenterMaper;
 import ar.edu.itba.dreamtrip.common.model.Country;
 import ar.edu.itba.dreamtrip.main.BaseActivity;
 
@@ -24,11 +28,16 @@ public class CountryInfo extends BaseActivity implements CountryDetailsFragment.
 
     private GoogleMap mMap;
     private Country country;
+    public final static String RESULT_ID_KEY = "main_activity.go_to_info_id";
+    String id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setupView(R.layout.activity_country_info);
+
+        Intent intent = getIntent();
+        this.id = intent.getStringExtra(RESULT_ID_KEY);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -47,12 +56,8 @@ public class CountryInfo extends BaseActivity implements CountryDetailsFragment.
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        DataHolder.getInstance(getBaseContext()).waitForIt(new CenterMaper(getBaseContext(),mMap,id, DependencyType.COUNTRIES));
 
-        // Add a marker in Sydney and move the camera
-
-//        mMap.addMarker(new MarkerOptions().position(lasLatLng).title("YOU"));
-//        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(lasLatLng,10));
-//        +
 
     }
 

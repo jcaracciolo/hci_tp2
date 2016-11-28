@@ -133,8 +133,9 @@ public abstract class DependencyLoader {
         setMaxDependencyRequests(dependency,dataHolder.getAirlines().size());
 
         for(final Airline airline: dataHolder.getAirlines()){
+            String search = airlineToWiki(airline.getID());
             String url ="https://en.wikipedia.org/w/api.php?action=query&format=json&smaxage=0&prop=extracts"
-                    +"&titles="+airline.getName().replace(" ","+")+"&exsentences=4&exintro=1&explaintext=1&exsectionformat=wiki";
+                    +"&titles="+search +"&exsentences=4&exintro=1&explaintext=1&exsectionformat=wiki";
             // Request a string response from the provided URL.
             JsonObjectRequest jsObjRequest = new JsonObjectRequest
                     (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
@@ -156,6 +157,39 @@ public abstract class DependencyLoader {
         }
 
         return true;
+    }
+
+    private static String airlineToWiki(String id) {
+        String res = "";
+        switch (id){
+            case "BA":
+                return "British+Airways";
+            case "AF":
+                return "Air+France";
+            case "JJ":
+                return "LATAM+Brasil";
+            case "AR":
+                return "Aerolíneas+Argentinas";
+            case "IB":
+                return "Iberia+(airline)";
+            case "LA":
+                return "LATAM+Chile";
+            case "AZ":
+                return "Alitalia";
+            case "AM":
+                return "Aeroméxico";
+            case "8R":
+                return "Sol_Líneas_Aéreas";
+            case "AA":
+                return "American+Airlines";
+            case "CM":
+                return "Copa_Airlines";
+            case "AV":
+                return "Avianca";
+            case "TA":
+                return "TACA_Airlines";
+        }
+        return res;
     }
 
     static boolean loadAirlineData(final DataHolder dataHolder,
@@ -455,7 +489,6 @@ public abstract class DependencyLoader {
                 dataHolder.addToVolleyQueue(request);
                 System.out.println("requested image: " + deal + " " + url + " loaded " +  dependencyLoaded.get(dependency));
             } else somethingArrived(dataHolder,dependency);
-
         }
     }
 

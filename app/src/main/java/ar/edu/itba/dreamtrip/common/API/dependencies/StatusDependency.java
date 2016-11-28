@@ -49,8 +49,8 @@ public class StatusDependency extends Dependency {
         StatusDependency that = (StatusDependency) o;
 
         if(! flightIdentifier.equals(that.flightIdentifier)) return false;
-        Date currentDate = new Date();
-        return currentDate.after(getDateAfterXMinutes(creationDate,timeout));
+        Integer max = Math.min(timeout,that.timeout) * 1000 * 60;
+        return Math.abs(creationDate.getTime() - that.getCreationDate().getTime()) <= max;
     }
 
     @Override
