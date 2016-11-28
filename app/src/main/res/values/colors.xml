@@ -11,4 +11,5 @@
     <color name="status_yellow">#E3DD2D</color>
     <color name="status_red">#FF5C5C</color>
     <color name="status_orange">#FFA05C</color>
+    <color name="black">#000000</color>
 </resources>

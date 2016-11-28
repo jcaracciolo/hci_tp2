@@ -28,6 +28,7 @@ public class TrackedLegViewModel implements Serializable{
     public Double price;
     public boolean selected;
     public String dealID;
+    public String currencySimbol;
 
     public TrackedLegViewModel(Context context, Deal deal) {
         originID=deal.getOriginCityID();

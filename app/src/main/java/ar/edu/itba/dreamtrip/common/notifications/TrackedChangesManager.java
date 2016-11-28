@@ -35,8 +35,12 @@ public class TrackedChangesManager {
     private FlightStateCheckService myJobService;
 
     public void setupChecks(){
-        setupLegDealsCheck();
-        setupFlightStateCheck();
+        if(SettingsManager.getInstance(context).getFlightNotifications()){
+            setupFlightStateCheck();
+        }
+        if(SettingsManager.getInstance(context).getDealsNotifications()){
+            setupLegDealsCheck();
+        }
     }
 
     public void setupLegDealsCheck(){
@@ -70,5 +74,11 @@ public class TrackedChangesManager {
 
     private Integer getFlightStateCheckInterval(){
         return SettingsManager.getInstance(context).getFlightStateCheckInterval();
+    }
+
+    private void stopJobs(){
+        JobScheduler jobScheduler = (JobScheduler) context.getSystemService(Context.JOB_SCHEDULER_SERVICE);
+        jobScheduler.cancel(flightStateCheckJobID);
+        jobScheduler.cancel(legDealsCheckJobID);
     }
 }

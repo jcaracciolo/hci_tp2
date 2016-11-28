@@ -29,6 +29,7 @@ import ar.edu.itba.dreamtrip.R;
 import ar.edu.itba.dreamtrip.TrackedDestinations.PopulateLegTrackers;
 import ar.edu.itba.dreamtrip.common.API.DataHolder;
 import ar.edu.itba.dreamtrip.common.API.SettingsManager;
+import ar.edu.itba.dreamtrip.common.Tester;
 import ar.edu.itba.dreamtrip.common.model.Deal;
 import ar.edu.itba.dreamtrip.common.model.Review;
 import ar.edu.itba.dreamtrip.common.notifications.TrackedChangesManager;
@@ -116,7 +117,7 @@ public class FlightTracker extends BaseActivity {
 //        Review review = new Review("CM", 360,1,2,3,4,5,6,7,true,"Test review  please ignore");
 //        DataHolder.getInstance(getApplicationContext()).waitForIt(new SendFlightReviewTask(getApplicationContext(),review));
 //        SettingsManager.getInstance(getApplicationContext()).trackLeg("EZE LON");
-
+//        Tester.testLenguageSettings(getApplicationContext());
     }
 
     private void setTab(int i) {
@@ -228,5 +229,6 @@ public class FlightTracker extends BaseActivity {
         Toast.makeText(getActivity(), str,
                 Toast.LENGTH_LONG).show();
     }
+
 
 }
