@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.ToggleButton;
 
 import java.util.Locale;
 
@@ -108,5 +109,14 @@ public class Settings extends BaseActivity {
                 startActivity(intent);
             }
         });
+
+        ToggleButton btn = (ToggleButton) findViewById(R.id.enable_notifications);
+        if (btn.isChecked()) {
+            SettingsManager.getInstance(getBaseContext()).setDealsNotifications(true);
+            SettingsManager.getInstance(getBaseContext()).setFlightNotifications(true);
+        } else {
+            SettingsManager.getInstance(getBaseContext()).setDealsNotifications(false);
+            SettingsManager.getInstance(getBaseContext()).setFlightNotifications(false);
+        }
     }
 }
