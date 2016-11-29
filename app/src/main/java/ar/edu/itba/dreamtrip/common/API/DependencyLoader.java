@@ -17,6 +17,7 @@ import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Locale;
 
 import ar.edu.itba.dreamtrip.common.API.dependencies.AirlinesReviewDependency;
 import ar.edu.itba.dreamtrip.common.API.dependencies.Dependency;
@@ -133,8 +134,9 @@ public abstract class DependencyLoader {
         setMaxDependencyRequests(dependency,dataHolder.getAirlines().size());
 
         for(final Airline airline: dataHolder.getAirlines()){
-            String search = airlineToWiki(airline.getID());
-            String url ="https://en.wikipedia.org/w/api.php?action=query&format=json&smaxage=0&prop=extracts"
+            String s = Locale.getDefault().getDisplayLanguage();
+            String search = airlineToWiki(airline.getID(),s);
+            String url ="https://"+s.substring(0,2)+".wikipedia.org/w/api.php?action=query&format=json&smaxage=0&prop=extracts"
                     +"&titles="+search +"&exsentences=4&exintro=1&explaintext=1&exsectionformat=wiki";
             // Request a string response from the provided URL.
             JsonObjectRequest jsObjRequest = new JsonObjectRequest
@@ -159,8 +161,23 @@ public abstract class DependencyLoader {
         return true;
     }
 
-    private static String airlineToWiki(String id) {
+    private static String airlineToWiki(String id, String s) {
+
         String res = "";
+        if(s.equals("español")){
+            switch (id){
+                case "IB":
+                    return "Iberia_(aerolínea)";
+                case "JJ":
+                    return "TAM_Líneas_Aéreas";
+                case "LA":
+                    return "LAN_Airlines";
+                case "AV":
+                    return "Avianca_El_Salvador";
+                case "TA":
+                    return "Avianca_El_Salvador";
+            }
+        }
         switch (id){
             case "BA":
                 return "British+Airways";
