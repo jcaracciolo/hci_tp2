@@ -54,6 +54,6 @@ public class TrackedLegViewModel implements Serializable{
     }
 
     public String getFormatedPrice(){
-        return currencySimbol + new DecimalFormat("#").format(price/ratio);
+        return currencySimbol + new DecimalFormat("#.##").format(price/ratio);
     }
 }

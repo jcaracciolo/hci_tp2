@@ -455,7 +455,7 @@ public class DataHolder {
             //El originID es de un aeropuerto
             Airport originAirport = airports.get(originID);
             for(Deal deal:deals.values()){
-                if(originAirport.getCity().getID().equals(originID))validDeals.add(deal);
+                if(originAirport.getID().equals(originID))validDeals.add(deal);
             }
         } else if( cities.containsKey(originID)){
             //El originID es de una ciudad

@@ -89,7 +89,8 @@ public class FlightStateCheckTask extends AsyncTaskInformed<Object,Void,ArrayLis
                         .setContentTitle("Dreamtrip")
                         .setContentText(msg)
                         .setSound(soundUri)
-                        .setAutoCancel(true);
+                        .setAutoCancel(true)
+                        .setShowWhen(true);
         // Creates an explicit intent for an Activity in your app
         Intent resultIntent = new Intent(context, FlightTracker.class);
 
