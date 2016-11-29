@@ -73,7 +73,9 @@ public class LegDealsCheckTask extends AsyncTaskInformed<Object,Void,ArrayList<S
                 pushNotification(s);
             }
         } else {
-            toast("didnt show deal notifications, app active");
+            Intent intent = new Intent(context.getResources().getString(R.string.UpdateTrackedDeals));
+//            toast("didnt show flight notifications, update flights list");
+            context.sendBroadcast(intent);
         }
     }
 

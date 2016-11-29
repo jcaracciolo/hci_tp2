@@ -79,9 +79,13 @@ public class TrackedChangesManager {
         return SettingsManager.getInstance(context).getDealCheckInterval();
     }
 
-    private void stopJobs(){
+    public void stopJobs(){
         JobScheduler jobScheduler = (JobScheduler) context.getSystemService(Context.JOB_SCHEDULER_SERVICE);
-        jobScheduler.cancel(flightStateCheckJobID);
-        jobScheduler.cancel(legDealsCheckJobID);
+        if(!SettingsManager.getInstance(context).getFlightNotifications()){
+            jobScheduler.cancel(flightStateCheckJobID);
+        }
+        if(!SettingsManager.getInstance(context).getDealsNotifications()){
+            jobScheduler.cancel(legDealsCheckJobID);
+        }
     }
 }
