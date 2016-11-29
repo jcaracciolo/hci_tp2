@@ -111,9 +111,8 @@ public class PopulateMaps extends AsyncTaskInformed<Object,Void,ArrayList<Collec
     public HashSet<Dependency> getDependencies() {
         HashSet<Dependency> dependencies = new HashSet<>();
         dependencies.add(new Dependency(DependencyType.AIRPORTS));
-        dependencies.add(new Dependency(DependencyType.CITIES));
         dependencies.add(new TrackedFlightsDependency(context,5));
-        dependencies.add(new TrackedLegsDependency(context,true, DealLoadType.LAST_MINUTE_DEALS));
+        dependencies.add(new TrackedLegsDependency(context,false, DealLoadType.LAST_MINUTE_DEALS));
         return dependencies;
     }
 

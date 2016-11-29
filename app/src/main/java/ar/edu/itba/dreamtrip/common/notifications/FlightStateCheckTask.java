@@ -77,7 +77,7 @@ public class FlightStateCheckTask extends AsyncTaskInformed<Object,Void,ArrayLis
             }
         } else {
             Intent intent = new Intent(context.getResources().getString(R.string.UpdateTrackedFlights));
-            toast("didnt show flight notifications, update flights list");
+//            toast("didnt show flight notifications, update flights list");
             context.sendBroadcast(intent);
         }
     }

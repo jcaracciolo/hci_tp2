@@ -1,6 +1,7 @@
 
 package ar.edu.itba.dreamtrip.main;
 
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -36,10 +37,6 @@ import ar.edu.itba.dreamtrip.main.Adapter.PagerAdapter;
 
 public class FlightTracker extends BaseActivity {
     public static boolean isActive = false;
-    private static final String[] COUNTRIES = new String[]{
-            "Belgium", "France", "Italy", "Germany", "Spain"
-    };
-
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if (result != null && result.getContents() != null) {
@@ -111,6 +108,12 @@ public class FlightTracker extends BaseActivity {
         TrackedChangesManager.getInstance(getApplicationContext()).setupChecks();
         SettingsManager.getInstance(getApplicationContext()).setFlightNotifications(true);
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        TrackedChangesManager.getInstance(getApplicationContext()).stopJobs();
     }
 
     private void setTab(int i) {
