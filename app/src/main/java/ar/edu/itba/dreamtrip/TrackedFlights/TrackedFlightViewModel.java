@@ -31,6 +31,10 @@ public class TrackedFlightViewModel implements Serializable{
 
     public boolean selected=false;
 
+    public String terminal;
+    public Integer gate;
+    public Integer luggage;
+
     public TrackedFlightViewModel(Context context, FlightState flightState) {
         airlineID = flightState.getIdentifier().split(" ")[0];
         number = Integer.parseInt(flightState.getIdentifier().split(" ")[1]);
@@ -40,6 +44,10 @@ public class TrackedFlightViewModel implements Serializable{
         destinationID = flightState.getDestination().getLocationID();
         departureHour = flightState.getOrigin().getScheduledHour();
         arrivalHour = flightState.getDestination().getScheduledHour();
+        terminal = flightState.getOrigin().getTerminal();
+        gate = flightState.getOrigin().getGate();
+        luggage = flightState.getDestination().getBaggage();
+
     }
 
     public String getIdentifier(){
