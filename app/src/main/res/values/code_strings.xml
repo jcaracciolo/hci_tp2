@@ -34,6 +34,20 @@
        <string name="general_settings_leg_check_interval" translatable="false">leg_deals_check_interval</string>
        <string name="notification_check_prefs" translatable="false">tracked_objects</string>
 
+       <string-array name="refresh_time">
+              <item>1 min</item>
+              <item>5 min</item>
+              <item>10 min</item>
+              <item>30 min</item>
+              <item>60 min</item>
+       </string-array>
+
+       <string-array name="language_array">
+              <item>Default</item>
+              <item>@string/spanish</item>
+              <item>@string/english</item>
+       </string-array>
+
        <string name="general_settings_pref" translatable="false">settings</string>
        <string name="general_settings_lenguage" translatable="false">general_settings_lenguage</string>
        <string name="general_settings_flight_notification" translatable="false">general_settings_flight_notification</string>

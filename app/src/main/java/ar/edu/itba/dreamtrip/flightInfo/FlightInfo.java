@@ -7,19 +7,26 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+
 import java.util.ArrayList;
 
 import ar.edu.itba.dreamtrip.R;
 import ar.edu.itba.dreamtrip.common.API.DataHolder;
 import ar.edu.itba.dreamtrip.common.API.SettingsManager;
+import ar.edu.itba.dreamtrip.common.API.dependencies.DependencyType;
+import ar.edu.itba.dreamtrip.common.CenterMaper;
 import ar.edu.itba.dreamtrip.common.tasks.TrackFlightTask;
 import ar.edu.itba.dreamtrip.main.BaseActivity;
 import ar.edu.itba.dreamtrip.main.FlightTracker;
 
-public class FlightInfo extends BaseActivity {
+public class FlightInfo extends BaseActivity implements OnMapReadyCallback{
 
     public final static String RESULT_ID_KEY = "main_activity.go_to_info_id";
 
+    GoogleMap mMap;
     FlightStateView flightStateView;
     String id;
 
@@ -47,6 +54,13 @@ public class FlightInfo extends BaseActivity {
         if (trackedFlights.contains(id)) {
             Button followBtn = (Button) findViewById(R.id.follow_flight_btn);
             followBtn.setText(R.string.unfollow);
+        }
+
+        String isLandTablet = getBaseContext().getResources().getString(R.string.isTablet);
+        if (isLandTablet.equals("true")) {
+            SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                    .findFragmentById(R.id.map);
+            mapFragment.getMapAsync(this);
         }
 
     }
@@ -97,6 +111,12 @@ public class FlightInfo extends BaseActivity {
         flightStateView = new FlightStateView(airlineLogo, flightID, originID, originName, departureTime,
                 destinationID, destinationName, arrivalTime, statusBar, status, estimatedDepTime, estimatedArrTime,
                 terminal, gate, luggage);
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+
     }
 
 }
