@@ -53,7 +53,6 @@ public class LoadFlightStatusTask extends AsyncTaskInformed<Object,Void,FlightSt
 
     @Override
     protected void onPostExecute(FlightState fs) {
-        Toast.makeText(context, "agregando fs", Toast.LENGTH_SHORT).show();
 //        flightStateView.getAirlineLogo().setImageBitmap(fs.getOrigin().get);
         flightStateView.getFlightID().setText(fs.getIdentifier());
 
