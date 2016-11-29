@@ -140,7 +140,7 @@ public class PopulateMaps extends AsyncTaskInformed<Object,Void,ArrayList<Collec
         for (Airport a: airports) {
             MarkerOptions marker = new MarkerOptions().position(new LatLng(a.getLocation().getLatitude(),a.getLocation().getLongitude()));
             marker.title(a.getName());
-            marker.icon(getMarkerIconFromDrawable(context.getDrawable(R.mipmap.ic_airport),1.5));
+            marker.icon(getMarkerIconFromDrawable(context.getDrawable(R.mipmap.ic_airport),0.5));
             jumper.put(marker.getTitle(),new ToNewActivity(AirportInfo.class,context,a.getID(),RESULT_ID_KEY));
             mOpAirports.add(marker);
         }
@@ -148,7 +148,7 @@ public class PopulateMaps extends AsyncTaskInformed<Object,Void,ArrayList<Collec
         for (City c: cities) {
             MarkerOptions marker = new MarkerOptions().position(new LatLng(c.getLocation().getLatitude(),c.getLocation().getLongitude()));
             marker.title(c.getName());
-            marker.icon(getMarkerIconFromDrawable(context.getDrawable(R.drawable.ic_city),0.5));
+            marker.icon(getMarkerIconFromDrawable(context.getDrawable(R.drawable.ic_city),1.3));
             jumper.put(marker.getTitle(),new ToNewActivity(CityInfo.class,context,c.getID(),RESULT_ID_KEY));
             mOpCities.add(marker);
         }
