@@ -24,7 +24,7 @@
     <string name="enable">Activar</string>
     <string name="estimated_arr_time_txt">Horario estimado de llegada:</string>
     <string name="estimated_dep_time_txt">Horario estimado de salida:</string>
-    <string name="flight_status_txt">El vuelo esta</string>
+    <string name="flight_status_txt">Estado del vuelo:</string>
     <string name="follow">Seguir</string>
     <string name="food">Comida</string>
     <string name="gate_txt">Puerta:</string>
@@ -33,11 +33,11 @@
     <string name="gps_network_not_enabled">Servicio de ubicación no disponible</string>
     <string name="hello_blank_fragment"></string>
     <string name="help">Ayuda</string>
-    <string name="help_search">Buscá aerolíneas, vuelos, aeropuertos, ciudades o países.</string>
-    <string name="hint_flight_number">Nº de vuelo</string>
-    <string name="incorrent_flight_number">Nº de vuelo incorrecto</string>
+    <string name="help_search">Busca aerolíneas, vuelos, aeropuertos, ciudades o países.</string>
+    <string name="hint_flight_number">Número de vuelo</string>
+    <string name="incorrent_flight_number">Número de vuelo incorrecto</string>
     <string name="kindness">Amabilidad</string>
-    <string name="landed_flight">Aterrizó</string>
+    <string name="landed_flight">Aterrizado</string>
     <string name="luggage_txt">Puerta de equipaje:</string>
     <string name="main_tab1">Buscar</string>
     <string name="main_tab2">Vuelos</string>
@@ -90,4 +90,15 @@
     <string name="deals">Ofertas</string>
     <string name="filters">Filtros</string>
     <string name="tracked_flights">Vuelos Seguidos</string>
+    <string name="error_tracked_leg">Error al seguir destino</string>
+    <string name="error_tracking_flight">Error: vuelo no encontrado</string>
+    <string name="error_tracking_leg">Error: aeropuerto</string>
+    <string name="help_add_destinations">Toca el botón agregar y\\nsigue un destino</string>
+    <string name="help_add_flights">Toca el botón agregar y\\nsigue un vuelo</string>
+    <string name="isTablet"></string>
+    <string name="loading_flight">Cargando vuelo, espere por favor</string>
+    <string name="opinions_of_title">Opiniones de</string>
+    <string name="success_tracking_flight">Vuelo agregado satisfactoriamente!</string>
+    <string name="success_tracking_leg">Destino agregado satisfactoriamente!</string>
+    <string name="title_activity_settings">Configuraciones</string>
 </resources>
