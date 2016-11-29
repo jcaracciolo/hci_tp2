@@ -29,7 +29,7 @@
     <string name="food">Comida</string>
     <string name="gate_txt">Puerta:</string>
     <string name="general">General</string>
-    <string name="give_us_opinions">Dejanos [...]</string>
+    <string name="give_us_opinions">Déjanos [...]</string>
     <string name="gps_network_not_enabled">Servicio de ubicación no disponible</string>
     <string name="hello_blank_fragment"></string>
     <string name="help">Ayuda</string>
@@ -90,15 +90,23 @@
     <string name="deals">Ofertas</string>
     <string name="filters">Filtros</string>
     <string name="tracked_flights">Vuelos Seguidos</string>
-    <string name="error_tracked_leg">Error al seguir destino</string>
-    <string name="error_tracking_flight">Error: vuelo no encontrado</string>
-    <string name="error_tracking_leg">Error: aeropuerto</string>
-    <string name="help_add_destinations">Toca el botón agregar y\\nsigue un destino</string>
-    <string name="help_add_flights">Toca el botón agregar y\\nsigue un vuelo</string>
     <string name="isTablet"></string>
     <string name="loading_flight">Cargando vuelo, espere por favor</string>
     <string name="opinions_of_title">Opiniones de</string>
     <string name="success_tracking_flight">Vuelo agregado satisfactoriamente!</string>
     <string name="success_tracking_leg">Destino agregado satisfactoriamente!</string>
     <string name="title_activity_settings">Configuraciones</string>
+    <string name="deals_notification_time">Tiempo entre actualizaciones de ofertas</string>
+    <string name="disable_notifications">Activar notificaciones</string>
+    <string name="english">Inglés</string>
+    <string name="error_tracked_leg">Imposible seguir destino</string>
+    <string name="error_tracking_flight">Error: Vuelo no encontrado</string>
+    <string name="error_tracking_leg">Error: aropuerto no válido</string>
+    <string name="flight_notification_time">Tiempo entre acualizaciones de estados de vuelo</string>
+    <string name="help_add_destinations">Toca el botón de agregar\\ny sigue un vuelo</string>
+    <string name="help_add_flights">Toca el botón de agrgar\\ny sigue un desino</string>
+    <string name="language">Idioma</string>
+    <string name="send_opinions_of_title">Enviar opinión de</string>
+    <string name="setting_title">Configuración</string>
+    <string name="spanish">Español</string>
 </resources>

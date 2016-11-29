@@ -56,6 +56,8 @@ public class FlightTracker extends BaseActivity {
 
         int selectedTab = getIntent().getIntExtra("selectedTab", 1); //DEFAULT IS FLIGHTS
 
+
+
         setupView(R.layout.activity_flight_tracker);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

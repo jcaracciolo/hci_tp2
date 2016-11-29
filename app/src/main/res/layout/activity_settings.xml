@@ -28,7 +28,7 @@
     <RelativeLayout
         android:id="@+id/deals_refresh_block"
         android:layout_width="match_parent"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="50dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/flight_refresh_block">
         <TextView
@@ -42,30 +42,12 @@
             android:layout_alignParentRight="true"/>
     </RelativeLayout>
 
-
-    <RelativeLayout
-        android:id="@+id/language_block"
-        android:layout_width="match_parent"
-        android:layout_marginTop="20dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/deals_refresh_block">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/language"/>
-        <Spinner
-            android:id="@+id/language_spinner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"/>
-    </RelativeLayout>
-
     <RelativeLayout
         android:id="@+id/disable_notification_block"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_below="@id/language_block">
+        android:layout_marginTop="50dp"
+        android:layout_below="@id/deals_refresh_block">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

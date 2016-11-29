@@ -48,8 +48,7 @@ public class TrackedChangesManager {
         JobInfo.Builder builder = new JobInfo.Builder(legDealsCheckJobID, mServiceComponent);
 //        builder.setMinimumLatency(5 * 1000); // wait at least
 //        builder.setOverrideDeadline(20 * 1000); // maximum delay
-        builder.setPeriodic(24 * 60 * 60 * 1000);
-        builder.setPeriodic(5 * 60 * 1000);
+        builder.setPeriodic(getLegCheckInterval() * 60 * 1000);
         builder.setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY); // require unmetered network
         builder.setRequiresDeviceIdle(false); // device should be idle
         builder.setRequiresCharging(false); // we don't care if the device is charging or not
@@ -63,7 +62,7 @@ public class TrackedChangesManager {
         JobInfo.Builder builder = new JobInfo.Builder(flightStateCheckJobID, mServiceComponent);
 //        builder.setMinimumLatency(5 * 1000); // wait at least
 //        builder.setOverrideDeadline(20 * 1000); // maximum delay
-        builder.setPeriodic(getFlightStateCheckInterval() * 30 * 1000);
+        builder.setPeriodic(getFlightStateCheckInterval() * 60 * 1000);
         builder.setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY); // require unmetered network
         builder.setRequiresDeviceIdle(false); // device should be idle
         builder.setRequiresCharging(false); // we don't care if the device is charging or not
@@ -74,6 +73,10 @@ public class TrackedChangesManager {
 
     private Integer getFlightStateCheckInterval(){
         return SettingsManager.getInstance(context).getFlightStateCheckInterval();
+    }
+
+    private Integer getLegCheckInterval(){
+        return SettingsManager.getInstance(context).getDealCheckInterval();
     }
 
     private void stopJobs(){
