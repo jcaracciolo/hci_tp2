@@ -18,6 +18,7 @@ import android.view.Window;
 
 import ar.edu.itba.dreamtrip.Map.MapsActivity;
 import ar.edu.itba.dreamtrip.R;
+import ar.edu.itba.dreamtrip.Settings;
 
 /**
  * Created by juanfra on 22/11/16.
@@ -106,10 +107,9 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
                 break;
             }
-            case R.id.drawer_currency: {
-                break;
-            }
             case R.id.drawer_settings: {
+                Intent intent = new Intent(this, Settings.class);
+                startActivity(intent);
                 break;
             }
             case R.id.drawer_help: {
