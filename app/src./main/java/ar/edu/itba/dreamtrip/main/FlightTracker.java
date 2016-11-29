@@ -1,11 +1,9 @@
 
 package ar.edu.itba.dreamtrip.main;
 
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -20,29 +18,18 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.games.GameEntity;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
-import ar.edu.itba.dreamtrip.Deals.DealsFromActivity;
 import ar.edu.itba.dreamtrip.R;
-import ar.edu.itba.dreamtrip.TrackedDestinations.AutocompleteElement;
-import ar.edu.itba.dreamtrip.TrackedDestinations.PopulateLegTrackers;
 import ar.edu.itba.dreamtrip.common.API.DataHolder;
 import ar.edu.itba.dreamtrip.common.API.SettingsManager;
-import ar.edu.itba.dreamtrip.common.Tester;
-import ar.edu.itba.dreamtrip.common.model.Deal;
-import ar.edu.itba.dreamtrip.common.model.MyCurrency;
-import ar.edu.itba.dreamtrip.common.model.Review;
 import ar.edu.itba.dreamtrip.common.notifications.TrackedChangesManager;
 import ar.edu.itba.dreamtrip.common.tasks.PopulateAutocompleteTask;
-import ar.edu.itba.dreamtrip.common.tasks.SendFlightReviewTask;
 import ar.edu.itba.dreamtrip.common.tasks.TrackFlightTask;
 import ar.edu.itba.dreamtrip.common.tasks.TrackLegTask;
 import ar.edu.itba.dreamtrip.main.Adapter.PagerAdapter;
@@ -80,52 +67,48 @@ public class FlightTracker extends BaseActivity {
         mDrawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-        tabLayout.addTab(tabLayout.newTab().setText(R.string.tab_search));
-        tabLayout.addTab(tabLayout.newTab().setText(R.string.tab_flights));
-        tabLayout.addTab(tabLayout.newTab().setText(R.string.tab_destinations));
-        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+            TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
+            tabLayout.addTab(tabLayout.newTab().setText(R.string.tab_search));
+            tabLayout.addTab(tabLayout.newTab().setText(R.string.tab_flights));
+            tabLayout.addTab(tabLayout.newTab().setText(R.string.tab_destinations));
+            tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
-        final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
-        final PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount(), getBaseContext());
-        viewPager.setAdapter(adapter);
-        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+            final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
+            final PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount(), getBaseContext());
+            viewPager.setAdapter(adapter);
+            viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
-        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                viewPager.setCurrentItem(tab.getPosition());
-                //HIGHLIGHT NAV DRAWER
-                String tabText = tab.getText().toString();
-                if (tabText.equals(getString(R.string.tab_flights))) {
-                    setNavSelected(0);
-                } else if (tabText.equals(getString(R.string.tab_destinations))) {
-                    setNavSelected(1);
-                } else if (tabText.equals(getString(R.string.tab_search))) {
-                    setNavSelected(2);
+            tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+                @Override
+                public void onTabSelected(TabLayout.Tab tab) {
+                    viewPager.setCurrentItem(tab.getPosition());
+                    //HIGHLIGHT NAV DRAWER
+                    String tabText = tab.getText().toString();
+                    if (tabText.equals(getString(R.string.tab_flights))) {
+                        setNavSelected(0);
+                    } else if (tabText.equals(getString(R.string.tab_destinations))) {
+                        setNavSelected(1);
+                    } else if (tabText.equals(getString(R.string.tab_search))) {
+                        setNavSelected(2);
+                    }
                 }
-            }
 
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
+                @Override
+                public void onTabUnselected(TabLayout.Tab tab) {
 
-            }
+                }
 
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
+                @Override
+                public void onTabReselected(TabLayout.Tab tab) {
 
             }
         });
+
         viewPager.setCurrentItem(selectedTab);
-        //SettingsManager.getInstance(getApplicationContext()).clearAllTracked();\
-//        SettingsManager.getInstance(getApplicationContext()).clearAllTracked();
+
         TrackedChangesManager.getInstance(getApplicationContext()).setupChecks();
         SettingsManager.getInstance(getApplicationContext()).setFlightNotifications(true);
-//        SettingsManager.getInstance(getApplicationContext()).setPreferedCurrency(new MyCurrency("ARS","as","$ARS",0.065));
-//  Review review = new Review("CM", 360,1,2,3,4,5,6,7,true,"Test review  please ignore");
-//        DataHolder.getInstance(getApplicationContext()).waitForIt(new SendFlightReviewTask(getApplicationContext(),review));
-//        SettingsManager.getInstance(getApplicationContext()).trackLeg("EZE LON");
-//        Tester.testLenguageSettings(getApplicationContext());
+
     }
 
     private void setTab(int i) {
@@ -292,6 +275,5 @@ public class FlightTracker extends BaseActivity {
         Toast.makeText(getActivity(), str,
                 Toast.LENGTH_LONG).show();
     }
-
 
 }

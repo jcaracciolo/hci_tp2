@@ -1,0 +1,54 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context="ar.edu.itba.dreamtrip.main.TrackedDestinationsCard"
+    android:id="@+id/tracked_destination_card"
+    android:background="@drawable/grey_rectangle">
+
+    <ImageView
+        android:id="@+id/destination_img"
+        android:layout_width="86dp"
+        android:layout_height="86dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"/>
+
+    <TextView
+        android:id="@+id/tracked_destination_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@+id/destination_img"
+        android:text="Londres"
+        android:textSize="20dp"/>
+
+    <TextView
+        android:id="@+id/from_destination"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="5dp"
+        android:layout_below="@id/tracked_destination_desc"
+        android:text="from AAA"/>
+
+    <TextView
+        android:id="@+id/offer_found"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/from_destination"
+        android:layout_toRightOf="@id/destination_img"
+        android:layout_marginTop="10dp"
+        android:text="@string/offer_found"/>
+
+    <TextView
+        android:id="@+id/price_tracked_destination"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/offer_found"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="3dp"
+        android:layout_marginRight="5dp"
+        android:textSize="20dp"/>
+
+</RelativeLayout>

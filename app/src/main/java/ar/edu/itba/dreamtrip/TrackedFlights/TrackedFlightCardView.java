@@ -184,6 +184,20 @@ public class TrackedFlightCardView{
             statusText.setTextColor(color);
             cardView.findViewById(R.id.flight_status_bar).setBackgroundColor(color);
         }
+
+        String isLandTablet = context.getResources().getString(R.string.isTablet);
+        if (isLandTablet.equals("true")) {
+            //TODO fill with more DATA
+            String s = flight.terminal == null ? " - " : flight.terminal;
+            ((TextView)view.findViewById(R.id.terminal)).setText(context.getResources().getString(R.string.terminal_txt) + " " + s);
+
+            s = flight.gate == null ? " - " : flight.gate.toString();
+            ((TextView)view.findViewById(R.id.gate)).setText(context.getResources().getString(R.string.gate_txt) + " " + s);
+
+            s = flight.luggage == null ? " - " : flight.luggage.toString();
+            ((TextView)view.findViewById(R.id.luggage)).setText(context.getResources().getString(R.string.luggage_txt) + " " + s);
+        }
+
         return swipeLayout;
 
     }
