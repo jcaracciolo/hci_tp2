@@ -63,52 +63,6 @@ public class Settings extends BaseActivity {
             }
         });
 
-        Spinner language_spinner = (Spinner) findViewById(R.id.language_spinner);
-        ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(this,
-                R.array.language_array, android.R.layout.simple_spinner_item);
-        adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        language_spinner.setAdapter(adapter3);
-        language_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                String language = ((String)adapterView.getItemAtPosition(i)).split(" ")[0];
-                String english = view.getResources().getString(R.string.english);
-                String spanish = view.getResources().getString(R.string.spanish);
-
-                Resources res = view.getContext().getResources();
-                DisplayMetrics dm = res.getDisplayMetrics();
-                android.content.res.Configuration conf = res.getConfiguration();
-
-                if (language.equals(english)) {
-                    settingsManager.setSavedLenguage(LenguageType.ENGLISH);
-                    LocaleHelper.setLocale(getBaseContext(), "en");
-                    conf.locale=new Locale("en");
-                    refreshView();
-                } else if (language.equals(spanish)) {
-                    settingsManager.setSavedLenguage(LenguageType.SPANISH);
-                    LocaleHelper.setLocale(getBaseContext(), "es");
-                    conf.locale=new Locale("es");
-                    refreshView();
-                } else {
-                }
-                Locale.setDefault(conf.locale);
-                res.updateConfiguration(conf, dm);
-
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-
-            public void refreshView(){
-                Intent intent = new Intent(getBaseContext(), Settings.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                finish();
-                startActivity(intent);
-            }
-        });
 
         ToggleButton btn = (ToggleButton) findViewById(R.id.enable_notifications);
         if (btn.isChecked()) {

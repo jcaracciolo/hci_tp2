@@ -56,15 +56,7 @@ public class FlightTracker extends BaseActivity {
         super.onCreate(savedInstanceState);
 
         int selectedTab = getIntent().getIntExtra("selectedTab", 1); //DEFAULT IS FLIGHTS
-        switch (SettingsManager.getInstance(getBaseContext()).getSavedLanguage()){
-            case SPANISH:
-                LocaleHelper.onCreate(this,"es");
-                break;
-            case ENGLISH:
-                LocaleHelper.onCreate(this,"en");
-                break;
 
-        }
 
 
         setupView(R.layout.activity_flight_tracker);

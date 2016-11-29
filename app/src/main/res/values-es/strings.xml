@@ -90,11 +90,6 @@
     <string name="deals">Ofertas</string>
     <string name="filters">Filtros</string>
     <string name="tracked_flights">Vuelos Seguidos</string>
-    <string name="error_tracked_leg">Error al seguir destino</string>
-    <string name="error_tracking_flight">Error: vuelo no encontrado</string>
-    <string name="error_tracking_leg">Error: aeropuerto</string>
-    <string name="help_add_destinations">Toca el botón agregar y\\nsigue un destino</string>
-    <string name="help_add_flights">Toca el botón agregar y\\nsigue un vuelo</string>
     <string name="isTablet"></string>
     <string name="loading_flight">Cargando vuelo, espere por favor</string>
     <string name="opinions_of_title">Opiniones de</string>

@@ -141,7 +141,7 @@ public class PopulateMaps extends AsyncTaskInformed<Object,Void,ArrayList<Collec
         for (Airport a: airports) {
             MarkerOptions marker = new MarkerOptions().position(new LatLng(a.getLocation().getLatitude(),a.getLocation().getLongitude()));
             marker.title(a.getName());
-            marker.icon(getMarkerIconFromDrawable(context.getDrawable(R.drawable.ic_place),1.5));
+            marker.icon(getMarkerIconFromDrawable(context.getDrawable(R.mipmap.ic_airport),1.5));
             jumper.put(marker.getTitle(),new ToNewActivity(AirportInfo.class,context,a.getID(),RESULT_ID_KEY));
             mOpAirports.add(marker);
         }
