@@ -116,6 +116,7 @@ public class FlightInfo extends BaseActivity implements OnMapReadyCallback{
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        DataHolder.getInstance(getBaseContext()).waitForIt(new CenterFlight(getBaseContext(),mMap,id));
 
     }
 

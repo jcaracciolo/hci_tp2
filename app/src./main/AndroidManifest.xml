@@ -82,9 +82,8 @@
         <activity
             android:name=".opinions.sendOpinions.SendOpinions"
             android:label="@string/send_opinions_title" />
-        <activity
-            android:name=".settings.SettingsActivity"
-            android:label="@string/title_activity_settings"></activity>
+        <activity android:name=".Settings"
+            android:label="@string/setting_title"></activity>
     </application>
 
 </manifest>

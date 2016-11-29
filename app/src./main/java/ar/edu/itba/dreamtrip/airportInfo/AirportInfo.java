@@ -54,7 +54,6 @@ public class AirportInfo extends BaseActivity implements AirportDetailsFragment.
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         DataHolder.getInstance(getBaseContext()).waitForIt(new CenterMaper(getBaseContext(),mMap,id, DependencyType.AIRPORTS));
-
     }
 
     @Override
