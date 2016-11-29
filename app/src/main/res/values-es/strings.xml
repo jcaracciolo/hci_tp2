@@ -109,4 +109,29 @@
     <string name="send_opinions_of_title">Enviar opinión de</string>
     <string name="setting_title">Configuración</string>
     <string name="spanish">Español</string>
+
+    <string name="question_whatItDoes">¿Qué hace esta app?</string>
+    <string name="answer_whatItDoes">El propósito de esta app es de ayudarte a estar al tanto del estado
+        de aquellos vuelos de tu interés. También podrás seguir destinos interesantes y ser notificado
+        cuando aparezca un oferta.</string>
+
+    <string name="question_howToTrackf">¿Cómo sigo un vuelo?</string>
+    <string name="answer_howToTrackf">Para seguir un vuelo puedes utilizar el boton de agregar en la pantalla principal y buscarlo
+        directamente, o apretar seguir en su pantalla de información</string>
+
+    <string name="question_howToDeletef">¿Cómo dejo de seguir un vuelo?</string>
+    <string name="answer_howToDeletef">Mantén apretado y aparecerá el icono de basura para eliminarlo</string>
+
+    <string name="question_whatDestDoes">¿Cómo funcionan las ofertas?</string>
+      <string name="answer_whatDestDoes">Podrás seguir cualquier destino disponible desde una zona de
+          origen. La app the notificará de cualquier oferta que encuentra.</string>
+
+
+    <string name="question_howToTrackDest">¿Cómo sigo un destino?</string>
+    <string name="answer_howToTrackDest">Puedes buscarlo la zona de origen en el buscador y se te presentarán
+        todas las opciones de destinos correspondientes. También puedes hacer uso del botón de agregar
+        ubicado en la pantalla principal correspondiente.</string>
+
+    <string name="question_howToDeleteDest">¿Cómo dejo de seguir un destino?</string>
+    <string name="answer_howToDeleteDest">Al igual que un vuelo, mantén apretado y aparecerá el icono de basura para eliminarlo</string>
 </resources>

@@ -20,6 +20,7 @@ import android.view.Window;
 import ar.edu.itba.dreamtrip.Map.MapsActivity;
 import ar.edu.itba.dreamtrip.R;
 import ar.edu.itba.dreamtrip.Settings;
+import ar.edu.itba.dreamtrip.main.Help;
 
 /**
  * Created by juanfra on 22/11/16.
@@ -114,6 +115,8 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
                 break;
             }
             case R.id.drawer_help: {
+                Intent intent=new Intent(this, Help.class);
+                startActivity(intent);
                 break;
             }
         }

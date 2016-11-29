@@ -115,6 +115,32 @@
     <string name="title_activity_settings">Settings</string>
     <string name="error_tracked_leg">Sorry, could not track deal.</string>
 
+    <string name="question_whatItDoes">What does this app do?</string>
+    <string name="answer_whatItDoes">This app\'s purpose is to help you be up to date
+    with the current status of any flight you may be interested in. You can, as well, follow
+    many interesting destinations to be notified whenever there is a deal to it.</string>
+
+    <string name="question_howToTrackf">How do I follow a flight?</string>
+    <string name="answer_howToTrackf">To follow a flight you may use the add button on the
+    main screen and search for it directly, or by pressing follow on its information screen</string>
+
+    <string name="question_howToDeletef">How do I unfollow a flight?</string>
+       <string name="answer_howToDeletef">Press and hold a flight and the trash option will appear</string>
+
+    <string name="question_whatDestDoes">How do deals work?</string>
+      <string name="answer_whatDestDoes">You may follow any destination available from
+      a departure location. The app will notify you whenever it finds a deal.</string>
+
+
+    <string name="question_howToTrackDest">How do I follow a destination?</string>
+    <string name="answer_howToTrackDest">By searching for a departure location, you will be
+    presented with all the posible destinations. You may use teh add button on the destination
+    screen as well.</string>
+
+    <string name="question_howToDeleteDest">How do I unfollow a destination?</string>
+    <string name="answer_howToDeleteDest">Same as a flight, just Press and hold a flight and the trash option will appear</string>
+
+
     <!-- Strings related to Settings -->
 
     <!-- Example General settings -->

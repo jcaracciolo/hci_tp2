@@ -24,6 +24,7 @@ public class Settings extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setupView(R.layout.activity_settings);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         final Spinner flight_spinner = (Spinner) findViewById(R.id.flight_refresh_time);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -73,4 +74,11 @@ public class Settings extends BaseActivity {
             SettingsManager.getInstance(getBaseContext()).setFlightNotifications(false);
         }
     }
+
+    @Override
+    public boolean onSupportNavigateUp(){
+        finish();
+        return true;
+    }
+
 }
