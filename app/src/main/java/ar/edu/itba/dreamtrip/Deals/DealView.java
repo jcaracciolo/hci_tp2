@@ -28,7 +28,7 @@ public class DealView {
 
         View dealView=inflater.inflate(R.layout.fragment_deal, container, false);
         ((TextView)dealView.findViewById(R.id.deal_to)).setText(deal.to);
-        ((TextView)dealView.findViewById(R.id.deal_price)).setText(deal.price.toString());
+        ((TextView)dealView.findViewById(R.id.deal_price)).setText(deal.getFormatedPrice());
         ImageButton destButton=((ImageButton)dealView.findViewById(R.id.deal_img));
         final DataHolder dataholder = DataHolder.getInstance(context);
         dataholder.loadDealsImageIntoView(destButton,deal.to);
