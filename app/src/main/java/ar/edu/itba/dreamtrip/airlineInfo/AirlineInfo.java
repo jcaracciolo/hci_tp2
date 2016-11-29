@@ -57,10 +57,8 @@ public class AirlineInfo extends BaseActivity {
         }
 
         flightID = id + " " + flightID;
-
-        Intent intent = new Intent(this, FlightInfo.class);
-        intent.putExtra(TO_FLIGHT_KEY, flightID);
-        startActivity(intent);
+        DataHolder.getInstance(getApplicationContext()).waitForIt(
+                new FlightExistsInAirlineTask(getApplicationContext(),flightID));
     }
 
     public void seeOpinions(View v) {
