@@ -28,7 +28,6 @@ import com.google.zxing.integration.android.IntentResult;
 import ar.edu.itba.dreamtrip.R;
 import ar.edu.itba.dreamtrip.common.API.DataHolder;
 import ar.edu.itba.dreamtrip.common.API.SettingsManager;
-import ar.edu.itba.dreamtrip.common.LocaleHelper;
 import ar.edu.itba.dreamtrip.common.notifications.TrackedChangesManager;
 import ar.edu.itba.dreamtrip.common.tasks.PopulateAutocompleteTask;
 import ar.edu.itba.dreamtrip.common.tasks.TrackFlightTask;
@@ -56,15 +55,7 @@ public class FlightTracker extends BaseActivity {
         super.onCreate(savedInstanceState);
 
         int selectedTab = getIntent().getIntExtra("selectedTab", 1); //DEFAULT IS FLIGHTS
-        switch (SettingsManager.getInstance(getBaseContext()).getSavedLanguage()){
-            case SPANISH:
-                LocaleHelper.onCreate(this,"es");
-                break;
-            case ENGLISH:
-                LocaleHelper.onCreate(this,"en");
-                break;
 
-        }
 
 
         setupView(R.layout.activity_flight_tracker);

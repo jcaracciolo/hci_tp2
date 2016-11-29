@@ -83,10 +83,10 @@
     <string name="opinions_of_title">Opinions of</string>
     <string name="send_opinions_of_title">Send opinion of</string>
     <string name="flight_notification_time">Time between flight status update</string>
-    <string name="deals_notification_time">Time between destinations offers update</string>
+    <string name="deals_notification_time">Time between destinations offers\nupdate</string>
     <string name="language">Language</string>
     <string name="disable_notifications">Enable notifications</string>
-    <string name="setting_title">Settigs</string>
+    <string name="setting_title">Settings</string>
     <string name="spanish">Spanish</string>
     <string name="english">English</string>
 
